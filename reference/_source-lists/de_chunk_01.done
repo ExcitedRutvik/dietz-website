@@ -1,0 +1,59 @@
+# de_chunk_01 — Processing Summary
+
+Total URLs processed: 50
+Succeeded: 50
+Failed: 0
+
+## Method note
+
+The first 22 pages were processed via the WebFetch tool. From URL #23 onward, WebFetch began
+returning persistent HTTP 429 (Too Many Requests) — likely a shared rate limit on the fetch
+backend, compounded by a concurrent sibling process also crawling dietz.eu in this same session
+(evidenced by pre-existing files/assets for other URL chunks found in the project). Direct `curl`
+requests to the same URLs returned clean 200s throughout, confirming the site itself was not
+blocking us.
+
+To keep the batch moving without long waits, switched to a direct pipeline for the remaining 29
+pages: `curl` (with a browser User-Agent) + a small BeautifulSoup/lxml Python script
+(`c01_extract.py` / `c01_gen_md.py`, scratchpad) that pulls page title, H1/H2/H3/H4 structure with
+body copy in document order, images (absolute src + alt), YouTube/Vimeo iframe src, internal
+dietz.eu links in the main content, and CTA text / form field names. This produced more complete
+and verbatim page copy than the WebFetch summarization pass (no content loss from AI
+condensation), so quality is equal or better for the back half of the batch.
+
+## Failures
+
+None. Every one of the 50 URLs resolved to a markdown file under `reference/pages/de/`.
+
+## Images
+
+- Unique image URLs found referenced across this chunk's 50 pages: 11
+  - 10 certification/award badges on the `downloads/` page (DEKRA ISO 9001, DEKRA IATF 16949,
+    ISO 14001:2015, EMAS 2020, Umweltpakt Bayern, DIHK/KSU, UMPreis 2023, UMPreis 2024, EcoVadis
+    medal, AEO)
+  - 1 staff photo (Andrea-Dietz.jpg) on the `elektroniker-m-w-d/` job posting page
+- Downloaded this run: 0 (all 11 already existed in `reference/assets/images/{de,en}/` from
+  earlier/concurrent crawling of overlapping shared assets — logos, badges, and the staff photo
+  repeat across many pages/chunks). Verified each with `file` — all non-zero size, correct image
+  type (PNG/JPEG).
+- All other 48 pages in this chunk are text-only blog/glossary articles with no in-content images
+  (confirmed both by the WebFetch passes and by the BeautifulSoup image scan, which only looks
+  inside `<article> .post-content` — global header/footer/nav images are intentionally excluded
+  per the task instructions and are already captured in `reference/nav-and-footer.md`).
+
+## Content notes
+
+- No embedded YouTube/Vimeo videos found on any of the 50 pages.
+- Only two pages had real internal-content links or forms:
+  - `elektroniker-m-w-d/` — a job-application form (fields: stelle, name, e-mail, telefon,
+    bewerbungs-dateien[], text, ihr-nachricht) plus links to `/tag/ab-sofort/`, `/tag/vollzeit/`,
+    and the relaunch site's Datenschutz page.
+  - `downloads/` — ~30 outbound links to PDF documents (certificates, policies, brochures,
+    sustainability reports) hosted under `wp-content/uploads/`.
+  - A handful of the SEO blog articles link back to their related product category page (e.g.
+    `druckfedern-nach-din-2095/` → `/produkte/druckfedern/`, `edelstahl-zugfedern/` →
+    `/produkte/zugfedern/`, `doppelschenkelfedern-mechanische-systeme/` →
+    `/produkte/schenkelfedern/`).
+- Nearly every blog/glossary page carries the same repeated CTA text block:
+  "Jetzt unverbindlich Kontakt mit uns aufnehmen" (not a distinct button/form, just styled text
+  above the site-wide contact widget).

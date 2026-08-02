@@ -1,0 +1,20 @@
+# de_chunk_00 — Completion Summary
+
+Total URLs in chunk: 48
+Succeeded: 48
+Failed: 0
+
+All 48 pages listed in `_source-lists/de_chunk_00` were fetched and archived as markdown under `reference/pages/de/` (mirroring URL path hierarchy, e.g. `reference/pages/de/branchen/automotive.md`).
+
+## Notes on borderline cases (not counted as failures)
+- `https://www.dietz.eu/46-2/` → `reference/pages/de/46-2.md` — WebFetch returned no real page title or heading structure; content was almost entirely nav/footer/certification badges (numeric slug suggests a stub/legacy WordPress page ID). Documented in the file with a note; not a fetch error, just thin/uncertain content worth a manual spot-check later.
+- `https://www.dietz.eu/blog/` → `reference/pages/de/blog.md` — is a paginated index/listing page; WebFetch truncated the full 50+ entry enumeration, so the file captures a representative sample of entries rather than the exhaustive list (most individual articles are separately archived as their own pages anyway).
+- `https://www.dietz.eu/beispiel-seite/` → `reference/pages/de/beispiel-seite.md` — default unmodified WordPress sample page, documented as such.
+
+## Images
+Total unique image URLs referenced across all 48 pages: 123
+Missing/undownloaded: 0 (all 123 verified present as local files under `reference/assets/images/` — deduplicated against the whole assets/images tree, including images already fetched by other chunks/locales, e.g. `assets/images/en/`, so many were skip-as-existing rather than freshly downloaded in this run).
+No image download failures encountered in this chunk (one transient issue with `aeo.png` on the `relaunch.dietz.eu` host was resolved by re-fetching the same filename from `www.dietz.eu`, which mirrors the same media library).
+
+## Rate limiting note
+WebFetch hit shared HTTP 429 (Too Many Requests) rate limits on the dietz.eu domain multiple times during this run (likely due to concurrent crawl activity from other chunk-processing sessions hitting the same host). Each time, a short cooldown followed by a retry resolved it — no URLs were skipped or given up on because of this.

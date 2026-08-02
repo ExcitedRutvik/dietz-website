@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+/* Design tokens. Swiss Modernism: one neutral ramp, one accent, mathematical
+   spacing. Declared in @theme so Tailwind generates the utilities — `bg-brand`,
+   `text-ink`, `border-line` — and nothing needs a hand-written class.
+
+   Before this, components mixed Tailwind's `zinc` (templates) and `neutral`
+   (header/footer) ramps, which are different hues. That is why the chrome and
+   the content never quite looked like the same site. Both are now `ink`.
+
+   Brand values are sampled from the logo: #008BC5 is the Dietz blue, #E3051B
+   the red. The blue only clears 3.8:1 on white, so it is used for fills and
+   graphic accents; `brand-ink` (4.85:1) is the one allowed to carry text. */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+
+  --color-brand: #008bc5;
+  --color-brand-ink: #0079ac;
+  --color-brand-deep: #00587c;
+  --color-brand-wash: #eef7fb;
+  /* The homepage's cinematic sections are near-black. The base brand blue only
+     reaches 5.2:1 there and reads muddy against footage; this tint hits 7.5:1
+     and is the one to use on dark. */
+  --color-brand-light: #42aad4;
+
+  --color-ink: #0b1220;
+  --color-ink-muted: #52606d;
+  --color-ink-faint: #7b8794;
+  --color-line: #e3e7eb;
+  --color-surface: #f5f7f9;
+}
+
+html {
+  /* Lenis drives scrolling; native smooth behaviour fights it. */
+  scroll-behavior: auto;
+}
+
+/* Priority-1 accessibility: a visible, consistent focus ring everywhere,
+   keyboard-only so it never fires on mouse clicks. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-ink);
+  outline-offset: 2px;
+}
+
+/* The copy panel on the scroll-video frames.
+   
+   Web glassmorphism approximation, built on the canonical skeleton in the
+   design-taste-frontend skill (Appendix C). Apple documents Liquid Glass for
+   Apple platforms only and ships no CSS for it, so this is `backdrop-filter`
+   plus layered borders and highlight overlays. It is NOT Apple's material and
+   should not be described as such.
+   
+   Deviations from the skeleton, all deliberate:
+   
+   * `overflow: hidden` is dropped. The hero CTA straddles the panel's bottom
+     edge and clipping cut it in half. `isolation: isolate` still contains the
+     highlight layer, so nothing escapes that needs to be clipped.
+   * `blur(24px)` becomes `blur(6px)`. The brief is explicitly "more background
+     visibility"; a 24px blur turns the footage into fog and hides the thing
+     the panel is sitting on.
+   * The skeleton's dark-mode base is the starting tint, plus a dim gradient
+     that is transparent at the top and settles behind the copy. That gradient
+     is what carries the text, and it is why the pane can stay this clear.
+     Measured 5.3:1 on the hero's brightest frame.
+   
+   This page is dark-locked (the cinematic sections are always dark, whatever
+   the OS theme), so there is no light-mode variant by design. */
+.cine-glass {
+  position: relative;
+  isolation: isolate;
+  border-radius: 28px;
+  border: 1px solid rgb(255 255 255 / 0.42);
+  /* Very little. The pane is 3% tint plus an 18% dim that reaches full
+     strength in the first 26px. The copy has no text-shadow, so this dim is
+     the only thing carrying it; at 18% (which is what the haloed version
+     used) white text drops to about 3:1 here. The 3% tint is unchanged. */
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(8 13 22 / 0) 0,
+      rgb(8 13 22 / 0.46) 26px,
+      rgb(8 13 22 / 0.46) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.24) 0%,
+      rgb(255 255 255 / 0.05) 38%,
+      rgb(255 255 255 / 0.03) 62%,
+      rgb(255 255 255 / 0.16) 100%
+    ),
+    rgb(15 23 42 / 0.03);
+  -webkit-backdrop-filter: blur(7px) saturate(235%) contrast(1.12) brightness(1.05);
+  backdrop-filter: blur(7px) saturate(235%) contrast(1.12) brightness(1.05);
+  /* Four edges, not one. A bright top bevel and a faint bottom one give the
+     pane thickness; the hairline inset all round is the refracted edge; the
+     contact shadow puts it above the footage rather than inlaid in it. */
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.62),
+    inset 0 -1px 0 rgb(255 255 255 / 0.2),
+    inset 0 0 0 1px rgb(255 255 255 / 0.09),
+    inset 0 14px 38px -18px rgb(255 255 255 / 0.5),
+    inset 0 -20px 44px -30px rgb(255 255 255 / 0.24),
+    0 26px 80px -20px rgb(0 0 0 / 0.6),
+    0 2px 10px -4px rgb(0 0 0 / 0.4);
+}
+
+
+/* Specular highlight: a bright spot at the upper left where the light source
+   catches the pane, falling off across the surface. This is the layer that
+   reads as a curved edge rather than a flat rectangle. */
+.cine-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 16% -14%, rgb(255 255 255 / 0.5), transparent 42%),
+    radial-gradient(ellipse at 86% 112%, rgb(255 255 255 / 0.2), transparent 48%),
+    linear-gradient(90deg, rgb(255 255 255 / 0.14), transparent 34%, rgb(255 255 255 / 0.12));
+  pointer-events: none;
+}
+
+/* Inner bevel, one pixel in from the rim. Two edges a pixel apart is what
+   gives glass its thickness; a single border reads as a stroke. */
+.cine-glass::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid rgb(255 255 255 / 0.24);
+  pointer-events: none;
+}
+
+/* A backdrop-filter over a scrubbing canvas is re-rasterised every frame: the
+   browser resamples the moving footage behind the pane and re-blurs it. The
+   blur is imperceptible while the scrub is moving, so it is dropped for the
+   duration and the tint deepened to hold contrast in its place. */
+[data-scrubbing="1"] .cine-glass {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: linear-gradient(
+    to bottom,
+    rgb(10 15 24 / 0.3) 0,
+    rgb(8 13 22 / 0.62) 26px,
+    rgb(8 13 22 / 0.62) 100%
+  );
+}
+
+/* Support for this query is uneven, so the panel has to clear contrast without
+   the blur regardless; this only removes the transparency. */
+@media (prefers-reduced-transparency: reduce) {
+  .cine-glass {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgb(8 13 22 / 0.92);
+  }
+}
+
+/* The persistent section heading and the mobile poster caption sit directly on
+   the footage rather than inside the panel, so they keep the glyph-shaped
+   halo: stacked shadows that darken in the shape of the letterforms, leaving
+   the frame around them untouched. */
+.cine-halo,
+.cine-halo * {
+  text-shadow:
+    0 0 7px rgba(6, 9, 15, 0.98),
+    0 0 7px rgba(6, 9, 15, 0.95),
+    0 0 18px rgba(6, 9, 15, 0.8),
+    0 0 34px rgba(6, 9, 15, 0.5);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .cine-glass {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(8, 13, 22, 0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The site is light. The near-black body background this used to carry existed
+   only for the homepage's cinematic scroll-video, but body is shared by every
+   route: the 579 content pages render <main> with no background of its own, so
+   they inherited #0a0a0a and drew text-zinc-900 copy on top of it. That is
+   near-black on near-black, i.e. every content page rendered as a black
+   rectangle. The dark treatment now belongs to the homepage only, which sets
+   it explicitly on its own wrapper (see HomePage.tsx). */
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+

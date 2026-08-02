@@ -1,0 +1,55 @@
+# en_chunk_01 — completion summary
+
+Source list: reference/_source-lists/en_chunk_01
+Total URLs in chunk: 61
+Processed: 61 / 61
+Succeeded (page content fetched and markdown written): 61
+Failed (WebFetch failure requiring FETCH FAILED note): 0
+
+All 61 pages were fetched successfully via WebFetch (after retrying through intermittent HTTP 429 rate-limiting from the shared crawl load — resolved with short backoff waits between requests) and a corresponding markdown file was written under reference/pages/en/ mirroring the URL path hierarchy, e.g.:
+- https://www.dietz.eu/en/glossary/ -> reference/pages/en/glossary.md
+- https://www.dietz.eu/en/industries/automotive/ -> reference/pages/en/industries/automotive.md
+- https://www.dietz.eu/en/products/bent-wire-parts/ -> reference/pages/en/products/bent-wire-parts.md
+
+## Images downloaded (this chunk)
+
+New unique image files successfully downloaded to reference/assets/images/en/ during this chunk's run (all others encountered were already present from other pages/chunks, including the parallel /de/ crawl, and were skipped per the dedupe rule):
+
+1. aeo.png (AEO certification badge; had to substitute host www.dietz.eu for relaunch.dietz.eu, which no longer resolves in DNS — NXDOMAIN)
+2. en.svg (language switcher flag)
+3. de.svg (language switcher flag)
+4. t-automotive.jpg
+5. DTZ_elektrotechnik.jpg
+6. t-medizin.jpg
+7. t-weisseware.jpg
+8. t-weiterebranchen.jpg
+9. DTZ_Zahnrad_Polyoxymethylen.jpg
+10. DTZ_hybrid_silikonfedern.jpg
+11. dietz-elektrotechnik.jpg
+12. dtz-kontaktschiene.jpg
+13. DTZ_Hebel-_Polyamid.jpg
+14. dietz-medizintechnik-2.jpg
+15. dtz-wellenring-vorspann.jpg
+16. DTZ-schenkelfederLeuchten.jpg
+17. dtz-zugfeder-ueberlang.jpg
+18. dtz-schenkelfeder-geschirrsp.jpg
+19. DTZ_sonderdruckfeder.jpg
+20. dtz-montageteil-maschinenbau.jpg
+21. intro-prototypen-musterbau-scaled-e1709122819524.jpg
+
+**Total new images downloaded: 21**
+
+Dozens of other referenced images (standard footer certification badges, the Dietz logo, other product photos already seen on earlier pages in this chunk or by concurrent chunk-processing sessions working the same repo) were detected as already present under reference/assets/images/en/ or reference/assets/images/de/ and were correctly skipped rather than re-downloaded.
+
+## Failed image downloads (noted in-page per instructions)
+
+8 images failed to download — all from the same root cause: URLs under `/wp-content/uploads/2016/05/...` on www.dietz.eu now 301-redirect to the site homepage (dead/removed assets), and the `relaunch.dietz.eu` fallback subdomain that hosts some older media no longer resolves in DNS (confirmed NXDOMAIN via DNS-over-HTTPS lookup) — so there is no working fallback host. These are genuinely broken image links on the live production site, not a local/network issue. Noted inline in the affected pages:
+
+- reference/pages/en/products/hybrid-assemblies.md — 5 failed images (Baugruppen-Montage-0001-WEB.jpg, -0002, -0003, -0006, -0007)
+- reference/pages/en/products/special-packaging.md — 3 failed images (Sonderverpackungen-0001-WEB.jpg, -0002, -0004)
+
+## Other notes
+
+- The dietz.eu site intermittently returned HTTP 429 (Too Many Requests) during this run, most likely due to combined load from multiple concurrent chunk-processing sessions crawling the same site. All 429s were resolved by waiting ~20-60s and retrying; no URL was skipped because of this.
+- Several category/product pages' internal links resolved to a `relaunch.dietz.eu` or German-slug staging host rather than the live `/en/` path — these are noted in the affected markdown files with the presumed live equivalent.
+- The `/en/precision-springs/` glossary stub and `/en/products/precision-springs/` category page are two distinct pages on the site and were captured separately, as were the two "prototype-construction" style pages.

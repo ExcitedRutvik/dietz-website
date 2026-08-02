@@ -1,0 +1,390 @@
+{
+  "_comment": [
+    "Keyword map for dietz.eu. Built 2026-07-30 from SERP + competitor title-tag",
+    "evidence, NOT from a volume tool — no Search Console or Ahrefs data was",
+    "available. `tier` is a qualitative demand estimate (1 = head commercial,",
+    "2 = mid-tail commercial, 3 = informational long-tail), not a volume figure.",
+    "Re-derive tiers once GSC data exists; the rest of the map holds regardless.",
+    "",
+    "`money` is the one page allowed to rank for `primary`. Every other page in",
+    "`cluster` is a cannibalizing duplicate: it links up to `money` with the",
+    "primary as anchor, and does not target the primary itself.",
+    "",
+    "Modifier evidence (German SERP for `Druckfedern nach Maß Hersteller`):",
+    "competitors title as `<Produkt> nach Maß | <Qualifier> | <Marke>` and",
+    "`<Produkt> ▷ Sonderanfertigung vom Hersteller`. The high-intent modifiers",
+    "that recur across ranking titles are: nach Maß, Sonderanfertigung,",
+    "Hersteller, kundenspezifisch, Kleinserie, Edelstahl, DIN. English SERP",
+    "mirrors these with: custom, made to measure, manufacturer, supplier."
+  ],
+
+  "brand": { "de": "Dietz GmbH", "en": "Dietz GmbH" },
+
+  "modifiers": {
+    "de": ["nach Maß", "Sonderanfertigung", "Hersteller", "kundenspezifisch", "Kleinserie", "Edelstahl", "aus Federstahl"],
+    "en": ["custom", "made to measure", "manufacturer", "supplier", "small batch", "stainless steel", "spring steel"]
+  },
+
+  "clusters": [
+    {
+      "id": "druckfedern",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Druckfedern",
+      "secondary": ["Druckfedern Hersteller", "Druckfedern nach Maß", "Druckfeder Sonderanfertigung", "Edelstahl Druckfedern", "konische Druckfedern", "Druckfedern DIN 2095"],
+      "money": "produkte/druckfedern",
+      "cluster": ["druckfederhersteller", "hersteller-fuer-druckfedern", "druckfedern-mit-schraubgewinde", "druckfedern-nach-din-2095", "druckfedern-nach-din-iso-10243", "edelstahl-druckfedern", "flachdraht-druckfedern", "flache-druckfedern", "kleine-druckfedern", "konische-druckfedern"]
+    },
+    {
+      "id": "compression-springs",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "compression springs",
+      "secondary": ["compression spring manufacturer", "custom compression springs", "stainless steel compression springs", "conical compression springs", "compression springs DIN 2095"],
+      "money": "products/compression-springs",
+      "cluster": ["compression-spring-manufacturer", "find-the-right-compression-spring-manufacturer", "compression-springs-din-2095", "compression-springs-din-iso-10243", "compression-springs-with-screw-thread", "conical-compression-springs", "customised-compression-springs", "cylindrical-helical-compression", "flat-compression-springs", "flat-wire-compression-springs", "compression-coil-springs"]
+    },
+    {
+      "id": "zugfedern",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Zugfedern",
+      "secondary": ["Zugfedern Hersteller", "Zugfedern nach Maß", "Zugfedern mit Öse", "Zugfedern mit Haken", "Edelstahl Zugfedern"],
+      "money": "produkte/zugfedern",
+      "cluster": ["zugfederhersteller", "edelstahl-zugfedern", "kleine-zugfedern", "starke-zugfedern", "zugfedern-fuer-garagentore", "zugfedern-mit-eingerolltem-haken", "zugfedern-mit-gewindebolzen", "zugfedern-mit-gewindestopfen", "zugfedern-mit-haken", "zugfedern-mit-oese"]
+    },
+    {
+      "id": "extension-springs",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "extension springs",
+      "secondary": ["tension spring manufacturer", "custom tension springs", "extension springs with eyelet", "extension springs with hook", "stainless steel tension springs"],
+      "money": "products/extension-springs",
+      "cluster": ["tension-spring-manufacturer", "tension-spring", "custom-tension-springs", "customised-tension-springs-made-to-measure", "extension-springs-with-coiled-hook", "extension-springs-with-eyelet", "small-tension-springs", "stainless-steel-tension-springs", "stainless-steel-tension-springs-2", "strong-tension-springs"]
+    },
+    {
+      "id": "schenkelfedern",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Schenkelfedern",
+      "secondary": ["Schenkelfeder Hersteller", "Schenkelfedern nach Maß", "Doppelschenkelfedern", "Torsionsfedern"],
+      "money": "produkte/schenkelfedern",
+      "cluster": ["schenkelfederhersteller", "der-richtige-schenkelfederhersteller", "beispiel-einbau-schenkelfeder", "doppelschenkelfedern-mechanische-systeme", "schenkelfedermaschine-fmu-08"]
+    },
+    {
+      "id": "torsion-springs",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "torsion springs",
+      "secondary": ["torsion spring manufacturer", "custom torsion springs", "double torsion springs", "small torsion springs"],
+      "money": "products/torsion-springs",
+      "cluster": ["torsion-spring-manufacturer", "the-right-torsion-spring-manufacturer", "installation-of-a-torsion-spring", "small-torsion-springs", "torsion-springs-forces"]
+    },
+    {
+      "id": "wellenfedern",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "Wellenfedern",
+      "secondary": ["Wellenfedern Hersteller", "Flachdraht Wellenfedern", "Wellenfedern für Polstermöbel"],
+      "money": "produkte/wellenfedern",
+      "cluster": ["wellenfederhersteller", "flachdraht-wellenfedern", "halterungen-fuer-wellenfedern", "wellenfedern-fuer-polstermoebel", "wellenfedern-in-sofas"]
+    },
+    {
+      "id": "wave-springs",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "wave springs",
+      "secondary": ["wave spring manufacturer", "flat wire wave springs", "wave springs for upholstered furniture"],
+      "money": "products/wave-springs",
+      "cluster": ["wave-spring-manufacturer", "flat-wire-wave-springs", "mounts-for-wave-springs", "wave-springs-for-upholstered-furniture", "wave-springs-in-sofas"]
+    },
+    {
+      "id": "drahtbiegeteile",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Drahtbiegeteile",
+      "secondary": ["Drahtbiegeteile Hersteller", "CNC Drahtbiegeteile", "Drahtbiegeteile aus Edelstahl", "Drahtbiegeteile Kleinserie"],
+      "money": "produkte/drahtbiegeteile",
+      "cluster": ["drahtbiegeteile-hersteller", "cnc-drahtbiegeteile", "drahtbiegeteile-aus-edelstahl", "drahtbiegeteile-in-kleinserie"]
+    },
+    {
+      "id": "bent-wire-parts",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "bent wire parts",
+      "secondary": ["wire bending parts manufacturer", "CNC wire bending parts", "stainless steel wire bent parts"],
+      "money": "products/bent-wire-parts",
+      "cluster": ["wire-bending-parts-manufacturer", "cnc-wire-bending-parts"]
+    },
+    {
+      "id": "stanzbiegeteile",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Stanz- und Umformteile",
+      "secondary": ["Stanzbiegeteile Hersteller", "Stanzbiegeteile Kleinserie", "Stanzbiegeteile aus Federstahl", "Stanzbiegeteile Lieferanten"],
+      "money": "stanz-umformteile",
+      "cluster": ["stanzbiegeteile", "stanzbiegeteile-hersteller", "stanzbiegeteile-kleinserie", "stanzbiegeteile-lieferanten", "stanzbiegeteile-prototypen", "stanz-und-biegeteile-aus-federstahl"]
+    },
+    {
+      "id": "stamped-parts",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "stamped and formed parts",
+      "secondary": ["stamped bent parts manufacturer", "stamped and formed parts suppliers", "stamped bent parts small series", "stamped parts spring steel"],
+      "money": "products/stamped-and-formed-parts",
+      "cluster": ["stamped-bent-parts-manufacturer", "stamped-and-formed-parts-suppliers", "produce-stamped-bent-parts-in-small-series", "stamped-and-bent-parts-made-from-spring-steel", "stamped-and-bent-parts-perfectly-shaped-and-precisely-manufactured", "develop-stamped-bent-parts-prototypes"]
+    },
+    {
+      "id": "bandbiegeteile",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "Bandbiegeteile",
+      "secondary": ["Bandbiegeteile Hersteller", "Bandbiegeteile nach Maß"],
+      "money": "produkte/bandbiegeteile",
+      "cluster": []
+    },
+    {
+      "id": "strip-bending-parts",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "strip bending parts",
+      "secondary": ["strip bent parts manufacturer", "custom strip bending parts"],
+      "money": "products/strip-bending-parts",
+      "cluster": []
+    },
+    {
+      "id": "praezisionsfedern",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Präzisionsfedern",
+      "secondary": ["Präzisionsfedern Hersteller", "technische Federn nach Maß", "Federn Sonderanfertigung"],
+      "money": "praezisionsfedern",
+      "cluster": ["die-bedeutung-von-praezisionsfedern-in-der-industrie"]
+    },
+    {
+      "id": "precision-springs",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "precision springs",
+      "secondary": ["precision spring manufacturer", "technical springs custom", "custom made springs"],
+      "money": "products/precision-springs",
+      "cluster": ["precision-springs", "custom-made-springs-of-the-highest-quality", "technical-spring-manufacturer", "spring-manufacturer", "steel-spring-manufacturer"]
+    },
+    {
+      "id": "hybride-baugruppen",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "hybride Baugruppen",
+      "secondary": ["Baugruppenmontage", "Federbaugruppen", "hybride Baugruppen Hersteller"],
+      "money": "produkte/hybride-baugruppen",
+      "cluster": []
+    },
+    {
+      "id": "hybrid-assemblies",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "hybrid assemblies",
+      "secondary": ["spring assemblies", "assembly manufacturing", "hybrid assembly manufacturer"],
+      "money": "products/hybrid-assemblies",
+      "cluster": []
+    },
+    {
+      "id": "kunststofftechnik",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "Kunststofftechnik",
+      "secondary": ["Kunststoffspritzguss", "Kunststoffteile Hersteller", "Prototypenbau aus Kunststoff"],
+      "money": "kunststofftechnik",
+      "cluster": ["prototypenbau-aus-kunststoff"]
+    },
+    {
+      "id": "plastics-technology",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "plastics technology",
+      "secondary": ["plastic injection moulding", "plastic spring manufacturers", "plastic parts manufacturer"],
+      "money": "products/plastics-technology",
+      "cluster": ["plastic-spring-manufacturers-a-comprehensive-overview"]
+    },
+    {
+      "id": "sonderverpackungen",
+      "locale": "de",
+      "tier": 3,
+      "intent": "commercial",
+      "primary": "Sonderverpackungen",
+      "secondary": ["Sonderverpackungen für Federn", "kundenspezifische Verpackung"],
+      "money": "produkte/sonderverpackungen",
+      "cluster": ["sonderverpackungen"]
+    },
+    {
+      "id": "special-packaging",
+      "locale": "en",
+      "tier": 3,
+      "intent": "commercial",
+      "primary": "special packaging",
+      "secondary": ["custom packaging for springs", "special packaging manufacturer"],
+      "money": "products/special-packaging",
+      "cluster": []
+    },
+    {
+      "id": "prototypenbau",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Prototypenbau",
+      "secondary": ["Prototypen und Musterbau", "Prototypenbau aus Metall", "CNC Prototypenbau", "Prototypenbau Lieferanten", "Musterbau"],
+      "money": "produkte/prototypen-und-musterbau",
+      "cluster": ["cnc-prototypenbau", "cnc-fraesen-prototypenbau", "prototypenbau-aus-metall", "prototypenbau-aus-kunststoff", "prototypenbau-in-der-medizintechnik", "prototypenbau-lieferanten", "prototypenbau-mit-3d-druck", "prototypgehaeuse", "kosten-prototypenfederungen"]
+    },
+    {
+      "id": "prototype-construction",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "prototype and sample construction",
+      "secondary": ["prototype construction supplier", "CNC prototyping", "CNC milling prototype construction", "rapid prototyping metal"],
+      "money": "products/prototype-and-sample-construction",
+      "cluster": ["prototype-construction", "prototype-construction-supplier", "prototype-housing", "cnc-prototyping", "cnc-milling-prototype-construction", "cost-of-prototype-suspension", "products/prototype-and-sample-development"]
+    },
+    {
+      "id": "federstahl",
+      "locale": "de",
+      "tier": 2,
+      "intent": "informational",
+      "primary": "Federstahldraht",
+      "secondary": ["Federstahl Eigenschaften", "Federwerkstoffe"],
+      "money": "federstahldraht",
+      "cluster": ["der-ultimative-leitfaden-einsatz-federstahldraht-industrie", "die-vielseitigkeit-von-federwerkstoffen"]
+    },
+    {
+      "id": "spring-steel",
+      "locale": "en",
+      "tier": 2,
+      "intent": "informational",
+      "primary": "spring steel wire",
+      "secondary": ["spring steel properties", "spring materials"],
+      "money": "spring-steel-wire",
+      "cluster": ["the-ultimate-guide-to-using-spring-steel-wire-in-the-industry", "spring-material", "spring-material-2"]
+    },
+    {
+      "id": "federnhersteller",
+      "locale": "de",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "Federnhersteller",
+      "secondary": ["technische Federn Hersteller", "Federn Hersteller Deutschland", "Federnhersteller Bayern", "Automobilfedern Hersteller"],
+      "money": "",
+      "cluster": ["federn-hersteller", "automobilfedernhersteller", "spiralfederhersteller", "tellerfedern-hersteller", "finden-sie-hersteller-von-blattfedern"]
+    },
+    {
+      "id": "spring-manufacturer",
+      "locale": "en",
+      "tier": 1,
+      "intent": "commercial",
+      "primary": "spring manufacturer Germany",
+      "secondary": ["technical spring manufacturer", "German spring manufacturer", "automotive spring manufacturer"],
+      "money": "",
+      "cluster": ["spring-manufacturer", "technical-spring-manufacturer", "steel-spring-manufacturer", "automotive-spring-manufacturer", "spiral-spring-manufacturer", "disc-spring-manufacturers", "find-leaf-springs-manufacturers"]
+    },
+    {
+      "id": "branchen-automotive",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "Federn für die Automobilindustrie",
+      "secondary": ["Automotive Federn", "Federn Automobilzulieferer"],
+      "money": "branchen/automotive",
+      "cluster": []
+    },
+    {
+      "id": "industries-automotive",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "springs for the automotive industry",
+      "secondary": ["automotive springs supplier", "automotive wire forms"],
+      "money": "industries/automotive",
+      "cluster": []
+    },
+    {
+      "id": "branchen-medizintechnik",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "Federn für die Medizintechnik",
+      "secondary": ["Medizintechnik Federn", "Mikrofedern Medizintechnik"],
+      "money": "branchen/medizintechnik",
+      "cluster": ["prototypenbau-in-der-medizintechnik"]
+    },
+    {
+      "id": "industries-medical",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "springs for medical technology",
+      "secondary": ["medical device springs", "micro springs medical"],
+      "money": "industries/medical",
+      "cluster": []
+    },
+    {
+      "id": "branchen-elektrotechnik",
+      "locale": "de",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "Federn für die Elektrotechnik",
+      "secondary": ["Kontaktfedern", "Batteriefedern"],
+      "money": "branchen/elektrotechnik",
+      "cluster": []
+    },
+    {
+      "id": "industries-electrical",
+      "locale": "en",
+      "tier": 2,
+      "intent": "commercial",
+      "primary": "springs for electrical engineering",
+      "secondary": ["contact springs", "battery springs"],
+      "money": "industries/electrical-engineering",
+      "cluster": []
+    },
+    {
+      "id": "branchen-weisse-ware",
+      "locale": "de",
+      "tier": 3,
+      "intent": "commercial",
+      "primary": "Federn für Weiße Ware",
+      "secondary": ["Federn Hausgeräte", "Schenkelfedern Geschirrspüler"],
+      "money": "branchen/weisse-ware",
+      "cluster": []
+    },
+    {
+      "id": "industries-white-goods",
+      "locale": "en",
+      "tier": 3,
+      "intent": "commercial",
+      "primary": "springs for white goods",
+      "secondary": ["household appliance springs"],
+      "money": "industries/white-goods",
+      "cluster": []
+    }
+  ]
+}

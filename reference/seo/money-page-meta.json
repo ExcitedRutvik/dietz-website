@@ -1,0 +1,155 @@
+{
+  "_comment": [
+    "Hand-written titles and descriptions for the 34 pages that carry the",
+    "commercial load: the twelve product categories per locale, the industry",
+    "pages, and the two material explainers. Everything else on the site had its",
+    "metadata rebuilt mechanically from its own prose; these did not, because a",
+    "template applied to a money page produced copy like",
+    "'Federn für Weiße Ware | Weiße Ware bei Dietz Federn'.",
+    "",
+    "Every factual claim here is already on the site: wire range 0.20-8.00 mm",
+    "(products/bent-wire-parts), DIN EN ISO 9001:2015 (certifications block),",
+    "DIN 2095 (compression spring pages). No certification, lead time or",
+    "capability is asserted that the site does not already state."
+  ],
+  "de": {
+    "produkte/druckfedern": {
+      "title": "Druckfedern nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Druckfedern nach Maß aus Federstahl und Edelstahl – zylindrisch, konisch oder nach DIN 2095, auch in Kleinserie. Jetzt Anfrage stellen."
+    },
+    "produkte/zugfedern": {
+      "title": "Zugfedern nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Zugfedern nach Maß mit Öse, Haken oder Gewindebolzen, gefertigt aus Federstahl und Edelstahl, auch in Kleinserie. Jetzt Angebot anfordern."
+    },
+    "produkte/schenkelfedern": {
+      "title": "Schenkelfedern nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Schenkelfedern und Doppelschenkelfedern nach Zeichnung – aus Federstahl und Edelstahl, vom Muster bis zur Serie. Sprechen Sie uns an."
+    },
+    "produkte/wellenfedern": {
+      "title": "Wellenfedern nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Wellenfedern aus Flachdraht nach Maß: platzsparend und präzise, für Polstermöbel, Automotive und Maschinenbau. Jetzt Anfrage stellen."
+    },
+    "produkte/drahtbiegeteile": {
+      "title": "Drahtbiegeteile nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Drahtbiegeteile von 0,20 bis 8,00 mm – CNC-gebogen in 2D und 3D, mit Gewinde, Prägung und über 20 Oberflächen. Jetzt Angebot anfordern."
+    },
+    "produkte/bandbiegeteile": {
+      "title": "Bandbiegeteile nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Bandbiegeteile nach Zeichnung aus Federstahl, Edelstahl und Buntmetall – mit eigenem Werkzeugbau und Kleinserie. Sprechen Sie uns an."
+    },
+    "stanz-umformteile": {
+      "title": "Stanz- und Umformteile nach Maß | Dietz GmbH",
+      "description": "Stanz- und Umformteile aus Federstahl und Edelstahl – vom Prototyp bis zur Serie, gefertigt mit eigenem Werkzeugbau. Jetzt Anfrage stellen."
+    },
+    "praezisionsfedern": {
+      "title": "Präzisionsfedern nach Maß vom Hersteller | Dietz GmbH",
+      "description": "Präzisionsfedern nach Maß für Automotive, Medizintechnik und Elektrotechnik, gefertigt nach DIN EN ISO 9001:2015. Jetzt Angebot anfordern."
+    },
+    "produkte/hybride-baugruppen": {
+      "title": "Hybride Baugruppen nach Maß | Dietz GmbH",
+      "description": "Hybride Baugruppen aus Feder, Biegeteil und Kunststoff – konstruiert, montiert und geprüft aus einer Hand. Jetzt Anfrage stellen."
+    },
+    "kunststofftechnik": {
+      "title": "Kunststofftechnik und Spritzguss | Dietz GmbH",
+      "description": "Kunststofftechnik von der Musterentwicklung bis zur Serie: Spritzguss und Hybridteile von einem Lieferanten. Sprechen Sie uns an."
+    },
+    "produkte/sonderverpackungen": {
+      "title": "Sonderverpackungen für technische Federn | Dietz GmbH",
+      "description": "Sonderverpackungen für Federn und Biegeteile – gegurtet, gestapelt oder passend zu Ihrer Montagelinie. Jetzt Angebot anfordern."
+    },
+    "produkte/prototypen-und-musterbau": {
+      "title": "Prototypenbau und Musterbau | Dietz GmbH",
+      "description": "Prototypen und Muster aus eigener Fertigung: CNC-Fräsen, 3D-Druck und Federherstellung unter einem Dach. Jetzt Anfrage stellen."
+    },
+    "federstahldraht": {
+      "title": "Federstahldraht: Werkstoffe und Einsatz | Dietz GmbH",
+      "description": "Federstahldraht im Überblick: Werkstoffe, Eigenschaften und Einsatzgebiete in der industriellen Federfertigung. Sprechen Sie uns an."
+    },
+    "branchen/automotive": {
+      "title": "Federn für die Automobilindustrie | Dietz GmbH",
+      "description": "Federn, Draht- und Stanzbiegeteile für die Automobilindustrie – gefertigt nach DIN EN ISO 9001:2015, vom Muster bis zur Serie."
+    },
+    "branchen/medizintechnik": {
+      "title": "Federn für die Medizintechnik | Dietz GmbH",
+      "description": "Federn und Biegeteile für die Medizintechnik: kleine Losgrößen, hohe Sauberkeitsanforderungen, kurze Musterzeiten. Sprechen Sie uns an."
+    },
+    "branchen/elektrotechnik": {
+      "title": "Federn für die Elektrotechnik | Dietz GmbH",
+      "description": "Kontaktfedern, Batteriefedern und Drahtbiegeteile für die Elektrotechnik – aus Federstahl, Edelstahl und Buntmetall."
+    },
+    "branchen/weisse-ware": {
+      "title": "Federn für Weiße Ware und Hausgeräte | Dietz GmbH",
+      "description": "Federn und Biegeteile für Weiße Ware: Schenkelfedern für Geschirrspüler, Waschmaschinen und Hausgeräte in Serie. Jetzt Anfrage stellen."
+    }
+  },
+  "en": {
+    "products/compression-springs": {
+      "title": "Custom Compression Springs | Dietz GmbH",
+      "description": "Custom compression springs in spring steel and stainless steel — cylindrical, conical or to DIN 2095, small batches included. Get a quote today."
+    },
+    "products/extension-springs": {
+      "title": "Custom Extension Springs | Dietz GmbH",
+      "description": "Custom extension springs with eyelets, hooks or threaded bolts, in spring steel and stainless steel, from small batches up. Request a quote today."
+    },
+    "products/torsion-springs": {
+      "title": "Custom Torsion Springs | Dietz GmbH",
+      "description": "Torsion and double torsion springs made to your drawing, in spring steel and stainless steel, from sample to series. Talk to our engineers."
+    },
+    "products/wave-springs": {
+      "title": "Custom Wave Springs | Dietz GmbH",
+      "description": "Flat wire wave springs made to measure: compact and precise, for furniture, automotive and mechanical engineering. Get a quote today."
+    },
+    "products/bent-wire-parts": {
+      "title": "Bent Wire Parts Made to Measure | Dietz GmbH",
+      "description": "CNC-bent wire parts from 0.20 to 8.00 mm — 2D and 3D shapes with threading, embossing and over 20 surface finishes. Request a quote today."
+    },
+    "products/strip-bending-parts": {
+      "title": "Strip Bending Parts Made to Measure | Dietz GmbH",
+      "description": "Strip bending parts made to your drawing in spring steel, stainless steel and non-ferrous metals, with in-house tooling. Talk to our engineers."
+    },
+    "products/stamped-and-formed-parts": {
+      "title": "Stamped and Formed Parts | Dietz GmbH",
+      "description": "Stamped and formed parts in spring steel and stainless steel — from prototype to series, with in-house tool making. Get a quote today."
+    },
+    "products/precision-springs": {
+      "title": "Precision Springs Made to Measure | Dietz GmbH",
+      "description": "Precision springs for automotive, medical and electrical engineering, manufactured to DIN EN ISO 9001:2015. Request a quote today."
+    },
+    "products/hybrid-assemblies": {
+      "title": "Hybrid Assemblies Made to Measure | Dietz GmbH",
+      "description": "Hybrid assemblies combining springs, bent parts and plastics — designed, assembled and inspected under one roof. Talk to our engineers."
+    },
+    "products/plastics-technology": {
+      "title": "Plastics Technology and Injection Moulding | Dietz GmbH",
+      "description": "Plastics technology from sample development to series production: injection moulding and hybrid parts from one supplier. Get a quote today."
+    },
+    "products/special-packaging": {
+      "title": "Special Packaging for Technical Springs | Dietz GmbH",
+      "description": "Special packaging for springs and bent parts — taped, stacked or built around your own assembly line. Request a quote today."
+    },
+    "products/prototype-and-sample-construction": {
+      "title": "Prototype and Sample Construction | Dietz GmbH",
+      "description": "Prototypes and samples from our own shop floor: CNC milling, 3D printing and spring production under one roof. Talk to our engineers."
+    },
+    "spring-steel-wire": {
+      "title": "Spring Steel Wire: Materials and Uses | Dietz GmbH",
+      "description": "Spring steel wire explained: material grades, properties and where each one is used in industrial spring manufacturing. Get a quote today."
+    },
+    "industries/automotive": {
+      "title": "Springs for the Automotive Industry | Dietz GmbH",
+      "description": "Springs, wire and stamped bent parts for the automotive industry, manufactured to DIN EN ISO 9001:2015, from sample to series."
+    },
+    "industries/medical": {
+      "title": "Springs for Medical Technology | Dietz GmbH",
+      "description": "Springs and bent parts for medical technology: small lot sizes, high cleanliness requirements and fast sampling. Talk to our engineers."
+    },
+    "industries/electrical-engineering": {
+      "title": "Springs for Electrical Engineering | Dietz GmbH",
+      "description": "Contact springs, battery springs and bent wire parts for electrical engineering, in spring steel, stainless steel and non-ferrous metals."
+    },
+    "industries/white-goods": {
+      "title": "Springs for White Goods and Appliances | Dietz GmbH",
+      "description": "Springs and bent parts for white goods: torsion springs for dishwashers, washing machines and household appliances in series."
+    }
+  }
+}

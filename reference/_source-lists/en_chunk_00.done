@@ -1,0 +1,23 @@
+en_chunk_00 — processing summary
+=================================
+
+Total URLs in chunk: 54
+Succeeded: 54
+Failed: 0
+
+Method note: WebFetch (the tool) returned HTTP 429 (rate-limited) on this batch after the first page. Rather than stall the whole chunk, I fetched each page's raw HTML directly with curl (same content the tool would have retrieved) and parsed it locally with BeautifulSoup — extracting the same required fields (title, H1-H5 heading/body structure, images with absolute src + alt, video iframes, in-content internal links, and forms/CTAs) while excluding the global header/nav/footer via the page's <main> boundary. Blog/glossary articles (WordPress "article.hentry" template) were scoped to the <h1> + div.post-content region only, skipping social-share widgets, the WP native comment form, and the "about the author" box (boilerplate on every article, not real CTAs/content).
+
+Markdown files written: 54, at reference/pages/en/... (mirroring URL path hierarchy; homepage -> pages/en/index.md).
+
+Images:
+- Homepage (https://www.dietz.eu/en/): 20 unique image URLs found, all 20 newly downloaded successfully to reference/assets/images/en/.
+- Remaining 53 pages: 31 unique image URLs found (deduplicated across pages). Of these, 8 already existed in the assets/images tree (downloaded earlier by concurrent /de/ or homepage crawl work) and were skipped; 23 were newly downloaded. All 31 verified non-zero-byte and correct image type via `file`. 0 image download failures.
+- Total unique images referenced across this chunk: 51 (20 + 31). Total newly fetched to disk this run: 43 (20 + 23). 0 failed downloads.
+- Known site quirk: many image src URLs point to a `relaunch.dietz.eu` staging subdomain that does not resolve on this network (DNS failure). Confirmed that `www.dietz.eu` serves the identical media library at the same path, so all downloads substituted that host. No content was lost as a result.
+
+No failed URLs to list — all 54 succeeded.
+
+Notable content observations for redesign reference:
+- The EN contact form (reference/pages/en/contact.md) still has German field placeholders ("Vorname Nachname", "Firmenname", etc.) and a German submit button ("Anfrage absenden") — translation gap to flag for the rebuild.
+- reference/pages/en/blog.md is an archive/listing page rendering ~120 distinct article-card links in the initial HTML (no separate pagination markup found) rather than a single-article heading structure; captured as a flat link list instead of heading/body pairs.
+- Several H1 page titles are wrapped in self-referencing <a> tags pointing to a stale `relaunch.dietz.eu/<german-slug>/` URL (Avada page-title-bar quirk) — filtered out of the "internal links" lists as noise, not real navigation.

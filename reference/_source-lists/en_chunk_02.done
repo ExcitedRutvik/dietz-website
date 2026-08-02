@@ -1,0 +1,100 @@
+en_chunk_02 — processing summary
+=================================
+
+Total URLs in chunk: 54
+Succeeded: 54
+Failed: 0
+
+All 54 pages were fetched directly (curl with a browser User-Agent — the
+WebFetch tool returned HTTP 429 rate-limited on every attempt, including
+solo retries after a 20s backoff, so it was abandoned in favor of curl).
+Pages were parsed with a stdlib-only Python HTML parser (no bs4/lxml
+available in this environment) for title / H1-H2-H3 heading structure with
+body copy / images / video embeds / internal content links / CTAs, scoped
+to the WordPress "post-content" article div for headings/links/CTAs, and
+scanned across the full page for <img> tags (per task instructions to
+capture "every image on the page"). Output written to markdown files under
+reference/pages/en/<slug>.md, one per URL (all 54 URLs in this chunk are
+flat /en/<slug>/ paths, no nested hierarchy).
+
+Images: every page in this chunk referenced the same 13 unique sitewide
+image URLs (logo, 4 language flags en/de/fr/es, 8 certification badges) —
+no in-article/body images were embedded in any of these 54 pages (they are
+all text-only SEO glossary/product articles). All 13 unique images already
+existed in reference/assets/images/en/ (downloaded by earlier/concurrent
+chunk work) and were verified valid with `file` (correct PNG/JPEG/SVG
+types, non-zero size) — all skipped per the dedupe rule.
+Total images downloaded by this chunk: 0 (13 skipped as pre-existing, 0 failed).
+
+No embedded YouTube/Vimeo videos were found on any of the 54 pages.
+
+CTA note: nearly every page carries the same CTA pattern — a "Contact us
+now" text label followed by an embedded Typeform contact form
+(data-tf-live id 01HHYPGYGQFR0BRFHV2WWR2ZEF, loaded via
+//embed.typeform.com/next/embed.js). A few pages (spring-manufacturer,
+stamped-bent-parts-manufacturer, steel-spring-manufacturer,
+tension-spring-manufacturer) embed this same form twice on the page.
+
+Files written (54):
+  spring-length.md
+  spring-load-limit.md
+  spring-loading.md
+  spring-manufacturer.md
+  spring-manufacturing-techniques-explained.md
+  spring-manufacturing-techniques.md
+  spring-material-2.md
+  spring-material.md
+  spring-materials-the-big-guide.md
+  spring-mechanisms.md
+  spring-noise.md
+  spring-preload.md
+  spring-production.md
+  spring-rate.md
+  spring-standards.md
+  spring-steel-wire.md
+  spring-stiffness.md
+  spring-strength.md
+  spring-stress.md
+  spring-technology-an-innovative-solution.md
+  spring-testing.md
+  spring-types.md
+  springs-for-technology-the-optimal-solution-for-technical-applications.md
+  springs-in-medical-technology.md
+  stainless-steel-bent-wire-parts.md
+  stainless-steel-compression-springs-2.md
+  stainless-steel-compression-springs.md
+  stainless-steel-tension-springs-2.md
+  stainless-steel-tension-springs.md
+  stamped-and-bent-parts-made-from-spring-steel.md
+  stamped-and-bent-parts-perfectly-shaped-and-precisely-manufactured.md
+  stamped-and-formed-parts-suppliers.md
+  stamped-bent-parts-manufacturer.md
+  steel-spring-manufacturer.md
+  strong-compression-springs.md
+  strong-tension-springs.md
+  suspension-systems.md
+  tailor-made-springs-customized-for-your-company.md
+  technical-plastic-parts.md
+  technical-spring-manufacturer.md
+  technical-springs-production.md
+  tension-spring-manufacturer.md
+  tension-spring.md
+  tension-springs-according-to-din-2098.md
+  tension-springs-for-garage-doors.md
+  tension-springs-with-eyelets.md
+  tension-springs-with-hooks.md
+  tension-springs-with-threaded-bolts.md
+  tension-springs-with-threaded-plugs.md
+  the-advantages-of-a-high-quality-spring-coating-for-your-products.md
+  the-art-of-sample-creation-how-to-optimize-your-product-development.md
+  the-art-of-spring-design-perfect-solutions-for-your-requirements.md
+  the-art-of-spring-production-quality-and-precision-for-your-success.md
+  the-future-of-manufacturing-everything-you-need-to-know-about-3d-printing.md
+
+Process note: a concurrent sibling agent was found to be processing a
+different chunk (en_chunk_03) in the SAME shared scratchpad tmp directory
+at the same time, which clobbered this task's working files partway
+through. Work was moved to an isolated scratchpad subfolder
+(scratchpad/chunk02/) to avoid further collisions; final output only ever
+targeted the project's reference/pages/en/ and reference/assets/images/en/
+directories, which are per-file-name safe for concurrent chunk work.

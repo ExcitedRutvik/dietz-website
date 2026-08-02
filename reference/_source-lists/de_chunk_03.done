@@ -1,0 +1,63 @@
+de_chunk_03 — processing summary
+=================================
+
+Total URLs in chunk: 61
+Succeeded (markdown page written): 61
+Failed (WebFetch/network failure with no content recovered): 0
+
+All 61 pages were fetched successfully. Note on method: WebFetch hit intermittent HTTP 429 (rate limiting, likely shared across concurrent sessions working this archive in parallel) on several URLs. Retries succeeded for most; for a handful, content was instead extracted by fetching the raw HTML directly with curl and parsing it manually (title, headings, body text, images, links). These are flagged inline in the relevant .md files with a "fetched via direct HTML retrieval" note. No URL was left as **FETCH FAILED** — every one produced usable content.
+
+URLs that required the curl fallback (WebFetch returned 429 repeatedly):
+- https://www.dietz.eu/stoessel-mit-feder/
+- https://www.dietz.eu/unternehmen/qualitaet-umwelt/
+- https://www.dietz.eu/wellenfedern-fuer-polstermoebel/
+- https://www.dietz.eu/zugfedern-nach-din-2098/
+- https://www.dietz.eu/zugfedern-nach-mass-2/
+
+Images
+------
+Total new unique image files downloaded to reference/assets/images/de/ in this pass: 26
+  - Andrea-Dietz.jpg
+  - intro-stanz-umformteile-scaled-e1709122508324.jpg
+  - DTZ_anpressfeder.jpg
+  - DTZ_rollofederjpg.jpg
+  - prod_stanz-umformtechnik.jpg
+  - DTZ_schweissringe.jpg
+  - dekra-iso-9001.png (DEKRA ISO 9001 badge — previously flagged as "to be located" in nav-and-footer.md; now found and archived)
+  - dekra-iatf-16949.png (DEKRA IATF 16949 badge — same as above)
+  - ISO-14001-2015.png
+  - dietz_aussen-1200x375.jpg
+  - Bildschirmfoto-2023-12-18-um-09.58.06.png (poster image for company video)
+  - Beschaeftigte_Kommunmikation.png
+  - Wasser.png
+  - Materialeffizienz-3.png
+  - Gesundheit-300x300.png
+  - Strom_Scope-2.png
+  - Umweltpakt-Bayern-a5a6bddf.png
+  - Fuhrpark-300x300.png
+  - Scope-3_3.png
+  - Recycling_Verwertung_Wiederaufbereitung.png
+  - Biologische-Vielfalt.png
+  - 2022-03-03-logo-klimaschutz-unternehmen-data-300x200.jpg
+  - csm_IHK_Logo_1551352070_ba4338695a-300x211.jpg
+  - Vision-mit-Text.png
+  - Dietz-intro-federnstab-sonderverpackung-scaled.jpg
+  - dtz-montagesetzDialyse.jpg
+
+All 26 verified valid (non-zero size, correct image type) via `file`.
+
+Additional images referenced in this chunk's pages were found to already exist elsewhere in reference/assets/images/ (de/ or en/ subfolders, downloaded earlier by other parallel chunk-processing sessions working the same shared archive) and were skipped per the dedup rule — each is noted with its existing path in the relevant page's .md file. No image download failures occurred; every image URL encountered either downloaded successfully or was confirmed already present.
+
+Notable finding: many images on this site are served from a `relaunch.dietz.eu` staging subdomain that does not resolve via DNS from this environment. In every case checked, an equivalent copy of the same file was confirmed to also be served from the production `www.dietz.eu` domain at the same path, and that copy was used for downloading/verification instead. This is noted per-page where relevant.
+
+One embedded resource was intentionally NOT downloaded: the company image film at
+https://www.dietz.eu/wp-content/uploads/2023/12/DIETZ-firmenvideo.mp4 (~380 MB), linked from
+reference/pages/de/unternehmen.md — out of scope for an "images" archival pass; only its poster
+image was downloaded, and its URL is recorded in the page markdown for future reference.
+
+Pages covering the core "unternehmen" (company) section were the richest in this chunk —
+reference/pages/de/unternehmen.md, unternehmen/leistungen.md (+ 4 sub-pages), unternehmen/qualitaet-umwelt.md,
+unternehmen/unsere-partner-und-mitgliedschaften.md, and unternehmen/unsere-unternehmenspolitik.md —
+these contain most of the company's certification badges, sustainability icon set, and partner logos.
+The remaining ~45 URLs in this chunk are SEO/glossary-style blog articles about springs and
+manufacturing topics, mostly text-only with no images in their main content areas.

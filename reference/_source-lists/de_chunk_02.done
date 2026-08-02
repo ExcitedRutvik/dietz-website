@@ -1,0 +1,49 @@
+de_chunk_02 — completion summary
+=================================
+
+Total URLs in de_chunk_02: 65 (64 unique pages; line 60/61 "https://www.dietz.eu/praezisionsfedern/" is a duplicate of the same URL, resolved to a single file).
+
+Succeeded: 65 / 65 (100%). No fetch failures.
+
+Method:
+- First 26 pages processed via WebFetch tool directly (one at a time; hit intermittent
+  platform-level 429 rate limiting on the WebFetch tool itself, worked around with short
+  backoff retries).
+- Remaining 39 URL entries (38 unique) processed via a curl + Python (BeautifulSoup/HTMLParser)
+  pipeline built in the scratchpad, reusing extraction tooling already present in this
+  session's scratchpad from parallel work on other chunks (chunk02/extract.py, gen_md.py,
+  adapted for German CTA text and native contact-form rendering). This bypassed the WebFetch
+  rate limit entirely since curl hit the site directly with no issues (all 200 OK).
+
+Markdown files written: 64 (one per unique URL) under
+/home/ubuntu/projects/dietz/reference/pages/de/, including the karriere/ subdirectory
+(karriere.md, karriere/ausbildung.md, karriere/duales-studium.md, karriere/fachkraefte.md,
+karriere/initativbewerbung.md, karriere/praktikum.md).
+
+Each file contains: source URL, page <title>, full H1/H2/H3 heading structure with body
+copy, images (content images vs. sitewide chrome logo/flags/certification badges, both
+listed with absolute src + alt), embedded video iframes (none found on any page in this
+chunk), internal links found in the main content area, and CTA/contact-form details
+(most pages use an embedded Typeform widget behind a "Jetzt unverbindlich Kontakt mit uns
+aufnehmen" button; the /kontakt/ page has a native HTML contact form with fields:
+Vorname Nachname, Firmenname, E-Mail, Telefonnummer, Datenschutz-Checkbox, and an
+"Anfrage absenden" submit button).
+
+Images:
+- 54 unique image URLs found across the 38 pages processed via the curl pipeline (the
+  26 WebFetch-processed pages had no in-content images beyond the shared site logo, which
+  was already archived).
+- 34 already existed somewhere in the assets tree (assets/logo/, assets/images/en/, or
+  assets/images/de/ from earlier work) — skipped per instructions.
+- 20 new images downloaded into /home/ubuntu/projects/dietz/reference/assets/images/de/,
+  all verified non-zero size and correct type via `file`.
+- Note: several image URLs on-page use the internal staging host `relaunch.dietz.eu`,
+  which does not resolve publicly (DNS failure). For those 16 files, the same path was
+  re-fetched from `www.dietz.eu` (the public production host) successfully instead —
+  content is identical, only the host differs. The markdown files still record the
+  original `relaunch.dietz.eu` src URL as found in the page HTML, per the extraction
+  instructions.
+- 0 image download failures in the final state.
+
+Failures: none. Every URL produced a markdown file; no `**FETCH FAILED**` markers were
+needed for this chunk.

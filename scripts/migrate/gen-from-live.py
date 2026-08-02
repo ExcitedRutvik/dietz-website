@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+"""Turn scraped-live JSON into typed PageEntry content files.
+
+Classification is driven by the live URL shape, which is the only reliable
+signal: /produkte/<category>/ pages are long-form product articles, while the
+individual example pages under the same prefix are one-paragraph product
+descriptions with a single photo. The original migration modelled neither and
+lost 155 pages plus most of the depth on the ones it did build.
+"""
+import json, os, re, sys, glob, hashlib
+from urllib.parse import urlparse
+
+OUT = "src/content/pages"
+
+# Category pages: the twelve entries in the live Produkte dropdown.
+CATEGORY_SLUGS = {
+    "druckfedern","wellenfedern","schenkelfedern","zugfedern","sonderverpackungen",
+    "prototypen-und-musterbau","hybride-baugruppen","drahtbiegeteile","bandbiegeteile",
+    "stanz-umformteile","praezisionsfedern","kunststofftechnik",
+}
+CATEGORY_EN = {
+    "compression-springs","wave-springs","torsion-springs","extension-springs",
+    "special-packaging","prototype-and-sample-construction","prototype-and-sample-development",
+    "hybrid-assemblies","bent-wire-parts","strip-bending-parts",
+    "stamped-and-formed-parts","precision-springs","plastics-technology",
+}
+
+def esc(t): return t.replace("\\","\\\\").replace('"','\\"')
+
+def camel(loc, slug):
+    parts = re.split(r'[^a-zA-Z0-9]+', slug)
+    n = parts[0].lower() + "".join(p.capitalize() for p in parts[1:] if p)
+    if not n or n[0].isdigit(): n = "p" + n
+    return n + loc.upper()
+
+def canonical_id(d):
+    """DE and EN counterparts must share one id or the language switcher and
+    hreflang both break. Slugs are fully translated (druckfedern <->
+    compression-springs), so they cannot be paired by string similarity. WPML
+    publishes rel=alternate hreflang on every page; that mapping is the
+    authority. The German URL is used as the canonical key because DE is the
+    site's default locale."""
+    alts = d.get("alternates") or {}
+    de = alts.get("de")
+    if de:
+        base = urlparse(de).path.strip("/")
+    else:
+        base = d["slug"]                    # single-locale page: key on itself
+        if d["locale"] != "de":
+            base = d["locale"] + "/" + base
+    return re.sub(r'[^a-z0-9]+', '-', base.lower()).strip('-')
+
+def classify(d):
+    """Classify from the CANONICAL (German) URL, not the page's own slug.
+
+    DE uses flat slugs for three categories (/praezisionsfedern/) while their
+    English twins live under /en/products/. Classifying per-locale gave the two
+    halves of one page different id prefixes, which split them into separate
+    entries and broke the language switcher. The German URL decides for both."""
+    alts = d.get("alternates") or {}
+    canon = urlparse(alts["de"]).path.strip("/") if alts.get("de") else d["slug"]
+    last = canon.split("/")[-1]
+    if last in CATEGORY_SLUGS or last in CATEGORY_EN:
+        return "product-category"
+    if canon.startswith(("produkte/", "products/")):
+        return "product-example"
+    return "post"
+
+def blocks_ts(blocks, ind="    "):
+    r=[]
+    for b in blocks:
+        if b["kind"]=="heading":
+            r.append('%s{ kind: "heading", level: %d, text: "%s" }' % (ind,b["level"],esc(b["text"])))
+        elif b["kind"]=="paragraph":
+            r.append('%s{ kind: "paragraph", text: "%s" }' % (ind,esc(b["text"])))
+        elif b["kind"]=="list":
+            items=", ".join('"%s"' % esc(i) for i in b["items"])
+            od="ordered: true, " if b.get("ordered") else ""
+            r.append('%s{ kind: "list", %sitems: [%s] }' % (ind,od,items))
+        elif b["kind"]=="image":
+            cap=', caption: "%s"' % esc(b["caption"]) if b.get("caption") else ""
+            r.append('%s{ kind: "image", src: "%s", alt: "%s"%s }' % (ind,b["src"],esc(b["alt"]),cap))
+    return ",\n".join(r)
+
+def local_img(src):
+    """Map a live media URL to the local path used by asset-download."""
+    name = os.path.basename(urlparse(src).path)
+    return "/images/live/" + name
+
+def build(d, cid):
+    loc, slug = d["locale"], d["slug"]
+    kind = classify(d)
+    h1 = d["h1"] or slug.split("/")[-1].replace("-"," ").title()
+    seo_title = d["seo_title"] or h1
+    intro = d["intro"] or ""
+    desc = (intro or h1)[:180]
+    export = camel(loc, slug)
+
+    cta = ""
+    if d.get("cta_label"):
+        cta = ('  cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", '
+               'label: "%s" },\n' % esc(d["cta_label"]))
+
+    body = list(d["blocks"])
+    # Product examples are a photo plus one description; put the photo first so
+    # the page leads with the part, which is what the reader came for.
+    imgs = d.get("images", [])
+    if kind == "product-example" and imgs:
+        body = [{"kind":"image","src":local_img(imgs[0]["src"]),"alt":imgs[0]["alt"] or h1}] + body
+    elif imgs:
+        for im in imgs[:6]:
+            body.append({"kind":"image","src":local_img(im["src"]),"alt":im["alt"] or h1})
+
+    ts = (
+      '// Generated by scripts/migrate/gen-from-live.py from %s\n'
+      '// Source of truth is the LIVE page, not the original markdown scrape\n'
+      '// (which was incomplete: this content type was missed entirely, and\n'
+      '// several pages were captured as summaries rather than verbatim copy).\n'
+      'import type { PageEntry } from "@/content/schema";\n\n'
+      'export const %s: PageEntry = {\n'
+      '  id: "%s",\n  locale: "%s",\n  slug: "%s",\n'
+      '  seo: {\n    title: "%s",\n    description: "%s",\n  },\n'
+      '  type: "post",\n  h1: "%s",\n'
+      % (d["url"], export, cid, loc, slug, esc(seo_title), esc(desc), esc(h1))
+    )
+    if intro: ts += '  intro: "%s",\n' % esc(intro)
+    ts += cta
+    ts += '  blocks: [\n%s%s\n  ],\n};\n' % (blocks_ts(body), "," if body else "")
+    return export, ts, kind
+
+def main(scrapedir, only_missing=None):
+    made = {}
+    skip = set()
+    if only_missing:
+        skip = {(l,s) for l,s in json.load(open(only_missing))}
+    counts = {}
+    for f in sorted(glob.glob(f"{scrapedir}/*.json")):
+        d = json.load(open(f))
+        if d.get("chars",0) < 20 and not d.get("images"): continue
+        loc, slug = d["locale"], d["slug"]
+        if not slug: continue                      # homepage handled separately
+        kind = classify(d)
+        prefix = {"post":"post","product-category":"product","product-example":"example"}[kind]
+        cid = prefix + "." + canonical_id(d)
+        export, ts, kind = build(d, cid)
+        sub = {"post":"article","product-category":"product","product-example":"example"}[kind]
+        dest = f"{OUT}/{sub}/{slug.replace('/','--')}.{loc}.ts"
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        open(dest,"w").write(ts)
+        counts[kind]=counts.get(kind,0)+1
+    for k,v in sorted(counts.items()): print(f"  {k}: {v}")
+    print(f"  TOTAL: {sum(counts.values())}")
+
+if __name__ == "__main__":
+    main(sys.argv[1])

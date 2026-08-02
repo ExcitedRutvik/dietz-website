@@ -1,0 +1,79 @@
+en_chunk_03 — processing summary
+=================================
+
+Total URLs in chunk: 37
+Succeeded: 37
+Failed: 0
+
+All 37 pages were fetched directly (curl with a browser User-Agent), parsed for
+title / H1-H3 heading structure with body copy / images / video embeds /
+internal content links / CTAs (an embedded Typeform "Contact us now" form,
+data-tf-live id 01HHYPGYGQFR0BRFHV2WWR2ZEF, appears on nearly every page), and
+written to markdown files under reference/pages/en/<slug>.md.
+
+Images: every page in this chunk referenced the same 13 unique sitewide image
+URLs (logo, 4 language flags en/de/fr/es, 8 certification badges) — no
+in-article/body images were embedded in any of these 37 pages (they are all
+text-only SEO articles / product-glossary pages). Of the 13 unique images:
+  - 11 already existed in reference/assets/images/en/ (downloaded by earlier
+    chunk work) and were skipped per the dedupe rule.
+  - 2 were missing (fr.svg, es.svg language-flag icons) and were downloaded
+    fresh into reference/assets/images/en/, verified with `file` as valid SVG.
+Total images downloaded by this chunk: 2 (11 skipped as pre-existing, 0 failed).
+
+No embedded YouTube/Vimeo videos were found on any of the 37 pages.
+
+Files written (37):
+  the-importance-of-hand-samples-in-the-b2b-sector-why-they-are-indispensable.md
+  the-importance-of-pattern-development-for-your-company.md
+  the-importance-of-precision-springs-in-the-industry.md
+  the-importance-of-sample-parts-for-your-company-how-to-optimize-your-product-development.md
+  the-importance-of-spring-length-for-optimum-performance.md
+  the-importance-of-spring-loading-in-the-industry-everything-you-need-to-know.md
+  the-importance-of-spring-preload-for-optimum-performance.md
+  the-importance-of-spring-stiffness-for-optimum-performance-and-efficiency.md
+  the-importance-of-spring-strength-for-high-quality-products.md
+  the-importance-of-the-spring-constant-in-the-industry.md
+  the-importance-of-the-spring-load-limit-for-optimum-performance.md
+  the-invisible-force-everything-you-need-to-know-about-tension-springs.md
+  the-invisible-heroes-everything-you-need-to-know-about-spring-mechanisms.md
+  the-magic-of-spring-sound-how-it-can-boost-your-productivity.md
+  the-perfect-balance-everything-you-need-to-know-about-suspension-systems.md
+  the-perfect-coil-spring-for-the-highest-demands-in-industry.md
+  the-perfect-sample-construction-for-your-success.md
+  the-perfect-solution-for-efficient-spring-assembly-in-industry.md
+  the-perfect-solution-for-precise-and-reliable-power-transmission-plunger-with-spring.md
+  the-perfect-solution-for-smooth-installation-everything-you-need-to-know-about-detent-springs.md
+  the-perfect-solution-for-smooth-installation-the-sleeve-spring.md
+  the-power-of-springs-everything-you-need-to-know-about-spring-force.md
+  the-right-torsion-spring-manufacturer.md
+  the-secrets-of-spring-characteristics-how-to-find-the-perfect-spring-for-your-company.md
+  the-ultimate-guide-to-using-spring-steel-wire-in-the-industry.md
+  the-versatility-of-spring-materials-a-solution-for-demanding-applications.md
+  torsion-spring-manufacturer.md
+  torsion-springs-forces.md
+  valve-spring-wire.md
+  wave-spring-manufacturer.md
+  wave-springs-for-upholstered-furniture.md
+  wave-springs-in-sofas.md
+  what-exactly-are-constant-force-springs.md
+  what-is-a-spring-coiling-machine.md
+  what-is-valve-spring-wire.md
+  whistleblower-system.md
+  wire-bending-parts-manufacturer.md
+
+Notable content note: wire-bending-parts-manufacturer.md's "Advantages of
+Choosing a Leading Wire Bending Parts Manufacturer" section contains a
+duplicated paragraph in the LIVE site's own HTML (a bolded lead-in paragraph
+is repeated verbatim as a list item) — this is a genuine content bug on
+dietz.eu itself, not a scraping artifact, and may be worth fixing in the
+redesign.
+
+Process note: pages were fetched via direct curl (with a browser User-Agent)
+rather than the WebFetch tool, because WebFetch returned HTTP 429 (rate
+limited) on the first batch of parallel calls. curl fetches succeeded with
+HTTP 200 for all 37 URLs on the first attempt. Content was parsed with a
+small custom Python HTML parser (stdlib only, no bs4 available in this
+environment) restricted to the WordPress "post-content" article div for
+headings/links/CTAs, and scanned across the full page for <img> tags (per
+task instructions to capture "every image on the page").

@@ -1,0 +1,70 @@
+{
+  "encode": {
+    "crop": "1600:824:160:128",
+    "cropNote": "2.33:1 content letterboxed inside 1080p; constant across the runtime (cropdetect at 18s, 45s, 58s, 660s, 800s). 128px of black comes off the top for the full 824-line image, then a centre crop to 1600 of the 1920 width \u2014 native pixels, no scaling at any stage.",
+    "widthNote": "1600 is not a downscale. The canvas cover-crop uses each frame's full height and discards width, drawing only the middle ~1318px on a 16:10 viewport and ~1465px on 16:9, so storing the full 1920 would spend ~17% of every byte on pixels that are never displayed. 1600 covers up to 1.94:1 with margin.",
+    "heightNote": "824 must never be reduced. Vertical resolution is the binding constraint on sharpness: the source only holds 824 lines of real image, so filling a 900px-tall viewport is already a ~2.2x upscale that no encode setting can undo.",
+    "format": "webp",
+    "compressionLevel": 6,
+    "preset": "photo",
+    "denoiseNote": "hqdn3d was measured at 2/4/6 strengths and returned only 5-8% \u2014 this footage is detail-dense rather than noisy, so denoising costs sharpness for nothing. Not used.",
+    "qualityNote": "Native 1600x824 at q88-90 throughout. Frame size was briefly capped to protect scroll smoothness; that is now handled by the bounded decode window in useFrameSequence, and measurement confirmed raster cost tracks canvas DPR rather than source resolution, so the pixels came back at no measured cost."
+  },
+  "selectionRule": "B-roll only \u2014 no shot in which a person addresses the camera. The film is interview-led, so usable ranges are narrow and boundaries are tight against interview cuts.",
+  "shots": {
+    "hero": {
+      "source": "film",
+      "start": 365.0,
+      "end": 373.0,
+      "fps": 16,
+      "quality": 90,
+      "frames": 128,
+      "description": "6:05-6:13, client-selected. NOT a single take \u2014 a cross-dissolve at ~368.5s carries an aerial of the plant into an interior of someone walking out onto the warehouse floor. Scene detection does not flag it because a dissolve changes gradually and never crosses the hard-cut threshold. It scrubs well (it is a designed transition) and the figure is shot from behind, so it does not break the no-talking-heads rule, but the second half is dark and back-lit."
+    },
+    "products": {
+      "start": 654.0,
+      "end": 673.4,
+      "fps": 11,
+      "quality": 88,
+      "frames": 213,
+      "description": "Spring-coiling machinery close-ups through to blue bins of finished parts. Cut back to machinery at 673.5s.",
+      "source": "film"
+    },
+    "services": {
+      "start": 787.3,
+      "end": 812.8,
+      "fps": 6.5,
+      "quality": 88,
+      "frames": 166,
+      "description": "Polished parts on conveyor, robot cell, measurement/inspection, warehouse forklift. An interview cut sits at 786.1-787.1s (excluded); the next interview starts 813.0s.",
+      "source": "film"
+    },
+    "sustainability": {
+      "start": 56.2,
+      "end": 59.8,
+      "fps": 16,
+      "quality": 88,
+      "frames": 58,
+      "description": "Daylight aerial of the plant set among green fields. Fade from black ends 56.0s; cut to copper-wire close-up at 60.0s.",
+      "source": "film"
+    },
+    "company": {
+      "start": 16.5,
+      "end": 24.0,
+      "fps": 11,
+      "quality": 88,
+      "frames": 83,
+      "description": "Aerial over Neustadt bei Coburg. Starts at 16.5s rather than the 13.0s title-card clear because the forest canopy before it is too dark to read as video behind copy; hard cut to machinery at 24.2s. The densest shot in the set at ~205KB/frame.",
+      "source": "film"
+    }
+  },
+  "source": {
+    "url": "https://www.dietz.eu/wp-content/uploads/2023/12/DIETZ-firmenvideo.mp4",
+    "duration": 890.54,
+    "width": 1920,
+    "height": 1080,
+    "fps": 25,
+    "codec": "h264",
+    "note": "Single source again. The 2024 drone header previously used for the hero is no longer used: the client selected 6:05-6:13 of this film instead. That costs some vertical resolution (824 lines vs 1080) but the drone hero had already been downscaled to 810 lines, so the two are effectively equal."
+  }
+}
