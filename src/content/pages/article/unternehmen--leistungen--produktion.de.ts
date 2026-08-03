@@ -15,7 +15,14 @@ export const unternehmenLeistungenProduktionDE: PageEntry = {
   },
   type: "post",
   h1: "Präzision in der Produktion bei Dietz Federn",
+  summary:
+    "Von mechanischen Komponenten bis zu elektronischen Bauteilen: maßgeschneiderte Lösungen auf modernen Produktionsanlagen.",
+  keyTakeaways: [
+    "Von mechanischen Komponenten bis hin zu elektronischen Bauteilen.",
+    "Neueste Technologien und Produktionsverfahren für höchste Qualitätsstandards.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-produktionshalle.jpg", alt: "Produktionshalle", width: 1024, height: 320 },
     { kind: "heading", level: 2, text: "Produktion" },
     { kind: "heading", level: 3, text: "Dietz: Präzision in der Produktion" },
     { kind: "paragraph", text: "Unsere Produktion umfasst eine Vielzahl von Produkten, die in unterschiedlichen Bereichen eingesetzt werden. Von mechanischen Komponenten bis hin zu elektronischen Bauteilen bieten wir maßgeschneiderte Lösungen für jeden Kunden. Dabei greifen wir auf modernste Technologien und Produktionsverfahren zurück, um höchste Qualitätsstandards zu gewährleisten." },
@@ -24,6 +31,5 @@ export const unternehmenLeistungenProduktionDE: PageEntry = {
     { kind: "paragraph", text: "Dank unserer effizienten Produktion und Lieferkette können wir unseren Kunden eine schnelle und zuverlässige Versorgung garantieren. Unser Kundenservice steht jederzeit zur Verfügung, um individuelle Anforderungen und Wünsche zu erfüllen und Lösungen anzubieten." },
     { kind: "paragraph", text: "Die Dietz GmbH strebt kontinuierlich danach, ihre Produktionsprozesse zu verbessern und neueste Technologien zu integrieren, um den Bedürfnissen unserer Kunden gerecht zu werden. Kundenzufriedenheit steht für uns an erster Stelle, und wir sind stolz darauf, langfristige Partnerschaften mit unseren Kunden aufzubauen." },
     { kind: "paragraph", text: "Wenn es um innovative und qualitativ hochwertige Produkte geht, ist die Dietz GmbH der zuverlässige Partner Ihrer Wahl. Lassen Sie sich von unserer Leistungsfähigkeit überzeugen und kontaktieren Sie uns für weitere Informationen." },
-    { kind: "image", src: "/images/live/dietz-produktionshalle.jpg", alt: "Produktionshalle", width: 1024, height: 320 }
   ],
 };

@@ -15,7 +15,15 @@ export const unternehmenLeistungenMaterialauswahlDE: PageEntry = {
   },
   type: "post",
   h1: "Materialauswahl bei Dietz Federn",
+  summary:
+    "Metalle, Kunststoffe und Verbundwerkstoffe von renommierten Lieferanten, ausgewählt nach strengen Kriterien.",
+  keyTakeaways: [
+    "Metalle, Kunststoffe, Verbundmaterialien und mehr im Sortiment.",
+    "Beständig gegen Verschleiß, Korrosion und extreme Temperaturen.",
+    "Enge Zusammenarbeit mit renommierten Lieferanten aus aller Welt.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/services/material.jpg", alt: "Drahtmaterial auf Abrollhaspeln in der Fertigung", width: 760, height: 608 },
     { kind: "heading", level: 2, text: "Materialauswahl" },
     { kind: "heading", level: 3, text: "Materialien" },
     { kind: "paragraph", text: "Unser Unternehmen legt großen Wert auf eine sorgfältige Auswahl der Materialien, um unseren Kunden die bestmögliche Qualität und Leistung zu bieten." },

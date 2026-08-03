@@ -10,8 +10,9 @@ export const productsStampedAndFormedPartsEN: PageEntry = {
   slug: "products/stamped-and-formed-parts",
   seo: {
     navLabel: "Stamped & formed parts",
-    title: "Stamped and formed parts from Dietz Federn",
-    description: "Stamped and formed parts from Dietz Federn",
+    title: "Stamped and Formed Parts | Dietz GmbH",
+    description:
+      "Stamped and formed parts in spring steel and stainless steel — from prototype to series, with in-house tool making. Get a quote today.",
   },
   type: "post",
   h1: "Stamped and formed parts from Dietz Federn",
@@ -33,5 +34,8 @@ export const productsStampedAndFormedPartsEN: PageEntry = {
     { kind: "paragraph", text: "If you are looking for high-quality and precise stamped and bent parts, you have come to the right place. We look forward to supporting you in your projects and finding successful solutions together." },
     { kind: "image", src: "/images/live/prod_stanz-umformtechnik.jpg", alt: "Stamped and formed parts from Dietz Federn", width: 1280, height: 1024 },
     { kind: "image", src: "/images/live/DTZ_schweissringe.jpg", alt: "Stamped and formed parts from Dietz Federn", width: 800, height: 640 }
+  ],
+  gallery: [
+    { heading: "Schuko Clamp", caption: "Use in state-of-the-art and modular socket systems for the smart home sector. Use of alloys that are cheaper than the non-ferrous metals used as standard – without sacrificing quality.", href: "/en/produkte/schuko-clamp/", image: { src: "/images/live/prod_stanz-umformtechnik.jpg", alt: "Schuko Clamp" } },
   ],
 };

@@ -10,13 +10,15 @@ export const productsExtensionSpringsEN: PageEntry = {
   slug: "products/extension-springs",
   seo: {
     navLabel: "Extension springs",
-    title: "Extension springs | Dietz GmbH",
-    description: "Everything You Need to Know About Extension Springs",
+    title: "Custom Extension Springs | Dietz GmbH",
+    description:
+      "Custom extension springs with eyelets, hooks or threaded bolts, in spring steel and stainless steel, from small batches up. Request a quote today.",
   },
   type: "post",
   h1: "Extension springs",
   intro: "Everything You Need to Know About Extension Springs",
   blocks: [
+    { kind: "image", src: "/images/live/dtz-zugfeder-ueberlang.jpg", alt: "Extension springs", width: 1280, height: 1024 },
     { kind: "paragraph", text: "Extension springs are a fundamental component in many industrial applications, especially in fields like the automotive industry, electrical engineering, precision mechanics, and building technology. They are used to counteract axial force and control the extension of the spring. In this article, we’ll delve into extension springs, explaining everything essential about their functionality, dimensions, materials, applications, and advantages." },
     { kind: "heading", level: 2, text: "Functionality of Extension Springs" },
     { kind: "paragraph", text: "Extension springs counteract axial force directed towards the extension of the spring. The spring body comprises nested coils generating a preload force. For force transmission, the spring ends are equipped with eyes, hooks, plugs, or other special forms. The choice of the right spring end depends on the application requirements." },
@@ -36,5 +38,8 @@ export const productsExtensionSpringsEN: PageEntry = {
     { kind: "paragraph", text: "Trombone connections and assembly aids for extension springs are finding increasing application – we have been dealing with this solution approach for many years." },
     { kind: "paragraph", text: "We produce our range of extension springs with German and English eyes from 0.25 mm to 4.00 mm wire diameter. If needed, we also manufacture with special eyes and eye shapes to meet specific requirements in the wire diameter range from 0.20 mm to 4.00 mm." },
     { kind: "paragraph", text: "All technical springs are manufactured upon request, even in smaller batch sizes. Special packaging is offered for all products. We have our own tooling department and, as your development partner, we also provide individual calculations." }
+  ],
+  gallery: [
+    { heading: "Tension spring with extra-long eyelet", caption: "Implementation with special machines and special tool fixtures – Lock and fittings industry", href: "/en/produkte/tension-spring-with-extra-long-eyelet/", image: { src: "/images/live/dtz-zugfeder-ueberlang.jpg", alt: "Tension spring with extra-long eyelet" } },
   ],
 };

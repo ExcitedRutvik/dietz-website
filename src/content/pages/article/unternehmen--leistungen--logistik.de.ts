@@ -15,7 +15,14 @@ export const unternehmenLeistungenLogistikDE: PageEntry = {
   },
   type: "post",
   h1: "Logistik-Services bei Dietz Federn",
+  summary:
+    "Datenbankgestützte Lagerhaltung im Rohmaterial- und Fertigteillager, mit flexiblen Abrufmodellen.",
+  keyTakeaways: [
+    "Datenbankgestütztes Lagerhaltungssystem für Rohmaterial und Fertigteile.",
+    "Just-in-Time, Just-in-Sequence, Kanban, DFÜ-Abrufe und Konsignationslager.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-logistik-2.jpg", alt: "dietz--logistik-2", width: 1024, height: 320 },
     { kind: "heading", level: 2, text: "Logistik" },
     { kind: "heading", level: 3, text: "Unsere Logistik-Services" },
     { kind: "paragraph", text: "Mit einer langjährigen Erfahrung und einem umfassenden Know-how optimiert die Dietz GmbH die Abläufe in der Lieferkette, um eine effiziente und reibungslose Logistik zu gewährleisten." },
@@ -24,6 +31,5 @@ export const unternehmenLeistungenLogistikDE: PageEntry = {
     { kind: "paragraph", text: "Die Dietz GmbH legt großen Wert auf Qualität und Zuverlässigkeit. Daher werden alle Prozesse und Abläufe sorgfältig kontrolliert und regelmäßig optimiert. Zudem wird eine umfassende Qualitätssicherung durchgeführt, um sicherzustellen, dass die Kunden stets die bestmögliche logistische Leistung erhalten." },
     { kind: "paragraph", text: "Die Dietz GmbH versteht sich nicht nur als Dienstleister, sondern auch als Partner ihrer Kunden. Mit einem persönlichen und individuellen Service steht das Unternehmen jederzeit für Fragen und Anliegen zur Verfügung. Eine transparente und vertrauensvolle Kommunikation sowie eine enge Zusammenarbeit sind die Grundlage für eine erfolgreiche logistische Partnerschaft." },
     { kind: "paragraph", text: "Ob Lagerhaltung, Transport oder ein umfassendes Logistikkonzept – die Dietz GmbH ist der richtige Ansprechpartner für alle logistischen Herausforderungen. Mit einer professionellen Arbeitsweise, einem hohen Qualitätsanspruch und einer breiten Palette von Dienstleistungen stellt das Unternehmen sicher, dass die Kunden ihre Waren termingerecht und sicher erhalten." },
-    { kind: "image", src: "/images/live/dietz-logistik-2.jpg", alt: "dietz--logistik-2", width: 1024, height: 320 }
   ],
 };

@@ -7,7 +7,7 @@ import PageHeader from "./PageHeader";
 // the H2 rules BlockRenderer draws do the section-finding work.
 export default function Legal({ h1, blocks }: LegalContent) {
   return (
-    <main className="mx-auto max-w-[46rem] px-6 pb-28 pt-10">
+    <main className="mx-auto max-w-[46rem] px-6 pt-10">
       <PageHeader h1={h1} wide />
       <div className="mt-12">
         <BlockRenderer blocks={blocks} />

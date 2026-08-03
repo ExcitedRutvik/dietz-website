@@ -10,13 +10,15 @@ export const produkteSchenkelfedernDE: PageEntry = {
   slug: "produkte/schenkelfedern",
   seo: {
     navLabel: "Schenkelfedern",
-    title: "Schenkelfedern: Maßgeschneiderte Premium Lösungen | Dietz GmbH",
-    description: "Schenkelfedern: Maßgeschneiderte Premium Lösungen",
+    title: "Schenkelfedern nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Schenkelfedern und Doppelschenkelfedern nach Zeichnung – aus Federstahl und Edelstahl, vom Muster bis zur Serie. Sprechen Sie uns an.",
   },
   type: "post",
   h1: "Schenkelfedern: Maßgeschneiderte Premium Lösungen",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
   blocks: [
+    { kind: "image", src: "/images/live/DTZ-schenkelfederLeuchten.jpg", alt: "Schenkelfedern: Maßgeschneiderte Premium Lösungen", width: 1400, height: 1120 },
     { kind: "heading", level: 2, text: "Alles was Sie über Schenkelfedern wissen sollten" },
     { kind: "paragraph", text: "Leg springs, auch bekannt als Schenkelfedern oder Drehfedern, sind mechanische Bauteile, die in einer Vielzahl von Anwendungen im Maschinen- und Anlagenbau, in der Automobil- und Elektroindustrie sowie in vielen anderen Branchen eingesetzt werden. Diese flexiblen Federkomponenten sind in der Lage, Drehmomente aufzunehmen und bei Entspannung wieder abzugeben. In diesem umfassenden Leitfaden werden wir uns eingehend mit Schenkelfedern befassen, ihre Eigenschaften, Herstellungsmethoden und Anwendungen untersuchen." },
     { kind: "heading", level: 3, text: "Eigenschaften von Schenkelfedern" },
@@ -39,5 +41,10 @@ export const produkteSchenkelfedernDE: PageEntry = {
     { kind: "heading", level: 3, text: "Beschichtungen der Drähte" },
     { kind: "list", items: ["Verzinkt", "ZnAl-beschichtet", "Rotgezogen", "Nickel beschichtet", "Nickel poliert", "Phosphatiert", "Vermessingt", "Versilbert"] },
     { kind: "paragraph", text: "Alle technischen Federn fertigen wir auf Anfrage auch in kleineren Losgrößen. Für alle Produkte werden auch Sonderverpackungen angeboten. Wir verfügen über einen eigenen Werkzeugbau und als Ihr Entwicklungspartner leisten wir für Sie auch individuelle Berechnungen." }
+  ],
+  gallery: [
+    { heading: "Schenkelfeder in der Beleuchtungstechnik", caption: "Schenkelfeder mit nach innen gebogenem Federende für die Befestigung von Leuchten in Hohlraumdecken. Automatisierung des in den Federkörper gebogenen Feder-Endes.", href: "/produkte/schenkelfeder-in-der-beleuchtungstechnik/", image: { src: "/images/live/DTZ-schenkelfederLeuchten.jpg", alt: "Schenkelfeder Leuchten" } },
+    { heading: "Schenkelfeder für Bremselement im PKW Fensterheber", caption: "Sonderwerkzeuge für kleine Biegungen und sehr hohe Genauigkeit", href: "/produkte/schenkelfeder-fuer-bremselement-im-pkw-fensterheber/", image: { src: "/images/live/DTZ_schenkelfeder-Bremselement.jpg", alt: "Schenkelfeder für Bremselement im PKW Fensterheber" } },
+    { heading: "Schenkelfedern zum Öffnen einer Klappe bei Geschirrspülmaschinen", caption: "Sonderwerkzeuge für spezielle Biegeabläufe", href: "/produkte/schenkelfedern-zum-oeffnen-einer-klappe-bei-geschirrspuelmaschinen/", image: { src: "/images/live/dtz-schenkelfeder-geschirrsp.jpg", alt: "Schenkelfedern zum Öffnen einer Klappe bei Geschirrspülmaschinen" } },
   ],
 };

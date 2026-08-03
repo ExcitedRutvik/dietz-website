@@ -114,7 +114,7 @@ export const homepageDe: HomepageEntry = {
   sustainability: {
     title: "Nachhaltigkeit",
     subtitle: "Ressourcenschonung, Umweltprojekte, Leitlinien",
-    href: "/nachhaltigkeit/",
+    href: "/unternehmen/qualitaet-umwelt/",
     body: "Unser Denken für die Umwelt beginnt bereits bei der Produktentwicklung. Durch den Einsatz modernster Technologien und umweltschonender Materialien stellen wir sicher, dass unsere Produkte höchsten ökologischen Standards gerecht werden. Wir achten darauf, dass alle eingesetzten Materialien recycelbar sind und dass bei der Produktion keine schädlichen Emissionen entstehen.",
     linkLabel: "Unsere Nachhaltigkeitsinitiativen",
   },

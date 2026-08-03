@@ -17,6 +17,7 @@ export const productsPrototypeAndSampleDevelopmentEN: PageEntry = {
   h1: "Prototype and sample development",
   intro: "Prototype and Pattern Making: A Comprehensive Guide",
   blocks: [
+    { kind: "image", src: "/images/live/dtz-montageteil-maschinenbau.jpg", alt: "Prototype and sample development", width: 1400, height: 1120 },
     { kind: "paragraph", text: "Prototype and pattern making is a crucial step in product development. It allows companies to translate their ideas into physical forms and test their functionality before moving into mass production. In this comprehensive guide, we’ll delve into various aspects of prototype and pattern making, providing insights into different options and technologies." },
     { kind: "heading", level: 2, text: "What is a Prototype?" },
     { kind: "paragraph", text: "A prototype is a physical representation of a product developed to assess design, functionality, and material selection. It’s often used as a template for mass production. A well-designed prototype enables companies to identify potential issues early on and make necessary changes, thereby saving costs and time in later production phases." },

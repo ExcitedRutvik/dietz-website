@@ -10,13 +10,20 @@ export const productsCompressionSpringsEN: PageEntry = {
   slug: "products/compression-springs",
   seo: {
     navLabel: "Compression springs",
-    title: "Compression springs by Federnfabrik Dietz GmbH",
-    description: "Everything You Need to Know About Compression Springs",
+    title: "Custom Compression Springs | Dietz GmbH",
+    description:
+      "Custom compression springs in spring steel and stainless steel — cylindrical, conical or to DIN 2095, small batches included. Get a quote today.",
   },
   type: "post",
   h1: "Compression springs",
   intro: "Everything You Need to Know About Compression Springs",
+  keyTakeaways: [
+    "Ground ends in wire thickness ranging from 0.30 to 3.00 mm; unground ends from 0.10 to 4.00 mm.",
+    "Spring wires to EN10270, plus non-ferrous wires in copper, brass and bronze.",
+    "Special alloys such as Hasteloy, CuNi44, NbZr1 and TaW2 available on request.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/DTZ_sonderdruckfeder.jpg", alt: "Compression springs", width: 1400, height: 1120 },
     { kind: "paragraph", text: "Compression springs are an essential component in a variety of applications, from electronic devices to industrial machinery. In this article, you’ll learn all about compression springs and their custom manufacturing, covering different types, shapes, materials used, and the advantages of tailored production." },
     { kind: "heading", level: 2, text: "What are Compression Springs?" },
     { kind: "paragraph", text: "Compression springs, also known as coil springs or helical springs, are among the most important types of springs. They’re used to exert force when compressed and return to their original form when the force is released. This type of spring is typically cylindrical and maintains a constant wire diameter." },
@@ -40,5 +47,8 @@ export const productsCompressionSpringsEN: PageEntry = {
     { kind: "heading", level: 2, text: "Wire Materials" },
     { kind: "list", items: ["All common spring wires per EN10270", "NE wires made of copper, brass, and bronze", "Special alloys such as: Hasteloy CuNi44 NbZr1 TaW2", "Other materials available upon request"] },
     { kind: "paragraph", text: "All technical springs are manufactured upon request, even in smaller batch sizes. Special packaging is offered for all products. We have our own tooling department, and as your development partner, we also provide individual calculations." }
+  ],
+  gallery: [
+    { heading: "Special compression spring with solderable surface", caption: "Further processing in an SMT assembly and use of the boards in a wide variety of household appliances with touch fields. In addition to the high accuracy requirement, automatic feeding capability must be ensured.", href: "/en/produkte/special-compression-spring-with-solderable-surface/", image: { src: "/images/live/DTZ_sonderdruckfeder.jpg", alt: "Special compression spring with solderable surface" } },
   ],
 };

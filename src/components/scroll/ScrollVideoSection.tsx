@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FRAME_SOURCE_WIDTH, type FrameSequence } from "@/lib/videoManifest";
 import { useDisplayMode } from "@/lib/useDisplayMode";
 import { useFrameSequence } from "./useFrameSequence";
-import { useVideoScrub } from "./useVideoScrub";
 import { stepOpacity, activeStep, stepDrift } from "./stepOpacity";
 import ProgressDots from "./ProgressDots";
 
@@ -96,18 +95,12 @@ export default function ScrollVideoSection({
   // Both hooks are called unconditionally - hooks cannot be conditional - but
   // only one is ever activated, so the idle one allocates nothing and fetches
   // nothing. Which source a section uses is a manifest entry, not a code path.
-  const useVideo = Boolean(sequence.videoSrc);
   const frames = useFrameSequence(
     sequence.framePrefix,
     sequence.frameCount,
-    cinematic && near && !useVideo,
+    cinematic && near,
   );
-  const video = useVideoScrub(
-    sequence.videoSrc ?? "",
-    sequence.frameCount,
-    cinematic && near && useVideo,
-  );
-  const { resolve, ensure, ready } = useVideo ? video : frames;
+  const { resolve, ensure, ready } = frames;
 
   const repaintRef = useRef<() => void>(() => {});
   const posterRef = useRef<ImageBitmap | null>(null);
@@ -119,7 +112,12 @@ export default function ScrollVideoSection({
   useEffect(() => {
     if (!cinematic || !near) return;
     let cancelled = false;
-    fetch(sequence.posterSrc)
+    // The poster is what the canvas shows until the first real frame decodes,
+    // so on the first section it is effectively the LCP element and must not
+    // queue behind frame traffic.
+    fetch(sequence.posterSrc, {
+      priority: order === 0 ? "high" : "low",
+    } as RequestInit)
       .then((r) => r.blob())
       .then((b) => createImageBitmap(b))
       .then((bmp) => {
@@ -134,7 +132,7 @@ export default function ScrollVideoSection({
     return () => {
       cancelled = true;
     };
-  }, [cinematic, near, sequence.posterSrc]);
+  }, [cinematic, near, sequence.posterSrc, order]);
 
   // Start fetching a section's frames roughly one viewport before it arrives.
   useEffect(() => {
@@ -214,8 +212,8 @@ export default function ScrollVideoSection({
 
       const exact = progressRef.current * (sequence.frameCount - 1);
       const settled = settledRef.current;
-      const base = settled || useVideo ? Math.round(exact) : Math.floor(exact);
-      const blend = settled || useVideo ? 0 : exact - base;
+      const base = settled ? Math.round(exact) : Math.floor(exact);
+      const blend = settled ? 0 : exact - base;
 
       // "high" resampling is only worth its cost when downscaling, where it has
       // real source detail to average. These draws are an upscale (see resize),
@@ -336,13 +334,13 @@ export default function ScrollVideoSection({
         },
         onUpdate: (self) => {
           progressRef.current = self.progress;
-          // The video path seeks from here rather than from the paint loop,
-          // so it moves once per scroll update instead of once per draw.
-          if (useVideo) ensure(Math.round(self.progress * (sequence.frameCount - 1)));
           if (settledRef.current) section.setAttribute("data-scrubbing", "1");
           settledRef.current = false;
           // Tell the decoder where the playhead is *before* painting, so the
-          // frames about to be needed are already queued.
+          // frames about to be needed are already queued. The video path seeks
+          // from here too, rather than from the paint loop, so it moves once
+          // per scroll update instead of once per draw — one call serves both,
+          // and calling it twice would be a double-seek on the video path.
           ensure(
             Math.round(self.progress * (sequence.frameCount - 1)),
           );
@@ -413,11 +411,18 @@ export default function ScrollVideoSection({
         className={`relative isolate bg-zinc-950 ${className}`}
       >
         <div className="relative">
+          {/* Only the first section's poster is above the fold. The other four
+              were being fetched eagerly too — ~1MB of stills on a phone, none
+              of it visible — because an <img> with no `loading` defaults to
+              eager. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={sequence.posterSrc}
             alt=""
             aria-hidden="true"
+            loading={order === 0 ? "eager" : "lazy"}
+            fetchPriority={order === 0 ? "high" : "low"}
+            decoding="async"
             className="h-[38svh] min-h-[13rem] w-full object-cover sm:h-[46svh]"
           />
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-zinc-950/85 via-zinc-950/35 to-transparent" />

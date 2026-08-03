@@ -10,13 +10,15 @@ export const produkteWellenfedernDE: PageEntry = {
   slug: "produkte/wellenfedern",
   seo: {
     navLabel: "Wellenfedern",
-    title: "Wellenfedern: Robustheit & Zuverlässigkeit | Dietz GmbH",
-    description: "Wellenfedern: Robustheit & Zuverlässigkeit",
+    title: "Wellenfedern nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Wellenfedern aus Flachdraht nach Maß: platzsparend und präzise, für Polstermöbel, Automotive und Maschinenbau. Jetzt Anfrage stellen.",
   },
   type: "post",
   h1: "Wellenfedern: Robustheit & Zuverlässigkeit",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
   blocks: [
+    { kind: "image", src: "/images/live/dtz-wellenring-vorspann.jpg", alt: "Wellenfedern: Robustheit & Zuverlässigkeit", width: 1400, height: 1120 },
     { kind: "heading", level: 2, text: "Alles, was Sie über Wellenfedern wissen müssen" },
     { kind: "paragraph", text: "Wellenfedern sind eine innovative Lösung für die unterschiedlichsten Anwendungen, bei denen Platz und Effizienz entscheidend sind. In diesem Artikel werden wir alles beleuchten, was Sie über Wellenfedern wissen müssen. Von ihrer Definition und Funktionsweise bis hin zu ihren Vorteilen und Anwendungsbeispielen – erfahren Sie, warum Wellenfedern eine hervorragende Wahl für Ihre Konstruktionen sein können." },
     { kind: "heading", level: 3, text: "Was sind Wellenfedern?" },
@@ -48,5 +50,9 @@ export const produkteWellenfedernDE: PageEntry = {
     { kind: "paragraph", text: "Wir entwickeln die Wellenfedern in engster Abstimmung mit Ihnen speziell für den benötigten Einsatzbereich. Bei Bedarf unterstützen wir Sie gern von der Dimensionierung über die Nachrechnung bis zur Fertigung. Mit unserer speziellen Fachkompetenz finden wir gemeinsam die für Sie passende Lösung." },
     { kind: "paragraph", text: "Wir fertigen sowohl Single-Turn als auch Multi-Turn-Ausführungen mit welliger und gerader Oberfläche." },
     { kind: "paragraph", text: "Alle technischen Federn fertigen wir auf Anfrage auch in kleineren Losgrößen. Für alle Produkte werden auch Sonderverpackungen angeboten. Wir verfügen über einen eigenen Werkzeugbau und als Ihr Entwicklungspartner leisten wir auch individuelle Entwicklungsarbeit für Sie." }
+  ],
+  gallery: [
+    { heading: "Wellenring", caption: "Wellenring als Vorspannelement und Toleranzausgleich in einer Baugruppe.", href: "/produkte/wellenring/", image: { src: "/images/live/dtz-wellenring-vorspann.jpg", alt: "Wellenring Vorspannelement" } },
+    { heading: "Wellenfederturm für Thermomanagementsystem", caption: "Fertigung mit Sonderwerkzeugen und Kameraüberwachung für höchste Genauigkeit", href: "/produkte/wellenfederturm-fuer-thermomanagementsystem/", image: { src: "/images/live/wellenfederturm.jpg", alt: "Wellenfederturm" } },
   ],
 };

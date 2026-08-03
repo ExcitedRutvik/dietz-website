@@ -10,13 +10,15 @@ export const productsBentWirePartsEN: PageEntry = {
   slug: "products/bent-wire-parts",
   seo: {
     navLabel: "Bent wire parts",
-    title: "Bent wire parts | Dietz GmbH",
-    description: "Wire Bent Parts: The Perfect Solution for Individual Industry Needs",
+    title: "Bent Wire Parts Made to Measure | Dietz GmbH",
+    description:
+      "CNC-bent wire parts from 0.20 to 8.00 mm — 2D and 3D shapes with threading, embossing and over 20 surface finishes. Request a quote today.",
   },
   type: "post",
   h1: "Bent wire parts",
   intro: "Wire Bent Parts: The Perfect Solution for Individual Industry Needs",
   blocks: [
+    { kind: "image", src: "/images/live/DTZ_drahtbiegeteile_t.jpg", alt: "Bent wire parts", width: 1280, height: 1024 },
     { kind: "paragraph", text: "Wire bent parts play a significant role in various industrial sectors. They are crafted from bent wire and offer a multitude of application possibilities. In this article, we’ll delve into wire bent parts, exploring their manufacturing, properties, and utilization across different industries." },
     { kind: "heading", level: 2, text: "What are Wire Bent Parts?" },
     { kind: "paragraph", text: "Wire bent parts are bent wire products made from different materials such as iron, stainless steel, brass, or aluminum. Unlike other wire products like springs, wire bent parts are not only processed with automatic machines but also involve special end treatments conducted with modern CNC bending machines, ensuring high precision." },
@@ -41,5 +43,8 @@ export const productsBentWirePartsEN: PageEntry = {
     { kind: "paragraph", text: "Coating of Part Surfaces" },
     { kind: "list", items: ["Oiling", "Tumbling", "Galvanizing", "Chroming", "Phosphating", "Silvering", "Gilding", "Tinning", "Nickeling", "Coppering", "Brassing", "Lacquering", "Shot Peening", "PTFE Coating", "Delta Tone/Delta Seal", "Zinc Flake Coatings", "Gleitmo Coatings", "Degreasing", "Cleaning with technical cleanliness", "Realization of special requests"] },
     { kind: "paragraph", text: "All technical springs are manufactured upon request even in smaller batch sizes. Special packaging is offered for all products. With our in-house tooling and as your development partner, we also provide individual calculations for you." }
+  ],
+  gallery: [
+    { heading: "Retaining clip in automotive technology", caption: "Complex bending geometries in one component. The complex geometries were implemented on our CNC-controlled production machine. With low tooling costs and the know-how of our employees, the component could be manufactured", href: "/en/produkte/retaining-clip-in-automotive-technology/", image: { src: "/images/live/DTZ_drahtbiegeteile_t.jpg", alt: "Retaining clip in automotive technology" } },
   ],
 };

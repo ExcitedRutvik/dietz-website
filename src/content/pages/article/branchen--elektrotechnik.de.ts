@@ -9,13 +9,21 @@ export const branchenElektrotechnikDE: PageEntry = {
   locale: "de",
   slug: "branchen/elektrotechnik",
   seo: {
-    title: "Elektrotechnik bei Dietz Federn",
     navLabel: "Elektrotechnik",
-    description: "Elektrotechnik bei Dietz Federn",
+    title: "Federn für die Elektrotechnik | Dietz GmbH",
+    description:
+      "Kontaktfedern, Batteriefedern und Drahtbiegeteile für die Elektrotechnik – aus Federstahl, Edelstahl und Buntmetall.",
   },
   type: "post",
   h1: "Elektrotechnik bei Dietz Federn",
+  summary:
+    "Kontaktfedern, Sicherungshalter und Drahtbiegeteile für elektronische Baugruppen und Systeme.",
+  keyTakeaways: [
+    "Über 90 Jahre Erfahrung in Entwicklungsunterstützung und Produktion elektronischer Baugruppen.",
+    "Führender Anbieter in der Branche der Elektrotechnik.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-elektrotechnik.jpg", alt: "Elektronisches Bauteil aus der Elektrotechnik-Fertigung" },
     { kind: "heading", level: 2, text: "Elektrotechnik" },
     { kind: "paragraph", text: "Die Dietz GmbH ist ein Unternehmen, das sich in der Branche der Elektrotechnik spezialisiert hat. Mit über 90 Jahren Erfahrung in der Entwicklungsunterstützung und Produktion von elektronischen Baugruppen und Systemen, hat sich das Unternehmen zu einem führenden Anbieter in der Branche entwickelt." },
     { kind: "paragraph", text: "In der heutigen Zeit spielt Elektrotechnik eine immer wichtigere Rolle in allen Lebensbereichen. Ob in der Industrie, im Haushalt oder in der Kommunikationstechnologie – überall werden elektronische Geräte und Systeme benötigt. Die Dietz GmbH ist ein verlässlicher Partner für Kunden aus unterschiedlichen Industriesegmenten, die auf qualitativ hochwertige und zuverlässige Elektrotechnik setzen." },
@@ -24,7 +32,6 @@ export const branchenElektrotechnikDE: PageEntry = {
     { kind: "paragraph", text: "Die Dietz GmbH legt großen Wert auf Nachhaltigkeit und Umweltfreundlichkeit in der Elektrotechnik. Das Unternehmen setzt auf ressourcenschonende Produktionsverfahren und arbeitet kontinuierlich an der Optimierung der Energieeffizienz. Zudem wird auf eine umweltgerechte Entsorgung von Elektronikaltgeräten geachtet, um die Belastung für die Umwelt so gering wie möglich zu halten." },
     { kind: "paragraph", text: "Als innovatives Unternehmen in der Elektrotechnikbranche investiert die Dietz GmbH kontinuierlich in neue Fertigungstechnologien, um Kunden stets die neuesten Lösungen bieten zu können. Dabei spielt auch die Digitalisierung eine zunehmend wichtige Rolle." },
     { kind: "paragraph", text: "Die Dietz GmbH steht für Qualität, Zuverlässigkeit und hohe Standards in der Elektrotechnik. Das Unternehmen ist stolz auf seine langjährige Erfahrung und sein innovatives Team, das stets bestrebt ist, Kundenanforderungen zu erfüllen und individuelle Lösungen zu finden. Mit seinem umfangreichen Portfolio und seinem umfassenden Know-how ist die Dietz GmbH ein vertrauenswürdiger Partner für Kunden aus allen Bereichen der Elektrotechnik." },
-    { kind: "image", src: "/images/live/dietz-elektrotechnik.jpg", alt: "" },
   ],
   gallery: [
     { heading: "Hebel aus Polyamid (PA)", caption: "Hebel aus Polyamid (PA) mit einem Glasfaseranteil von 30% zur Weiterverarbeitung in Schaltersystemen. Diese Bauteile übertragen Bewegungen in komplexen Baugruppen", href: "/produkte/hebel-aus-polyamid-pa/", image: { src: "/images/live/DTZ_Hebel-_Polyamid.jpg", alt: "Hebel aus Polyamid (PA)" } },

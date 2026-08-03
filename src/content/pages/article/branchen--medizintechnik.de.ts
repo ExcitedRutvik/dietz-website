@@ -9,13 +9,21 @@ export const branchenMedizintechnikDE: PageEntry = {
   locale: "de",
   slug: "branchen/medizintechnik",
   seo: {
-    title: "Medizintechnik bei Dietz Federn",
     navLabel: "Medizintechnik",
-    description: "Medizintechnik bei Dietz Federn",
+    title: "Federn für die Medizintechnik | Dietz GmbH",
+    description:
+      "Federn und Biegeteile für die Medizintechnik: kleine Losgrößen, hohe Sauberkeitsanforderungen, kurze Musterzeiten. Sprechen Sie uns an.",
   },
   type: "post",
   h1: "Medizintechnik bei Dietz Federn",
+  summary:
+    "Federn und Biegeteile für medizinische Instrumente, OP-Ausrüstung sowie Notfall- und Intensivmedizinprodukte.",
+  keyTakeaways: [
+    "Enge Zusammenarbeit mit Ihrer Entwicklung, damit Produkte den Anforderungen der modernen Medizin entsprechen.",
+    "Produkte für medizinische Instrumente, OP-Ausrüstung sowie Notfall- und Intensivmedizin.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-medizintechnik-2.jpg", alt: "Laborantin an einem Messplatz in der Medizintechnik" },
     { kind: "heading", level: 2, text: "Medizintechnik" },
     { kind: "paragraph", text: "Unsere langjährige Erfahrung und Expertise ermöglichen es uns, innovative Lösungen für die Gesundheitsbranche anzubieten." },
     { kind: "paragraph", text: "Als Anbieter von Medizintechnik legen wir großen Wert auf Qualität und Innovation. Unser hochqualifiziertes Team arbeitet eng mit Ihrer Entwicklung zusammen, um Sie bei der Herstellung Ihrer Produkte zu unterstützen, die den Anforderungen der modernen Medizin entsprechen." },
@@ -24,7 +32,6 @@ export const branchenMedizintechnikDE: PageEntry = {
     { kind: "paragraph", text: "Wir legen großen Wert auf stetige Marktbeobachtung, um immer auf dem neuesten Stand der Technik zu bleiben und unseren Kunden die bestmöglichen Produkte anzubieten. Wir arbeiten kontinuierlich daran, neue Technologien und Lösungen zu zu erarbeiten, um den sich stetig verändernden Anforderungen der Medizinbranche gerecht zu werden." },
     { kind: "paragraph", text: "Die Dietz GmbH legt großen Wert auf Qualität und Sicherheit. Unsere Produkte werden gemäß den Kundenforderungen entsprechende Standards und Normen hergestellt. Darüber hinaus unterziehen wir unsere Produkte strengen Qualitätskontrollen, um sicherzustellen, dass sie den höchsten Qualitätsstandards entsprechen und den Anforderungen sowohl der Ärzte als auch der Patienten gerecht werden." },
     { kind: "paragraph", text: "Als Unternehmen in der Medizintechnikbranche ist es uns wichtig, einen Beitrag zur Verbesserung der Gesundheitsversorgung und zum Wohlbefinden der Menschen zu leisten. Die Dietz GmbH ist stolz darauf, Teil dieser Branche zu sein und innovative Produkte anzubieten, die die medizinische Versorgung verbessern und Menschenleben retten können. Unsere Leidenschaft für die Medizintechnik treibt uns an, ständig nach neuen Möglichkeiten zu suchen, um die Gesundheitsbranche weiter voranzubringen." },
-    { kind: "image", src: "/images/live/dietz-medizintechnik-2.jpg", alt: "" },
   ],
   gallery: [
     { heading: "Wellenring", caption: "Wellenring als Vorspannelement und Toleranzausgleich in einer Baugruppe", href: "/produkte/wellenring/", image: { src: "/images/live/dtz-wellenring-vorspann.jpg", alt: "Wellenring" } },

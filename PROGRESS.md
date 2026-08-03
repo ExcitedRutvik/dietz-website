@@ -4,6 +4,77 @@
 
 ## Where things stand (updates go at the top)
 
+## Client review round 2 (2026-08-03)
+
+Twelve items raised; all addressed. Client-facing write-up is
+`reference/reports/dietz-issues-and-solutions.md`; the running technical log is
+`reference/reports/findings-log.md`. SEO detail in
+`reference/seo/audit-2026-08-03.md`.
+
+### The bug that was not on the list
+**Every German route 404'd in `next dev`** — ~344 pages, the primary locale.
+A previous session logged this as a stale dev server; it was not. `app/[locale]/`
+is a single dynamic segment, and DE is the unprefixed default, so `/produkte/` is
+one segment and the dynamic segment out-specified the `(default)/[...slug]`
+catch-all. Next matched `locale="produkte"`, found it absent from
+generateStaticParams, and with `dynamicParams = false` returned 404 rather than
+falling through. Static export was unaffected (it writes files, never routes),
+which is why nobody caught it. Replaced `[locale]` with a concrete `app/en/`
+folder; shared route bodies now live in `src/lib/pageRoutes.tsx`. Adding a locale
+is now two small files, documented there.
+
+### Fixed
+- **Frame fetching**: five sections each queued *all* their frames at 8-wide and
+  never released the blobs — 824 requests / 67MB, which starved every lazy image
+  below. New `frameFetchScheduler.ts` owns one budget (6 in flight) and polls
+  producers, so the window follows the playhead with no cancellation logic. A
+  never-evicted spine at stride 16 keeps jumps landing on real footage. Measured
+  at 4 Mbit/s: peak concurrency 40 -> 6, cert marks 7,849ms -> 4,899ms. Deleted
+  the dead 5.4MB `hero.mp4`. **Do not touch the decode window — it was measured.**
+- **Dead grey cells**: `CardGrid` draws its rules via `gap-px` + `bg-line`, so an
+  unfilled cell is a grey rectangle. `src/lib/gridPlan.ts` derives the column
+  count and honours an authored `span`. Covers both breakpoints — spans initially
+  only applied at `lg`, which left the tablet gap intact. Guarded by
+  `scripts/content/check-grids.mjs`.
+- **Product images 19 -> 2**: `lead-image-from-hub.py` (hub card thumb becomes the
+  target's lead image) + `link-product-examples.py` (44 example pages become
+  category galleries, all fields verbatim). Two deliberate gaps: the Bandbiegeteile
+  card shows a *wire* part and no strip-bending photo exists; the Schenkelfedern
+  card shows a flat clip, overridden with a real torsion spring. Eight unclassified
+  examples are listed with their specific question in
+  `reference/content/example-to-category.json`.
+- **Careers**: converted to the previously-dead `career-hub` type. Ten job pages
+  existed but nothing linked to them — the page listed them as run-on text. Now
+  links, plus `JobPosting` JSON-LD (no `datePosted`: the live site has none and
+  inventing it risks the feed).
+- **Resources**: `/wissen/` + `/en/resources/` authored; nav node given an id.
+- **Company**: building image moved to `blocks[0]`; new `ChildPages.tsx` reads
+  `MAIN_NAV` so section landings get a real child grid instead of keyword-derived
+  RelatedLinks. Skipped for `hub`/`career-hub`, which already render cards.
+- **Whitespace + summary card**: spacing tokens in `@theme`; breadcrumb top
+  128 -> 88px, page foot ~304 -> 160px, H2 88 -> 72px. `PageSummary.tsx` is a
+  glass rail at `xl` in the gutter (reading measure unchanged, verified 736px).
+  `keyTakeaways` is authored only, enforced by `check-takeaways.py` — verified by
+  feeding it an invented tolerance and confirming rejection.
+- **SEO**: URL parity measured at last — **426/429 live URLs already exist**; the
+  3 missing are WordPress cruft. `url-parity.mjs` emits an nginx map (Next
+  `redirects()` is a no-op under `output: export`). Removed a true duplicate
+  (`/nachhaltigkeit/` vs `/unternehmen/qualitaet-umwelt/`, 15/15 identical
+  paragraphs, only the latter live). Re-ran `apply-money-meta.mjs`, which had
+  never been applied. Alt text 6 -> 0, duplicate descriptions 1 -> 0. Added
+  `llms.txt` and `backlinks.md`.
+
+### Outstanding
+- nginx `Cache-Control: immutable` for `/frames/` and `/images/` — the largest
+  remaining perf win and it is outside the repo.
+- `keyTakeaways` authored for 2 of 34 money pages.
+- 168 descriptions still restate their title; 226 thin pages.
+- `postMeta.date` still absent on all 578 pages.
+- Cannibalisation (17 DE + 17 EN on compression springs) — needs GSC, do not
+  consolidate blind.
+- Footer social links point at platform root domains, not Dietz profiles. Live bug.
+
+
 ## IA restructure + design system (2026-07-30)
 
 The complaint was that the site "has no actual structure" — the nav grouped

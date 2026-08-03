@@ -14,7 +14,6 @@ export const dynamic = "force-static";
 // crawl budget gets spent on the wrong half of the site.
 const PRIORITY: Partial<Record<PageEntry["type"], number>> = {
   homepage: 1.0,
-  "product-category": 0.9,
   hub: 0.8,
   "career-hub": 0.7,
   contact: 0.7,

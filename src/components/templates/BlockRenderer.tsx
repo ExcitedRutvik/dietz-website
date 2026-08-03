@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Block } from "@/content/schema";
+import { headingIds } from "@/lib/slugifyHeading";
 
 /**
  * Body copy for Post / Legal / Hub / ProductCategory.
@@ -16,6 +17,13 @@ import type { Block } from "@/content/schema";
  * a long page feel structured instead of continuous.
  */
 export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
+  // Ids are computed for the whole list up front, because de-duplicating them
+  // needs to see every heading — and they come from the same function the
+  // contents rail uses, so the two can never drift apart. Every heading gets
+  // one, whichever level the rail decides to list.
+  const ids = headingIds(blocks);
+  let headingSeen = -1;
+
   return (
     <div className="space-y-6">
       {blocks.map((block, i) => {
@@ -27,22 +35,35 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
               </p>
             );
 
-          case "heading":
+          case "heading": {
+            // scroll-mt keeps an anchored heading clear of the fixed header,
+            // which would otherwise cover whatever you jumped to.
+            const id = ids[++headingSeen]?.id;
+            // The rule above an H2 separates it from the section before it. The
+            // first block has no section before it — only PageHeader's own
+            // bottom rule — so drawing one there stacks two hairlines a few
+            // pixels apart and reads as a rendering fault.
+            const leads = i === 0;
             return block.level === 2 ? (
               <h2
                 key={i}
-                className="mt-14 border-t border-line pt-8 text-2xl font-semibold tracking-tight text-ink sm:text-[1.75rem]"
+                id={id}
+                className={`scroll-mt-24 text-2xl font-semibold tracking-tight text-ink sm:text-[1.75rem] ${
+                  leads ? "mt-0" : "mt-12 border-t border-line pt-6"
+                }`}
               >
                 {block.text}
               </h2>
             ) : (
               <h3
                 key={i}
-                className="mt-10 mb-[-0.25rem] text-lg font-semibold tracking-tight text-ink"
+                id={id}
+                className="mt-10 mb-[-0.25rem] scroll-mt-24 text-lg font-semibold tracking-tight text-ink"
               >
                 {block.text}
               </h3>
             );
+          }
 
           case "list":
             return block.ordered ? (

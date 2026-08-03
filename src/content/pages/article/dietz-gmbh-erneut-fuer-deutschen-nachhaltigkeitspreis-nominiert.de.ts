@@ -15,6 +15,7 @@ export const dietzGmbhErneutFuerDeutschenNachhaltigkeitspreisNominiertDE: PageEn
   type: "post",
   h1: "Dietz GmbH erneut für Deutschen Nachhaltigkeitspreis nominiert",
   blocks: [
+    { kind: "image", src: "/images/live/dietz_aussen.jpg", alt: "Firmengebäude Dietz", width: 1280, height: 400 },
     { kind: "heading", level: 2, text: "Dietz GmbH erneut für Deutschen Nachhaltigkeitspreis nominiert" },
     { kind: "paragraph", text: "Wir freuen uns sehr, bekannt zu geben, dass die Dietz GmbH zum dritten Mal für den Deutschen Nachhaltigkeitspreis nominiert ist – im Rahmen der 18. Preisverleihung in der Kategorie Metall- und Mineralienverarbeitung." },
     { kind: "paragraph", text: "Diese Nominierung ist für uns etwas Besonderes. Sie würdigt unser Engagement für eine ressourcenschonende, verantwortungsvolle Produktion – und vor allem die Arbeit unserer 150 Mitarbeitenden, die sich Tag für Tag mit Herzblut für eine nachhaltige Zukunft einsetzen." },
@@ -24,6 +25,5 @@ export const dietzGmbhErneutFuerDeutschenNachhaltigkeitspreisNominiertDE: PageEn
     { kind: "paragraph", text: "Jurystufe beim Großen Preis des Mittelstandes Eine Würdigung für unser Gesamtpaket aus Verantwortung, Innovation und Beständigkeit." },
     { kind: "list", items: ["PCF & CCF-Berechnungen Wir kennen die CO₂-Bilanzen unserer Produkte und unseres Unternehmens, als Basis für echte Reduktion & Transparenz.", "Mitglied im Klimaschutz-Unternehmen e.V. Teil eines Netzwerks von Firmen, die Klimaschutz praktisch und ernsthaft voranbringen wollen und sich dazu zusammenschließen."] },
     { kind: "paragraph", text: "Wir wollen zeigen: Nachhaltigkeit ist kein Zusatz, sondern ein Teil unserer DNA. Und wir hoffen, andere damit zu ermutigen, ebenfalls aktiv zu werden." },
-    { kind: "image", src: "/images/live/dietz_aussen.jpg", alt: "Firmengebäude Dietz", width: 1280, height: 400 }
   ],
 };

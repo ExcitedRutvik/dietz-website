@@ -10,8 +10,9 @@ export const kunststofftechnikDE: PageEntry = {
   slug: "kunststofftechnik",
   seo: {
     navLabel: "Kunststofftechnik",
-    title: "Kunststofftechnik | Dietz GmbH",
-    description: "Kunststofftechnik",
+    title: "Kunststofftechnik und Spritzguss | Dietz GmbH",
+    description:
+      "Kunststofftechnik von der Musterentwicklung bis zur Serie: Spritzguss und Hybridteile von einem Lieferanten. Sprechen Sie uns an.",
   },
   type: "post",
   h1: "Kunststofftechnik",
@@ -30,5 +31,10 @@ export const kunststofftechnikDE: PageEntry = {
     { kind: "heading", level: 2, text: "Ihre Anfrage" },
     { kind: "paragraph", text: "Übermitteln Sie uns Ihre Anforderungen für ein Bauteil. Senden Sie uns gegebenenfalls erste Konstruktionszeichnungen. Wir behandeln Ihre Daten absolut vertraulich und speichern diese nur zur Dauer der Bearbeitung Ihrer Anfrage." },
     { kind: "paragraph", text: "Diese Anfrage ist für Sie selbstverständlich unverbindlich." }
+  ],
+  gallery: [
+    { heading: "Zahnrad aus Polyoxymethylen", caption: "Zahnrad aus Polyoxymethylen (POM) zur Kraftübertragung im Automobilbereich.", href: "/produkte/zahnrad-aus-polyoxymethylen/", image: { src: "/images/live/DTZ_Zahnrad_Polyoxymethylen.jpg", alt: "Zahnrad Polyoxymethylen" } },
+    { heading: "Hebel aus Polyamid (PA)", caption: "Hebel aus Polyamid (PA) mit einem Glasfaseranteil von 30% zur Weiterverarbeitung in Schaltersystemen. Diese Bauteile übertragen Bewegungen in komplexen Baugruppen.", href: "/produkte/hebel-aus-polyamid-pa/", image: { src: "/images/live/DTZ_Hebel-_Polyamid.jpg", alt: "Hebel aus Polyamid" } },
+    { heading: "Silikonfeder als Bremselement", caption: "Besondere Haptik bei der Bewegung vom Ausströmer im Interieurbereich Ansprechende Haptik unabhängig von äußeren Temperatureinflüssen während der Betätigung. Eine unzertrennliche Verbindung von Silikon und Stanz- Umformteile wurde umgesetzt. Herstellung in einer vollautomatischen Fertigungslinie", href: "/produkte/silikonfeder-als-bremselement/", image: { src: "/images/live/DTZ_hybrid_silikonfedern.jpg", alt: "Silikonfeder als Bremselement" } },
   ],
 };

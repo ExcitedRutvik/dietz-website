@@ -15,7 +15,15 @@ export const enterprisePerformancesQualityEN: PageEntry = {
   },
   type: "post",
   h1: "Highest quality standards at Dietz Federn",
+  summary:
+    "Certified to IATF 16949, with the emphasis on preventing defects rather than correcting them.",
+  keyTakeaways: [
+    "Certified to IATF 16949.",
+    "Emphasis on preventive quality assurance: avoiding defects beats removing them.",
+    "Automation, process optimisation and continuous improvement.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-qualitaet-2.jpg", alt: "Highest quality standards at Dietz Federn", width: 1600, height: 500 },
     { kind: "heading", level: 2, text: "Quality" },
     { kind: "heading", level: 3, text: "Dietz stands for quality" },
     { kind: "paragraph", text: "We, Dietz GmbH, are IATF 16949 certified and meet the highest quality standards. Our company relies on automation, process optimisation and continuous improvement to ensure that our customers always receive the best possible quality. The high quality of our products is ensured by the use of state-of-the-art manufacturing techniques, high-quality materials and strict quality controls." },
@@ -23,6 +31,5 @@ export const enterprisePerformancesQualityEN: PageEntry = {
     { kind: "paragraph", text: "An important success factor is the commitment and competence of our employees. We invest in the education and training of our employees, creating an atmosphere in which innovation and creativity are encouraged. The team at Dietz GmbH works closely together to meet the requirements of our customers and develop high-quality solutions." },
     { kind: "paragraph", text: "Dietz GmbH is also a responsible company that is committed to sustainability and environmental protection. The company attaches great importance to resource-saving production processes and is continuously working to reduce its ecological footprint. Through the use of state-of-the-art technologies and the optimized use of resources, we help to minimize the environmental impact of our products." },
     { kind: "paragraph", text: "Overall, we are a first-class manufacturer of high-quality products in the field of metal and plastics processing and convince with innovative strength, reliability and quality and have earned an excellent reputation in the industries. Customers appreciate our high product quality, excellent customer service and sustainable corporate governance." },
-    { kind: "image", src: "/images/live/dietz-qualitaet-2.jpg", alt: "Highest quality standards at Dietz Federn", width: 1600, height: 500 }
   ],
 };

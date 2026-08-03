@@ -9,8 +9,9 @@ export const springSteelWireEN: PageEntry = {
   locale: "en",
   slug: "spring-steel-wire",
   seo: {
-    title: "Glossary: Spring steel wire explained simply | Dietz GmbH",
-    description: "Spring steel wire is a special wire used for the production of springs. This wire is characterised by high strength, elasticity and flexibility. Spring steel wire is often made of ",
+    title: "Spring Steel Wire: Materials and Uses | Dietz GmbH",
+    description:
+      "Spring steel wire explained: material grades, properties and where each one is used in industrial spring manufacturing. Get a quote today.",
   },
   type: "post",
   h1: "Glossary: Spring steel wire explained simply",

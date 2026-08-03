@@ -10,13 +10,15 @@ export const produkteHybrideBaugruppenDE: PageEntry = {
   slug: "produkte/hybride-baugruppen",
   seo: {
     navLabel: "Hybride Baugruppen",
-    title: "Hybride Baugruppen: Qualität & Leistung | Dietz GmbH",
-    description: "Hybride Baugruppen: Qualität & Leistung",
+    title: "Hybride Baugruppen nach Maß | Dietz GmbH",
+    description:
+      "Hybride Baugruppen aus Feder, Biegeteil und Kunststoff – konstruiert, montiert und geprüft aus einer Hand. Jetzt Anfrage stellen.",
   },
   type: "post",
   h1: "Hybride Baugruppen: Qualität & Leistung",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
   blocks: [
+    { kind: "image", src: "/images/live/dtz-kontaktschiene.jpg", alt: "Hybride Baugruppen: Qualität & Leistung", width: 1400, height: 1120 },
     { kind: "heading", level: 2, text: "Hybride Baugruppen: Die perfekte Kombination aus Materialien und Fertigungsverfahren für innovative Baugruppen" },
     { kind: "paragraph", text: "Hybride Baugruppen sind eine spannende Entwicklung im Bereich der Baugruppenfertigung. Sie bieten die Möglichkeit, verschiedene Materialien und Fertigungsverfahren zu kombinieren, um innovative und maßgeschneiderte Lösungen zu schaffen. In diesem Artikel erfahren Sie mehr über die Vorteile und Anwendungsbereiche von hybride Baugruppen sowie die verschiedenen Herstellungsverfahren, die dabei zum Einsatz kommen." },
     { kind: "heading", level: 3, text: "Was sind hybride Baugruppen?" },
@@ -47,5 +49,10 @@ export const produkteHybrideBaugruppenDE: PageEntry = {
     { kind: "paragraph", text: "Hülsenbaugruppen, also die Verbindung von Federn und Hülsen, gehören zum Portfolio der hybriden Bauteile. Sie kommen in vielfältigen Anwendungsbereichen zum Einsatz – etwa im Interieur verschiedenster Automobile." },
     { kind: "heading", level: 3, text: "Maßgeschneiderte Fertigung in vielfältigen Verfahren" },
     { kind: "paragraph", text: "Bei der Herstellung Ihrer Rasthülsenbaugruppen kombinieren wir Metall und Kunststoff in vielfältigen Verfahren, die sich je nach Aufgabenstellung und Material individuell festlegen lassen. Die Kombination von Kunststoff und Metall vereint die vorteilhaften Eigenschaften bezüglich Haptik, Akustik und Funktionalität in einem maßgeschneiderten Bauteil. Alle technischen Federn fertigen wir auf Anfrage auch in kleineren Losgrößen. Für alle Produkte werden auch Sonderverpackungen angeboten. Wir verfügen über einen eigenen Werkzeugbau und als Ihr Entwicklungspartner leisten wir auch individuelle Berechnungen für Sie." }
+  ],
+  gallery: [
+    { heading: "Rasthülsenbaugruppe", caption: "Verrastung von Schaltstellungen im Interieurbereich", href: "/produkte/rasthuelsenbaugruppe/", image: { src: "/images/live/DTZ_rasthuelsen.jpg", alt: "Rasthülsen-Baugruppe" } },
+    { heading: "Kontaktschiene", caption: "Verbindungselement in Stromverteiler: Kombination von Stanz-Umformteilen, technischen Federn und Kunststoffformteile. Diese Baugruppen werden durch verschiedene Montageprozesse hergestellt (Fügen, Pressen, Löten)", href: "/produkte/kontaktschiene/", image: { src: "/images/live/dtz-kontaktschiene.jpg", alt: "Kontaktschiene" } },
+    { heading: "Montageset für Dialysegeräte", caption: "Feder aus Tantaldraht als Funktionselement im Dialysegerät Druckfedern werden einer 100% Prüfung unterzogen und anschließen durch einer Montage mit den Kunststoffkomponenten montiert. Um die spätere Montage in den Geräten zu vereinfachen werden Montagesets bei Dietz zusammengestellt.", href: "/produkte/montageset-fuer-dialysegeraete/", image: { src: "/images/live/dtz-montagesetzDialyse.jpg", alt: "Montageset für Dialysegeräte" } },
   ],
 };

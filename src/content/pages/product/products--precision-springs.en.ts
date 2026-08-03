@@ -10,8 +10,9 @@ export const productsPrecisionSpringsEN: PageEntry = {
   slug: "products/precision-springs",
   seo: {
     navLabel: "Precision springs",
-    title: "Precision springs | Dietz GmbH",
-    description: "Precision springs",
+    title: "Precision Springs Made to Measure | Dietz GmbH",
+    description:
+      "Precision springs for automotive, medical and electrical engineering, manufactured to DIN EN ISO 9001:2015. Request a quote today.",
   },
   type: "post",
   h1: "Precision springs",

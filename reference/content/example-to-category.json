@@ -1,0 +1,75 @@
+{
+  "_comment": [
+    "Which product category each product example belongs to.",
+    "",
+    "The 44 example pages each hold one photograph of a real Dietz part,",
+    "correctly attributed. The 12 category pages had none. This map is what",
+    "lets link-product-examples.py put the right photographs on the right",
+    "category page — and it is authored rather than inferred because getting it",
+    "wrong means telling a buyer that a plastic gear is a compression spring.",
+    "",
+    "Every row below is justified by the example page's own h1 naming the part",
+    "type outright (Sonderdruckfeder, Zugfeder, Wellenring, Zahnrad aus",
+    "Polyoxymethylen), or by its photograph having been looked at directly.",
+    "Anything that needed a guess is in `_unclassified` instead, not here.",
+    "",
+    "Ids are locale-independent: the DE and EN versions of an example share one",
+    "canonical id, so a single row serves both languages."
+  ],
+
+  "product.produkte-druckfedern": [
+    "example.produkte-sonderdruckfeder-mit-loetbarer-oberflaeche"
+  ],
+  "product.produkte-zugfedern": [
+    "example.produkte-zugfeder-mit-ueberlagerter-oese",
+    "example.produkte-zugfeder-im-bereich-der-sitze-im-pkw"
+  ],
+  "product.produkte-schenkelfedern": [
+    "example.produkte-schenkelfeder-in-der-beleuchtungstechnik",
+    "example.produkte-schenkelfeder-fuer-bremselement-im-pkw-fensterheber",
+    "example.produkte-schenkelfedern-zum-oeffnen-einer-klappe-bei-geschirrspuelmaschinen"
+  ],
+  "product.produkte-wellenfedern": [
+    "example.produkte-wellenring",
+    "example.produkte-wellenfederturm-fuer-thermomanagementsystem"
+  ],
+  "product.kunststofftechnik": [
+    "example.produkte-zahnrad-aus-polyoxymethylen",
+    "example.produkte-hebel-aus-polyamid-pa",
+    "example.produkte-silikonfeder-als-bremselement"
+  ],
+  "product.produkte-hybride-baugruppen": [
+    "example.produkte-rasthuelsenbaugruppe",
+    "example.produkte-kontaktschiene",
+    "example.produkte-montageset-fuer-dialysegeraete"
+  ],
+  "product.produkte-drahtbiegeteile": [
+    "example.produkte-halteklammer"
+  ],
+  "product.stanz-umformteile": [
+    "example.produkte-schuko-klammer"
+  ],
+  "product.produkte-sonderverpackungen": [
+    "example.en-produkte-packaging-1",
+    "example.en-produkte-packaging-2",
+    "example.en-produkte-packaging-3"
+  ],
+
+  "_unclassified": {
+    "_comment": [
+      "Real parts whose category cannot be settled from the page itself.",
+      "Left unplaced deliberately — an unillustrated category page is a gap; a",
+      "category page illustrated with the wrong part is a false claim about what",
+      "Dietz manufactures. Raised with the client for one pass of confirmation;",
+      "moving a row up into the map above is then the whole change."
+    ],
+    "example.produkte-anpressfeder": "Named a spring, but its own caption describes a progressive-die concept, which points at a stamped part. Compression spring or stamped part?",
+    "example.produkte-rollofeder": "The photograph is a flat formed strip clip, not a coiled spring. Likely Bandbiegeteile — which currently has no photograph at all — but 'feder' in the name argues otherwise.",
+    "example.produkte-schweissringe": "Welding rings. Could be wire-bent or stamped.",
+    "example.produkte-sicherungshalter": "Fuse holder. Stamped part or hybrid assembly?",
+    "example.produkte-spulenkoerper": "Bobbin. Usually moulded plastic, but not stated on the page.",
+    "example.produkte-sitzwannenverstaerkung-lordosenstuetze": "Seat-pan reinforcement / lumbar support. Wire-bent or strip?",
+    "example.produkte-zahnradachse": "Gear axle. Turned, stamped, or part of an assembly?",
+    "example.produkte-montageteil-maschinenbau": "Assembly part. The Produkte hub uses its photo for Prototypen und Musterbau, which suggests prototyping rather than hybrid assemblies."
+  }
+}

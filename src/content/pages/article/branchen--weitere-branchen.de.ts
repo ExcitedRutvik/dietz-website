@@ -15,14 +15,20 @@ export const branchenWeitereBranchenDE: PageEntry = {
   },
   type: "post",
   h1: "Weitere Branchen bei Dietz Federn",
+  summary:
+    "Neben Automotive und Elektrotechnik fertigt Dietz für zahlreiche weitere Industriezweige.",
+  keyTakeaways: [
+    "Kernkompetenzen in der Automobilindustrie und der Elektrotechnik.",
+    "Erfolge und ein etablierter Ruf auch in weiteren Branchen.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-branchen-2.jpg", alt: "Arbeitsplatz in der Qualitätssicherung bei Dietz" },
     { kind: "heading", level: 2, text: "weitere Branchen …" },
     { kind: "paragraph", text: "Die Dietz GmbH ist ein renommiertes Unternehmen, das sich seit vielen Jahren erfolgreich in mehreren Branche etabliert hat. Neben unseren Kernkompetenzen in der Automobilindustrie und der Elektrotechnik haben wir auch in anderen Branchen zahlreiche Erfolge erzielt und uns einen hervorragenden Ruf erarbeitet." },
     { kind: "paragraph", text: "Neben diesen Kernbranchen sind wir auch in anderen Bereichen wie der , der Verpackungsindustrie und der Telekommunikationsbranche oder Spielzeugindustrie tätig. Unsere Erfahrung und Expertise ermöglichen es uns, flexibel auf die Anforderungen und Bedürfnisse unserer Kunden einzugehen und maßgeschneiderte Lösungen anzubieten." },
     { kind: "heading", level: 3, text: "Dietz Bauteile und Baugruppen – auch für Ihre Branche!" },
     { kind: "paragraph", text: "Unser Ziel ist es, in jeder Branche, in der wir tätig sind, ein verlässlicher Partner für unsere Kunden zu sein. Wir setzen auf langfristige Partnerschaften und legen großen Wert auf Qualität, Zuverlässigkeit und Innovation. Durch fortlaufende Investitionen in modernste Technologien und fachliche Weiterbildung unserer Mitarbeiter stellen wir sicher, dass wir stets auf dem neuesten Stand sind und den sich wandelnden Bedürfnissen der Branchen gerecht werden können." },
     { kind: "paragraph", text: "Die Dietz GmbH sieht es als ihre Aufgabe, individuelle Lösungen für Kunden aus den verschiedensten Branchen herzustellen und damit zur Wettbewerbsfähigkeit und Innovation ihrer Geschäftspartner beizutragen. Unser umfangreiches Know-how und unsere langjährige Erfahrung machen uns zu einem vertrauenswürdigen Partner, der auch in Zukunft maßgeblich zur Weiterentwicklung verschiedener Branchen beitragen wird." },
-    { kind: "image", src: "/images/live/dietz-branchen-2.jpg", alt: "" },
   ],
   gallery: [
     { heading: "Zugfeder mit überlanger Öse", caption: "Umsetzung mit Sondermaschinen und speziellen Werkzeugvorrichtungen – Schloss- und Beschlagindustrie", href: "/produkte/zugfeder-mit-ueberlagerter-oese/", image: { src: "/images/live/dtz-zugfeder-ueberlang.jpg", alt: "Zugfeder mit überlanger Öse" } },

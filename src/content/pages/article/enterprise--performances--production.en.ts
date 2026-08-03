@@ -15,7 +15,14 @@ export const enterprisePerformancesProductionEN: PageEntry = {
   },
   type: "post",
   h1: "Precision in production at Dietz Federn",
+  summary:
+    "From mechanical components to electronic parts: tailor-made solutions on modern production equipment.",
+  keyTakeaways: [
+    "From mechanical components through to electronic parts.",
+    "Latest technologies and production processes for the highest quality standards.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-produktionshalle.jpg", alt: "Precision in production at Dietz Federn", width: 1024, height: 320 },
     { kind: "heading", level: 2, text: "Production" },
     { kind: "heading", level: 3, text: "Dietz: Precision in production" },
     { kind: "paragraph", text: "Our production includes a variety of products that are used in different areas. From mechanical components to electronic components, we offer tailor-made solutions for each customer. We use state-of-the-art technologies and production processes to ensure the highest quality standards." },
@@ -24,6 +31,5 @@ export const enterprisePerformancesProductionEN: PageEntry = {
     { kind: "paragraph", text: "Thanks to our efficient production and supply chain, we can guarantee our customers a fast and reliable supply. Our customer service is always available to meet individual requirements and wishes and offer solutions." },
     { kind: "paragraph", text: "Dietz GmbH continuously strives to improve its production processes and integrate the latest technologies to meet the needs of our customers. Customer satisfaction is our top priority, and we pride ourselves on building long-term partnerships with our customers." },
     { kind: "paragraph", text: "When it comes to innovative and high-quality products, Dietz GmbH is the reliable partner of your choice. Let us convince you of our performance and contact us for more information." },
-    { kind: "image", src: "/images/live/dietz-produktionshalle.jpg", alt: "Precision in production at Dietz Federn", width: 1024, height: 320 }
   ],
 };

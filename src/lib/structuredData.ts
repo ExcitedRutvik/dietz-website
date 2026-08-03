@@ -97,7 +97,7 @@ export function breadcrumbList(entry: PageEntry) {
 /** Slugs under products/produkte are what a buyer can actually request a quote
  * for. They get Product markup; an article about spring theory does not. */
 function isProductPage(entry: PageEntry): boolean {
-  return /^(produkte|products)\//.test(entry.slug) || entry.type === "product-category";
+  return /^(produkte|products)\//.test(entry.slug);
 }
 
 function bodyText(entry: PageEntry): string {
@@ -162,10 +162,55 @@ export function graphFor(entry: PageEntry) {
   const crumbs = breadcrumbList(entry);
   if (crumbs) nodes.push(crumbs);
 
+  if (entry.type === "career-hub" && entry.jobs?.length) {
+    for (const job of entry.jobs) nodes.push(jobPosting(entry, job));
+  }
+
   if (isProductPage(entry)) nodes.push(product(entry));
   else if (entry.type === "post" && entry.slug) nodes.push(article(entry));
 
   return { "@context": "https://schema.org", "@graph": nodes };
+}
+
+/**
+ * A vacancy, marked up so it is eligible for Google Jobs.
+ *
+ * `datePosted` is deliberately absent: the live site publishes no posting date
+ * for these roles, and Google treats a fabricated one as a reason to distrust
+ * the whole feed. `employmentType` is mapped only where the German is
+ * unambiguous — an apprenticeship is not a fixed-term contract, and guessing
+ * would misrepresent the offer.
+ */
+function jobPosting(
+  entry: Extract<PageEntry, { type: "career-hub" }>,
+  job: NonNullable<Extract<PageEntry, { type: "career-hub" }>["jobs"]>[number],
+) {
+  const hours = (job.hours ?? "").toLowerCase();
+  const types: string[] = [];
+  if (hours.includes("vollzeit")) types.push("FULL_TIME");
+  if (hours.includes("teilzeit")) types.push("PART_TIME");
+  if (job.kind === "Ausbildung") types.push("INTERN");
+
+  return {
+    "@type": "JobPosting",
+    "@id": `${SITE}${job.href}#job`,
+    title: job.title,
+    url: `${SITE}${job.href}`,
+    description: job.title,
+    ...(types.length && { employmentType: types }),
+    hiringOrganization: { "@id": ORG_ID },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Am Floßgraben 10",
+        postalCode: "96465",
+        addressLocality: "Neustadt bei Coburg",
+        addressCountry: "DE",
+      },
+    },
+    inLanguage: entry.locale,
+  };
 }
 
 /**

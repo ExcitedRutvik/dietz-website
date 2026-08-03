@@ -15,7 +15,15 @@ export const unternehmenLeistungenQualitaetDE: PageEntry = {
   },
   type: "post",
   h1: "Höchste Qualitätsstandards bei Dietz Federn",
+  summary:
+    "IATF 16949 zertifiziert, mit Schwerpunkt auf vorbeugender Qualitätssicherung statt nachträglicher Fehlerbeseitigung.",
+  keyTakeaways: [
+    "Nach IATF 16949 zertifiziert.",
+    "Schwerpunkt auf vorbeugender Qualitätssicherung: Fehlervermeidung vor Fehlerbeseitigung.",
+    "Automatisierung, Prozessoptimierung und kontinuierliche Verbesserung.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-qualitaet-2.jpg", alt: "qualitaet", width: 1600, height: 500 },
     { kind: "heading", level: 2, text: "Qualität" },
     { kind: "heading", level: 3, text: "Dietz steht für Qualität" },
     { kind: "paragraph", text: "Wir die Dietz GmbH sind IATF 16949 zertifiziert und erfüllen höchste Qualitätsstandards. Unser Unternehmen setzt auf Automatisierung, Prozessoptimierung und kontinuierliche Verbesserung, um sicherzustellen, dass unsere Kunden stets die bestmögliche Qualität erhalten. Die hohe Qualität unserer Produkte wird durch die Verwendung modernster Fertigungstechniken, hochwertiger Materialien und strenge Qualitätskontrollen sichergestellt." },
@@ -23,6 +31,5 @@ export const unternehmenLeistungenQualitaetDE: PageEntry = {
     { kind: "paragraph", text: "Ein wichtiger Erfolgsfaktor ist das Engagement und die Kompetenz unserer Mitarbeitenden. Wir investieren in die Aus- und Weiterbildung unserer Mitarbeitenden und schaffen so eine Atmosphäre, in der Innovation und Kreativität gefördert werden. Das Team der Dietz GmbH arbeitet eng zusammen, um die Anforderungen unserer Kunden zu erfüllen und qualitativ hochwertige Lösungen zu entwickeln." },
     { kind: "paragraph", text: "Die Dietz GmbH ist auch ein verantwortungsvolles Unternehmen, das sich für Nachhaltigkeit und Umweltschutz einsetzt. Das Unternehmen legt großen Wert auf ressourcenschonende Produktionsverfahren und arbeitet kontinuierlich daran, seinen ökologischen Fußabdruck zu reduzieren. Durch den Einsatz modernster Technologien und die optimierte Nutzung von Ressourcen tragen wir dazu bei, die Umweltauswirkungen unserer Produkte zu minimieren." },
     { kind: "paragraph", text: "Insgesamt sind wir ein erstklassiger Hersteller hochwertiger Produkte im Bereich der Metall- und Kunststoffverarbeitung und überzeugen durch Innovationskraft, Zuverlässigkeit sowie Qualität und haben uns einen exzellenten Ruf in den Branchen erarbeitet. Kunden schätzen unsere hohe Produktqualität, den exzellenten Kundenservice und die nachhaltige Unternehmensführung." },
-    { kind: "image", src: "/images/live/dietz-qualitaet-2.jpg", alt: "qualitaet", width: 1600, height: 500 }
   ],
 };

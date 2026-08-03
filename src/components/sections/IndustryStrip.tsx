@@ -23,16 +23,15 @@ import { localeHref, type Locale } from "@/lib/locale";
  * is the shape that says nobody decided anything.
  */
 
-// Lead photograph per industry, keyed by canonical page id - same pattern the
-// Products section uses. These are the images the Branchen pages themselves
-// open with, so a tile and its destination agree.
-const MEDIA: Record<string, string> = {
-  "post.branchen-automotive": "/images/live/DTZ_anpressfeder.jpg",
-  "post.branchen-elektrotechnik": "/images/live/dietz-elektrotechnik.jpg",
-  "post.branchen-medizintechnik": "/images/live/dietz-medizintechnik-2.jpg",
-  "post.branchen-weisse-ware": "/images/live/DTZ-spulenkoerper.jpg",
-  "post.branchen-weitere-branchen": "/images/live/dietz-branchen-2.jpg",
-};
+// Tile photographs are read from the Branchen hub's own cards rather than from
+// a map maintained here.
+//
+// The map that used to live here had drifted: Automotive showed a close-up of a
+// single Anpressfeder and Weiße Ware a bobbin, while the Branchen page showed a
+// vehicle and a row of appliances for the same two industries. At tile size a
+// part on a white background reads as a placeholder, and the homepage and the
+// section landing page disagreed about what an industry looks like. Reading the
+// hub's cards means there is one answer, authored in one place.
 
 export default function IndustryStrip({
   intro,
@@ -44,15 +43,20 @@ export default function IndustryStrip({
   const branchen = MAIN_NAV.find((i) => i.id === "post.branchen");
   const hub = getPageById("post.branchen", locale);
 
+  const cardThumbs = new Map(
+    (hub?.type === "hub" ? hub.cards : []).map((c) => [c.href, c.thumb]),
+  );
+
   const items = (branchen?.children ?? []).flatMap((child) => {
     const page = child.id ? getPageById(child.id, locale) : undefined;
     if (!page || !child.id) return [];
+    const href = localeHref(locale, page.slug);
     return [
       {
         id: child.id,
         label: page.seo.navLabel ?? page.seo.title,
-        href: localeHref(locale, page.slug),
-        src: MEDIA[child.id],
+        href,
+        src: cardThumbs.get(href) ?? undefined,
       },
     ];
   });

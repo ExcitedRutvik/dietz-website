@@ -9,15 +9,28 @@ export const industriesAutomotiveEN: PageEntry = {
   locale: "en",
   slug: "industries/automotive",
   seo: {
-    title: "Automotive at Dietz Federn",
     navLabel: "Automotive",
-    description: "Automotive at Dietz Federn",
+    title: "Springs for the Automotive Industry | Dietz GmbH",
+    description:
+      "Springs, wire and stamped bent parts for the automotive industry, manufactured to DIN EN ISO 9001:2015, from sample to series.",
   },
   type: "post",
   h1: "Automotive at Dietz Federn",
+  summary:
+    "Springs, bent wire and stamped parts for the automotive industry: from sample to series, for well-known manufacturers and suppliers.",
+  keyTakeaways: [
+    "A reliable partner for well-known automotive manufacturers and suppliers since 1928.",
+    "Tailor-made solutions developed and manufactured for the vehicle industry.",
+  ],
   blocks: [
     { kind: "heading", level: 2, text: "Automotive" },
+    { kind: "paragraph", text: "Dietz GmbH is a leading company in the automotive industry, specializing in the development and manufacture of tailor-made solutions for the automotive industry. Since our foundation in 1928, we have established ourselves as a reliable partner for well-known automotive manufacturers and suppliers." },
     { kind: "heading", level: 3, text: "Dietz in the automotive sector" },
+    { kind: "paragraph", text: "Our team of highly qualified technicians and professionals has extensive know-how and many years of experience in the automotive industry. Through our state-of-the-art manufacturing facilities and state-of-the-art technologies, we are able to design and manufacture innovative solutions of the highest quality. We attach great importance to quality, reliability and customer satisfaction." },
+    { kind: "paragraph", text: "In addition, we are continuously working on optimising our processes and implementing new technologies in order to always be able to offer our customers the best solutions. As a certified company according to IATF 16949:2016, we ensure that our products meet the strictest quality standards and meet the requirements of the automotive industry." },
+    { kind: "paragraph", text: "Our many years of experience in the automotive industry and our strong customer focus have made us a trustworthy partner for our customers. We maintain long-term relationships with our customers and support them in the development and implementation of their individual projects." },
+    { kind: "paragraph", text: "Dietz GmbH is proud to be a major player in the automotive industry and to contribute to the further development of the mobile future. Through our innovative solutions, we help to make vehicles safer, more efficient and more environmentally friendly." },
+    { kind: "paragraph", text: "We are committed to further expanding our position as one of the leading suppliers of automotive components and systems and continuing to provide high-quality solutions to our customers." },
   ],
   gallery: [
     { heading: "Gear made of polyoxymethylene", caption: "Gear made of polyoxymethylene (POM) for power transmission in the automotive sector", href: "/en/produkte/gear-made-of-polyoxymethylene/", image: { src: "/images/live/DTZ_Zahnrad_Polyoxymethylen.jpg", alt: "Gear made of polyoxymethylene" } },

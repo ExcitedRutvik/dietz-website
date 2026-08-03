@@ -9,12 +9,20 @@ export const branchenWeisseWareDE: PageEntry = {
   locale: "de",
   slug: "branchen/weisse-ware",
   seo: {
-    title: "Weiße Ware bei Dietz Federn",
     navLabel: "Weiße Ware",
-    description: "Weiße Ware bei Dietz Federn",
+    title: "Federn für Weiße Ware und Hausgeräte | Dietz GmbH",
+    description:
+      "Federn und Biegeteile für Weiße Ware: Schenkelfedern für Geschirrspüler, Waschmaschinen und Hausgeräte in Serie. Jetzt Anfrage stellen.",
   },
   type: "post",
   h1: "Weiße Ware bei Dietz Federn",
+  summary:
+    "Komponenten und Baugruppen für Kühlschränke, Geschirrspüler, Waschmaschinen, Trockner und Herde.",
+  keyTakeaways: [
+    "Komponenten für Kühlschränke, Geschirrspüler, Waschmaschinen, Trockner und Herde.",
+    "Vertrauenswürdiger Partner für Kunden in Deutschland und international.",
+    "Kontinuierliche Prozessoptimierung und Umsetzung neuer Technologien.",
+  ],
   blocks: [
     { kind: "heading", level: 2, text: "Weiße Ware" },
     { kind: "paragraph", text: "Die Dietz GmbH ist ein führendes Unternehmen in der Branche der Weißen Ware. Unsere langjährige Erfahrung und unser Know-how haben uns zu einem vertrauenswürdigen Partner für Kunden in Deutschland und international gemacht." },

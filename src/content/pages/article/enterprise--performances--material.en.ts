@@ -15,7 +15,15 @@ export const enterprisePerformancesMaterialEN: PageEntry = {
   },
   type: "post",
   h1: "Material selection at Dietz Federn",
+  summary:
+    "Metals, plastics and composites from established suppliers, selected against strict criteria.",
+  keyTakeaways: [
+    "Metals, plastics, composite materials and more.",
+    "Resistant to wear, corrosion and extreme temperatures.",
+    "Close cooperation with renowned suppliers worldwide.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/services/material.jpg", alt: "Wire stock on dereelers on the production floor", width: 760, height: 608 },
     { kind: "heading", level: 2, text: "Material" },
     { kind: "heading", level: 3, text: "Materials" },
     { kind: "paragraph", text: "Our company attaches great importance to a careful selection of materials in order to provide our customers with the best possible quality and performance." },

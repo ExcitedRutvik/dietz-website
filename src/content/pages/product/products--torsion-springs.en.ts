@@ -10,13 +10,15 @@ export const productsTorsionSpringsEN: PageEntry = {
   slug: "products/torsion-springs",
   seo: {
     navLabel: "Torsion springs",
-    title: "Torsion springs | Dietz GmbH",
-    description: "Everything You Should Know About Torsion Springs",
+    title: "Custom Torsion Springs | Dietz GmbH",
+    description:
+      "Torsion and double torsion springs made to your drawing, in spring steel and stainless steel, from sample to series. Talk to our engineers.",
   },
   type: "post",
   h1: "Torsion springs",
   intro: "Everything You Should Know About Torsion Springs",
   blocks: [
+    { kind: "image", src: "/images/live/DTZ-schenkelfederLeuchten.jpg", alt: "Torsion springs", width: 1400, height: 1120 },
     { kind: "paragraph", text: "Torsion springs, also known as leg springs or spiral springs, are mechanical components utilized in a variety of applications within machinery and plant construction, the automotive and electrical industries, and many other sectors. These flexible spring components are capable of absorbing torque and releasing it upon relaxation. In this comprehensive guide, we will delve into torsion springs, examining their characteristics, manufacturing methods, and applications." },
     { kind: "heading", level: 2, text: "Characteristics of Torsion Springs" },
     { kind: "paragraph", text: "Torsion springs are crafted from round, oval, or square-sectioned spring steel wires and possess a cylindrical shape. They exhibit a linear torque characteristic, meaning that torque is proportional to the twist. The force or torque transmission occurs through the legs at the beginning and end of the spring, with various leg shapes and positions possible. The legs can be straight tangential, radially inward or outward, axial, or parallel to the axis." },
@@ -38,5 +40,9 @@ export const productsTorsionSpringsEN: PageEntry = {
     { kind: "paragraph", text: "Wire Coatings" },
     { kind: "list", items: ["Zinc Plated", "ZnAl Coated", "Cold Drawn", "Nickel Coated", "Polished Nickel", "Phosphated", "Brassed", "Silvered"] },
     { kind: "paragraph", text: "All technical springs are manufactured upon request, even in smaller batch sizes. Special packaging is offered for all products. We have our own tooling department and, as your development partner, we also provide individual calculations." }
+  ],
+  gallery: [
+    { heading: "Thigh springs in lighting technology", caption: "Thigh leather with inwardly curved spring end for fastening luminaires in cavity ceilings. Automation of the end of the spring bent into the spring body.", href: "/en/produkte/thigh-springs-in-lighting-technology/", image: { src: "/images/live/DTZ-schenkelfederLeuchten.jpg", alt: "Thigh springs in lighting technology" } },
+    { heading: "Thigh springs for opening a flap in dishwashers", caption: "Special tools for special bending processes", href: "/en/produkte/thigh-springs-for-opening-a-flap-in-dishwashers/", image: { src: "/images/live/dtz-schenkelfeder-geschirrsp.jpg", alt: "Thigh springs for opening a flap in dishwashers" } },
   ],
 };

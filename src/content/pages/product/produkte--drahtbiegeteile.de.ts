@@ -10,13 +10,15 @@ export const produkteDrahtbiegeteileDE: PageEntry = {
   slug: "produkte/drahtbiegeteile",
   seo: {
     navLabel: "Drahtbiegeteile",
-    title: "Drahtbiegeteile: Vielseitigkeit & Präzision | Dietz GmbH",
-    description: "Drahtbiegeteile: Vielseitigkeit & Präzision",
+    title: "Drahtbiegeteile nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Drahtbiegeteile von 0,20 bis 8,00 mm – CNC-gebogen in 2D und 3D, mit Gewinde, Prägung und über 20 Oberflächen. Jetzt Angebot anfordern.",
   },
   type: "post",
   h1: "Drahtbiegeteile: Vielseitigkeit & Präzision",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
   blocks: [
+    { kind: "image", src: "/images/live/DTZ_drahtbiegeteile_t.jpg", alt: "Drahtbiegeteile: Vielseitigkeit & Präzision", width: 1280, height: 1024 },
     { kind: "heading", level: 2, text: "Drahtbiegeteile: Die perfekte Lösung für individuelle Anforderungen in der Industrie" },
     { kind: "paragraph", text: "Drahtbiegeteile sind eine wichtige Komponente in vielen Industriezweigen. Sie werden aus gebogenem Draht hergestellt und bieten eine Vielzahl von Anwendungsmöglichkeiten. In diesem Artikel werden wir uns eingehend mit Drahtbiegeteilen befassen und ihre Herstellung, Eigenschaften und Verwendung in verschiedenen Branchen beleuchten." },
     { kind: "heading", level: 3, text: "Was sind Drahtbiegeteile?" },
@@ -42,5 +44,8 @@ export const produkteDrahtbiegeteileDE: PageEntry = {
     { kind: "heading", level: 3, text: "Beschichtung Teile-Oberflächen" },
     { kind: "list", items: ["Ölen", "Trowalisieren", "Verzinken", "Verchromen", "Phosphatieren", "Versilbern", "Vergolden", "Verzinnen", "Vernickeln", "Verkupfern", "Vermessingen", "Lackieren", "Strahlen", "PTFE-Beschichtung", "Delta Tone/Delta Seal", "Zinklamellenbeschichtungen", "Gleitmo-Beschichtungen", "Entfetten", "Reinigen mit technischer Sauberkeit", "Realisation von Sonderwünsche"] },
     { kind: "paragraph", text: "Alle technischen Federn fertigen wir auf Anfrage auch in kleineren Losgrößen. Für alle Produkte werden auch Sonderverpackungen angeboten. Wir verfügen über einen eigenen Werkzeugbau und als Ihr Entwicklungspartner leisten wir für Sie auch individuelle Berechnungen." }
+  ],
+  gallery: [
+    { heading: "Halteklammer in der Fahrzeugtechnik", caption: "Komplexe Biegegeometrien in einem Bauteil. An unserer CNC gesteuerten Fertigungsmaschine wurden die komplexen Geometrien umgesetzt. Mit geringen Werkzeugkosten und dem Know How unserer Mitarbeiter, konnte so das Bauteil hergestellt werden", href: "/produkte/halteklammer/", image: { src: "/images/live/DTZ_drahtbiegeteile_t.jpg", alt: "Drahtbiegeteile von DIETZ" } },
   ],
 };

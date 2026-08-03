@@ -9,12 +9,20 @@ export const industriesWhiteGoodsEN: PageEntry = {
   locale: "en",
   slug: "industries/white-goods",
   seo: {
-    title: "White goods at Dietz Federn",
     navLabel: "White goods",
-    description: "White goods at Dietz Federn",
+    title: "Springs for White Goods and Appliances | Dietz GmbH",
+    description:
+      "Springs and bent parts for white goods: torsion springs for dishwashers, washing machines and household appliances in series.",
   },
   type: "post",
   h1: "White goods at Dietz Federn",
+  summary:
+    "Components and assemblies for refrigerators, dishwashers, washing machines, dryers and ovens.",
+  keyTakeaways: [
+    "Components for refrigerators, dishwashers, washing machines, dryers and ovens.",
+    "A trusted partner for customers in Germany and internationally.",
+    "Continuous process optimisation and adoption of new technologies.",
+  ],
   blocks: [
     { kind: "heading", level: 2, text: "White goods" },
     { kind: "paragraph", text: "Dietz GmbH is a leading company in the white goods industry. Our many years of experience and know-how have made us a trustworthy partner for customers in Germany and internationally." },

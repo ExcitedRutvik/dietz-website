@@ -4,6 +4,8 @@ import BlockRenderer from "./BlockRenderer";
 import CtaRenderer from "./CtaRenderer";
 import PageHeader from "./PageHeader";
 import ExampleGallery from "./ExampleGallery";
+import PageSummary from "./PageSummary";
+import type { SectionNav } from "@/lib/sectionNav";
 
 /**
  * One template for long-form articles, product-category pages and the short
@@ -15,14 +17,29 @@ import ExampleGallery from "./ExampleGallery";
  * ~68ch inside BlockRenderer while images use the full column, which gives the
  * page a two-tier rhythm without needing a second layout.
  */
-export default function Post({ h1, intro, blocks, gallery, cta, postMeta, locale }: PostContent & { locale: Locale }) {
+export default function Post({ h1, intro, blocks, gallery, keyTakeaways, summary, cta, postMeta, locale, section }: PostContent & { locale: Locale; section?: SectionNav | null }) {
   const eyebrow = postMeta?.date
     ? `${postMeta.author ? `${postMeta.author} · ` : ""}${postMeta.date}`
     : undefined;
 
   return (
-    <main className="mx-auto max-w-[46rem] px-6 pb-28 pt-10">
+    // From xl the reading column keeps its exact 46rem measure and the summary
+    // rail moves into the gutter beside it — space the page was already
+    // wasting. Below xl there is no gutter to take, so the layout is unchanged.
+    <div className="mx-auto max-w-[46rem] px-6 xl:grid xl:max-w-[70rem] xl:grid-cols-[minmax(0,46rem)_minmax(0,1fr)] xl:gap-12">
+    <main className="min-w-0 pt-10">
       <PageHeader h1={h1} intro={intro} eyebrow={eyebrow} wide />
+
+      {/* On narrow screens a contents list is a scroll tax, so only the
+          takeaways appear, and inline rather than in a rail. */}
+      <PageSummary
+        blocks={blocks}
+        keyTakeaways={keyTakeaways}
+        summary={summary}
+        locale={locale}
+        variant="inline"
+        className="mt-8 xl:hidden"
+      />
 
       {blocks.length > 0 && (
         <div className="mt-12">
@@ -68,5 +85,28 @@ export default function Post({ h1, intro, blocks, gallery, cta, postMeta, locale
         </nav>
       )}
     </main>
+
+      <aside className="hidden xl:block">
+        {/* `sticky` lives on this wrapper, not on the card. `.glass-panel` sets
+            `position: relative` for its bevel layer, and because that class is
+            defined after Tailwind it beat the `sticky` utility — so the rail
+            silently sat still while the page scrolled past it. Separating the
+            two means neither has to know about the other.
+
+            Sticky inside a grid cell stops at the cell's bottom, and the cell
+            stretches to the row height, so the rail travels with the reader and
+            comes to rest exactly at the end of the body copy. */}
+        <div className="sticky top-24 mt-10">
+          <PageSummary
+            blocks={blocks}
+            keyTakeaways={keyTakeaways}
+            summary={summary}
+            section={section}
+            locale={locale}
+            variant="rail"
+          />
+        </div>
+      </aside>
+    </div>
   );
 }

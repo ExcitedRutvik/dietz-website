@@ -10,13 +10,15 @@ export const productsSpecialPackagingEN: PageEntry = {
   slug: "products/special-packaging",
   seo: {
     navLabel: "Special packaging",
-    title: "Products - Special packaging",
-    description: "To ensure safe transport and enable an easy handover of the products during later industrial processes and assembly, we ship our springs and sub-assemblies in special packaging. An",
+    title: "Special Packaging for Technical Springs | Dietz GmbH",
+    description:
+      "Special packaging for springs and bent parts — taped, stacked or built around your own assembly line. Request a quote today.",
   },
   type: "post",
   h1: "Special packaging",
   intro: "To ensure safe transport and enable an easy handover of the products during later industrial processes and assembly, we ship our springs and sub-assemblies in special packaging. Any conceivable special packaging is adapted precisely to the product in question, e.g. blister or polyethylene packaging.",
   blocks: [
+    { kind: "image", src: "/images/live/DTZ_teaser_sonderverpackungenjpg.jpg", alt: "Special packaging", width: 800, height: 640 },
     { kind: "heading", level: 2, text: "Tube packaging" },
     { kind: "paragraph", text: "Compression springs are transported in tube packaging. Tube packaging ensures that they can be inserted without problems, down to the last spring." },
     { kind: "paragraph", text: "Sub-assemblies, bent strip parts and laser-generated samples are transported in blister or polyethylene packaging to protect them during transport and storage." },
@@ -24,5 +26,10 @@ export const productsSpecialPackagingEN: PageEntry = {
     { kind: "paragraph", text: "We would also be pleased to assist you with our expertise regarding the modification of specific extraction mechanisms. This eliminates downtime of highly complex assembly equipment caused by springs getting caught up in one another." },
     { kind: "paragraph", text: "We also produce any technical springs on request in smaller batch volumes. Special packaging is also offered for all products. We have at our disposal an in-house toolmaking workshop and, as your development partner, we would also be pleased to perform individual calculations for you." },
     { kind: "paragraph", text: "Questions or requests? Contact us!" }
+  ],
+  gallery: [
+    { heading: "Packaging 1", caption: "Packaging 1", href: "/en/produkte/packaging-1/", image: { src: "/images/live/verpackung-image001.png", alt: "Packaging 1" } },
+    { heading: "Packaging 2", caption: "Packaging 2", href: "/en/produkte/packaging-2/", image: { src: "/images/live/verpackung-image002.png", alt: "Packaging 2" } },
+    { heading: "Packaging 3", caption: "Packaging 3", href: "/en/produkte/packaging-3/", image: { src: "/images/live/verpackung-image003.png", alt: "Packaging 3" } },
   ],
 };

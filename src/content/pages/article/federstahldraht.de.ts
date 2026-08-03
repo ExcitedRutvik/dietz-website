@@ -9,8 +9,9 @@ export const federstahldrahtDE: PageEntry = {
   locale: "de",
   slug: "federstahldraht",
   seo: {
-    title: "Glossar: Federstahldraht einfach erklärt | Dietz GmbH",
-    description: "Federstahldraht ist ein spezieller Draht, der für die Herstellung von Federn verwendet wird. Dieser Draht zeichnet sich durch hohe Festigkeit, Elastizität und Biegsamkeit aus. Häuf",
+    title: "Federstahldraht: Werkstoffe und Einsatz | Dietz GmbH",
+    description:
+      "Federstahldraht im Überblick: Werkstoffe, Eigenschaften und Einsatzgebiete in der industriellen Federfertigung. Sprechen Sie uns an.",
   },
   type: "post",
   h1: "Glossar: Federstahldraht einfach erklärt",

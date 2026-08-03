@@ -112,6 +112,11 @@ export const MAIN_NAV: NavItem[] = [
   // — ~150 pages of it — was reachable from nothing at all. They are one
   // cluster: material you read rather than buy.
   {
+    id: "post.wissen",
+    // `label` is kept as the fallback for any locale that has no /wissen/ page:
+    // resolveNavItem prefers the resolved page's navLabel when one exists, so
+    // the two coexist and the item still renders (as a label) rather than
+    // vanishing.
     label: { de: "Wissen", en: "Resources" },
     children: [
       { id: "post.news" }, // DE-only; drops out for en

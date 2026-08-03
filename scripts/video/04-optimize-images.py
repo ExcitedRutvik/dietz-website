@@ -31,6 +31,10 @@ BUDGET = {
     "industries":    (1280, 80),
     "company":       (1280, 80),
     "sustainability": (512, 82),
+    # Film stills (scripts/video/extract-stills.py) come out at the source's
+    # 1920x824. They are used as full-column lead images, which tops out around
+    # 820 CSS px, so 1280 still leaves headroom on a 2x display.
+    "stills":        (1280, 80),
 }
 
 def main(root="public/images"):

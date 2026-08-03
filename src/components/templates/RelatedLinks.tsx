@@ -10,14 +10,23 @@ import type { PageEntry } from "@/content/schema";
  * The first link is the cluster's money page and is weighted accordingly: its
  * anchor is the head term, and it reads first. The rest are siblings.
  */
-export default function RelatedLinks({ entry }: { entry: PageEntry }) {
-  const links = relatedLinks(entry);
+export default function RelatedLinks({
+  entry,
+  skip,
+}: {
+  entry: PageEntry;
+  /** Hrefs already rendered as child cards, so they are not repeated here. */
+  skip?: Set<string>;
+}) {
+  const links = skip
+    ? relatedLinks(entry).filter((l) => !skip.has(l.href))
+    : relatedLinks(entry);
   if (links.length === 0) return null;
 
   return (
     <nav
       aria-labelledby="related-heading"
-      className="mt-16 border-t border-line pt-8"
+      className="mt-12 border-t border-line pt-8"
     >
       <h2 id="related-heading" className="text-sm font-semibold tracking-tight text-ink">
         {RELATED_HEADING[entry.locale] ?? RELATED_HEADING[DEFAULT_LOCALE]}

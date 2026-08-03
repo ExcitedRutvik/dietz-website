@@ -9,8 +9,9 @@ export const productsPrototypeAndSampleConstructionEN: PageEntry = {
   locale: "en",
   slug: "products/prototype-and-sample-construction",
   seo: {
-    title: "Prototype and sample construction at Dietz Federn",
-    description: "Prototype and sample construction at Dietz Federn",
+    title: "Prototype and Sample Construction | Dietz GmbH",
+    description:
+      "Prototypes and samples from our own shop floor: CNC milling, 3D printing and spring production under one roof. Talk to our engineers.",
   },
   type: "post",
   h1: "Prototype and sample construction at Dietz Federn",

@@ -15,7 +15,14 @@ export const enterprisePerformancesLogisticsEN: PageEntry = {
   },
   type: "post",
   h1: "Logistics Services at Dietz Federn",
+  summary:
+    "Database-supported warehousing across raw material and finished parts, with flexible call-off models.",
+  keyTakeaways: [
+    "Database-supported warehousing for raw material and finished parts.",
+    "Just-in-time, just-in-sequence, Kanban, dial-up call-offs and consignment stock.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-logistik-2.jpg", alt: "Logistics Services at Dietz Federn", width: 1024, height: 320 },
     { kind: "heading", level: 2, text: "Logistics" },
     { kind: "heading", level: 3, text: "Our Logistics Services" },
     { kind: "paragraph", text: "With many years of experience and comprehensive know-how, Dietz GmbH optimizes the processes in the supply chain to ensure efficient and smooth logistics." },
@@ -24,6 +31,5 @@ export const enterprisePerformancesLogisticsEN: PageEntry = {
     { kind: "paragraph", text: "Dietz GmbH attaches great importance to quality and reliability. Therefore, all processes and procedures are carefully controlled and regularly optimized. In addition, comprehensive quality assurance is carried out to ensure that customers always receive the best possible logistical service." },
     { kind: "paragraph", text: "Dietz GmbH sees itself not only as a service provider, but also as a partner to its customers. With a personal and individual service, the company is always available for questions and concerns. Transparent and trusting communication as well as close cooperation are the basis for a successful logistical partnership." },
     { kind: "paragraph", text: "Whether warehousing, transport or a comprehensive logistics concept – Dietz GmbH is the right partner for all logistical challenges. With a professional way of working, high quality standards and a wide range of services, the company ensures that customers get their goods to their destination on time and safely." },
-    { kind: "image", src: "/images/live/dietz-logistik-2.jpg", alt: "Logistics Services at Dietz Federn", width: 1024, height: 320 }
   ],
 };

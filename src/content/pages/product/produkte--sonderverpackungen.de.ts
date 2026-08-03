@@ -10,13 +10,15 @@ export const produkteSonderverpackungenDE: PageEntry = {
   slug: "produkte/sonderverpackungen",
   seo: {
     navLabel: "Sonderverpackungen",
-    title: "Sonderverpackungen: Individueller Schutz & Anpassung | Dietz GmbH",
-    description: "Um einen sicheren Transport gewährleisten und eine einfache Abnahme der Produkte bei weiteren Industrievorgängen und Montagen zu ermöglichen, liefern wir unsere Federn und Baugrupp",
+    title: "Sonderverpackungen für technische Federn | Dietz GmbH",
+    description:
+      "Sonderverpackungen für Federn und Biegeteile – gegurtet, gestapelt oder passend zu Ihrer Montagelinie. Jetzt Angebot anfordern.",
   },
   type: "post",
   h1: "Sonderverpackungen",
   intro: "Um einen sicheren Transport gewährleisten und eine einfache Abnahme der Produkte bei weiteren Industrievorgängen und Montagen zu ermöglichen, liefern wir unsere Federn und Baugruppen werden in Sonderverpackungen. Jegliche denkbare Sonderverpackung wird passgenau auf das jeweilige Produkt abgestimmt, wie z. B. Blister- oder PE-Verpackungen.",
   blocks: [
+    { kind: "image", src: "/images/live/DTZ_teaser_sonderverpackungenjpg.jpg", alt: "Sonderverpackungen", width: 800, height: 640 },
     { kind: "heading", level: 2, text: "Schlauchverpackungen" },
     { kind: "paragraph", text: "Druckfedern werden in einer Schlauchverpackung transportiert. Schlauchverpackungen garantieren eine störungsfreie Zuführung bis zur letzten Feder. Baugruppen, Bandbiegeteile oder lasergenerierte Musterteile werden in Blister- oder PE-Verpackungen transportiert, die sie bei Transport und Lagerung schützen." },
     { kind: "heading", level: 2, text: "Anpassung spezifischer Entnahmemechanismen" },

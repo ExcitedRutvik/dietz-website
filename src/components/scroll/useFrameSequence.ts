@@ -2,9 +2,35 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { frameUrl } from "@/lib/videoManifest";
+import {
+  poke,
+  register,
+  unregister,
+  type FrameProducer,
+} from "./frameFetchScheduler";
 
-const FETCH_CONCURRENCY = 8;
 const DECODE_CONCURRENCY = 3;
+
+// Blob window around the playhead. Blobs are compressed and cheap to hold, but
+// "cheap" is not "free": at 47-177KB a frame, retaining all five sections meant
+// ~67MB resident for the lifetime of the page. Holding a window instead costs
+// 6-23MB for the section actually being read and near zero for the rest.
+const BLOB_BACK = 40;
+const BLOB_AHEAD = 90;
+// Hysteresis, so drifting across the boundary does not re-fetch the same frames.
+const BLOB_EVICT_SLACK = 40;
+
+// A permanent coarse skeleton: every 16th frame, fetched at idle priority and
+// never evicted. ~52 frames / ~4MB across all five sections, and it is what
+// makes a *jump* — an anchor link, a restored scroll position, a fast flick —
+// land on real footage. The decode window is -16/+24, so a stride of 16
+// guarantees at least one spine frame is always inside it, wherever the
+// playhead lands. A decoded spine would be unaffordable (5.3MB per bitmap); a
+// blob spine is not.
+const SPINE_STRIDE = 16;
+
+// Any `ensure()` this recently means the reader is scrubbing this section.
+const ACTIVE_WINDOW_MS = 1200;
 
 // Asymmetric on purpose. Reading forward is the common case, but scrolling back
 // up must not fall off a cliff — an all-forward window makes reverse scrolling
@@ -40,6 +66,8 @@ export function useFrameSequence(
   const blobs = useRef<(Blob | null)[]>([]);
   const bitmaps = useRef(new Map<number, ImageBitmap>());
   const inFlight = useRef(new Set<number>());
+  const pendingFetch = useRef(new Set<number>());
+  const lastEnsureAt = useRef(0);
   const centre = useRef(0);
   const decoding = useRef(0);
   const readyRef = useRef(false);
@@ -62,39 +90,87 @@ export function useFrameSequence(
     if (!active) return;
 
     blobs.current = new Array(frameCount).fill(null);
-    let cancelled = false;
+    const n = frameCount;
 
-    // Sparse pass first, so the whole range has *some* coverage almost at once
-    // and an early scrub never lands on an empty canvas, then backfill.
-    const queue: number[] = [];
-    for (let i = 0; i < frameCount; i += 4) queue.push(i);
-    for (let i = 0; i < frameCount; i += 1) if (i % 4) queue.push(i);
-
-    const worker = async () => {
-      while (!cancelled) {
-        const i = queue.shift();
-        if (i === undefined) return;
-        try {
-          const res = await fetch(frameUrl(framePrefix, i));
-          if (!res.ok || cancelled) continue;
-          blobs.current[i] = await res.blob();
-        } catch {
-          /* a dropped frame degrades to its neighbour; not worth failing over */
+    /** Nearest wanted frame in `[lo, hi]`, forward-biased, or -1. */
+    const nearestMissing = (lo: number, hi: number, c: number) => {
+      let best = -1;
+      let bestD = Infinity;
+      for (let i = lo; i <= hi; i += 1) {
+        if (blobs.current[i] || pendingFetch.current.has(i)) continue;
+        // Reading forward is the common case, but reverse must not be excluded
+        // outright — an all-forward window makes scrolling back up permanently
+        // miss, which is the worst thing this can do.
+        const d = i >= c ? i - c : (c - i) * 1.6;
+        if (d < bestD) {
+          bestD = d;
+          best = i;
         }
       }
+      return best;
     };
-    void Promise.all(
-      Array.from({ length: Math.min(FETCH_CONCURRENCY, queue.length) }, worker),
-    );
+
+    const producer: FrameProducer = {
+      id: framePrefix,
+      priority() {
+        const idle =
+          performance.now() - lastEnsureAt.current > ACTIVE_WINDOW_MS;
+        if (!idle) return 0;
+        // Window work while merely approaching still beats spine backfill.
+        const c = centre.current;
+        const lo = Math.max(0, c - BLOB_BACK);
+        const hi = Math.min(n - 1, c + BLOB_AHEAD);
+        return nearestMissing(lo, hi, c) >= 0 ? 1 : 2;
+      },
+      next() {
+        const c = centre.current;
+        const lo = Math.max(0, c - BLOB_BACK);
+        const hi = Math.min(n - 1, c + BLOB_AHEAD);
+
+        const inWindow = nearestMissing(lo, hi, c);
+        if (inWindow >= 0) {
+          pendingFetch.current.add(inWindow);
+          return { index: inWindow, url: frameUrl(framePrefix, inWindow) };
+        }
+
+        // Window satisfied — backfill the spine, nearest to the playhead first.
+        let best = -1;
+        let bestD = Infinity;
+        for (let i = 0; i < n; i += SPINE_STRIDE) {
+          if (blobs.current[i] || pendingFetch.current.has(i)) continue;
+          const d = Math.abs(i - c);
+          if (d < bestD) {
+            bestD = d;
+            best = i;
+          }
+        }
+        if (best >= 0) {
+          pendingFetch.current.add(best);
+          return { index: best, url: frameUrl(framePrefix, best) };
+        }
+        return null;
+      },
+      deliver(index, blob) {
+        pendingFetch.current.delete(index);
+        if (!blob) return;
+        blobs.current[index] = blob;
+        pumpRef.current();
+      },
+    };
+
+    register(producer);
 
     // Captured now: refs may point elsewhere by the time cleanup runs.
     const live = bitmaps.current;
     const pending = inFlight.current;
+    const pendingF = pendingFetch.current;
     return () => {
-      cancelled = true;
+      unregister(producer);
+      blobs.current = [];
       live.forEach((b) => b.close());
       live.clear();
       pending.clear();
+      pendingF.clear();
       decoding.current = 0;
     };
   }, [active, framePrefix, frameCount]);
@@ -152,6 +228,9 @@ export function useFrameSequence(
   const ensure = useCallback(
     (index: number) => {
       centre.current = index;
+      // Doubles as the "is this section being read right now" signal the fetch
+      // scheduler ranks on, so it needs no props and causes no re-render.
+      lastEnsureAt.current = performance.now();
 
       const lo = Math.max(0, index - WINDOW_BACK - EVICT_SLACK);
       const hi = Math.min(
@@ -165,7 +244,20 @@ export function useFrameSequence(
         }
       });
 
+      // Release blobs that have fallen out of the window. The spine is exempt:
+      // it is the coarse skeleton that makes a jump land on something.
+      const bLo = Math.max(0, index - BLOB_BACK - BLOB_EVICT_SLACK);
+      const bHi = Math.min(
+        countRef.current - 1,
+        index + BLOB_AHEAD + BLOB_EVICT_SLACK,
+      );
+      for (let i = 0; i < blobs.current.length; i += 1) {
+        if (i % SPINE_STRIDE === 0) continue;
+        if (i < bLo || i > bHi) blobs.current[i] = null;
+      }
+
       for (let n = 0; n < DECODE_CONCURRENCY; n += 1) pump();
+      poke();
     },
     [pump],
   );

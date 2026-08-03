@@ -9,13 +9,21 @@ export const industriesElectricalEngineeringEN: PageEntry = {
   locale: "en",
   slug: "industries/electrical-engineering",
   seo: {
-    title: "Electrical Engineering at Dietz Federn",
     navLabel: "Electrical Engineering",
-    description: "Electrical Engineering at Dietz Federn",
+    title: "Springs for Electrical Engineering | Dietz GmbH",
+    description:
+      "Contact springs, battery springs and bent wire parts for electrical engineering, in spring steel, stainless steel and non-ferrous metals.",
   },
   type: "post",
   h1: "Electrical Engineering at Dietz Federn",
+  summary:
+    "Contact springs, fuse holders and bent wire parts for electronic assemblies and systems.",
+  keyTakeaways: [
+    "Over 90 years of experience in development support and production of electronic assemblies.",
+    "A leading supplier in the electrical engineering industry.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-elektrotechnik.jpg", alt: "Electronic component from electrical engineering production" },
     { kind: "heading", level: 2, text: "Electrical engineering" },
     { kind: "paragraph", text: "Dietz GmbH is a company specializing in the electrical engineering industry. With over 90 years of experience in the development support and production of electronic assemblies and systems, the company has become a leading supplier in the industry." },
     { kind: "paragraph", text: "In today’s world, electrical engineering plays an increasingly important role in all areas of life. Whether in industry, in the household or in communication technology – electronic devices and systems are needed everywhere. Dietz GmbH is a reliable partner for customers from various industrial segments who rely on high-quality and reliable electrical engineering." },
@@ -24,7 +32,6 @@ export const industriesElectricalEngineeringEN: PageEntry = {
     { kind: "paragraph", text: "Dietz GmbH attaches great importance to sustainability and environmental friendliness in electrical engineering. The company focuses on resource-saving production processes and is continuously working on optimising energy efficiency. In addition, attention is paid to the environmentally friendly disposal of WEEE in order to keep the burden on the environment as low as possible." },
     { kind: "paragraph", text: "As an innovative company in the electrical engineering industry, Dietz GmbH continuously invests in new manufacturing technologies in order to always be able to offer customers the latest solutions. Digitalization is also playing an increasingly important role in this." },
     { kind: "paragraph", text: "Dietz GmbH stands for quality, reliability and high standards in electrical engineering. The company prides itself on its many years of experience and innovative team, which always strives to meet customer requirements and find individual solutions. With its extensive portfolio and comprehensive know-how, Dietz GmbH is a trustworthy partner for customers from all areas of electrical engineering." },
-    { kind: "image", src: "/images/live/dietz-elektrotechnik.jpg", alt: "" },
   ],
   gallery: [
     { heading: "Contact bar", caption: "Connector in power distributor: Combination of stamped-formed parts, technical springs and plastic moulded parts. These assemblies are produced through various assembly processes (joining, pressing, soldering)", href: "/en/produkte/contact-bar/", image: { src: "/images/live/dtz-kontaktschiene.jpg", alt: "Contact bar" } },

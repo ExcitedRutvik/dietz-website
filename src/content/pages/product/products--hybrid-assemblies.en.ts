@@ -10,13 +10,15 @@ export const productsHybridAssembliesEN: PageEntry = {
   slug: "products/hybrid-assemblies",
   seo: {
     navLabel: "Hybrid assemblies",
-    title: "Hybrid sub-assemblies | Dietz GmbH",
-    description: "Hybrid Assemblies: The Perfect Combination of Materials and Manufacturing Processes for Innovative Assemblies",
+    title: "Hybrid Assemblies Made to Measure | Dietz GmbH",
+    description:
+      "Hybrid assemblies combining springs, bent parts and plastics — designed, assembled and inspected under one roof. Talk to our engineers.",
   },
   type: "post",
   h1: "Hybrid sub-assemblies",
   intro: "Hybrid Assemblies: The Perfect Combination of Materials and Manufacturing Processes for Innovative Assemblies",
   blocks: [
+    { kind: "image", src: "/images/live/dtz-kontaktschiene.jpg", alt: "Hybrid sub-assemblies", width: 1400, height: 1120 },
     { kind: "paragraph", text: "Hybrid assemblies represent an exciting advancement in assembly manufacturing. They offer the ability to combine various materials and manufacturing processes to create innovative and customized solutions. In this article, you’ll discover more about the advantages and applications of hybrid assemblies, as well as the different manufacturing processes involved." },
     { kind: "heading", level: 2, text: "What Are Hybrid Assemblies?" },
     { kind: "paragraph", text: "Hybrid assemblies are assemblies composed of a combination of two or more materials and manufacturing processes. This allows for leveraging the benefits of different materials and optimally tailoring the properties of the assembly. Examples of material combinations include metal and plastic or metal and metal." },
@@ -45,5 +47,9 @@ export const productsHybridAssembliesEN: PageEntry = {
     { kind: "paragraph", text: "Bushing assemblies, which involve the connection of springs and bushings, are part of the portfolio of hybrid components. They are used in various application areas—such as the interiors of diverse automobiles." },
     { kind: "heading", level: 3, text: "Customized Manufacturing in Various Processes" },
     { kind: "paragraph", text: "When manufacturing your snap-in bushing assemblies, we combine metal and plastic using various processes, which can be individually determined based on the task and material. The combination of plastic and metal brings together advantageous properties concerning touch, acoustics, and functionality into a customized component." }
+  ],
+  gallery: [
+    { heading: "Contact bar", caption: "Connector in power distributor: Combination of stamped-formed parts, technical springs and plastic moulded parts. These assemblies are produced through various assembly processes (joining, pressing, soldering)", href: "/en/produkte/contact-bar/", image: { src: "/images/live/dtz-kontaktschiene.jpg", alt: "Contact bar" } },
+    { heading: "Mounting kit for dialysis machines", caption: "Spring made of tantalum wire as a functional element in the dialysis machine Compression springs are subjected to a 100% test and then assembled with the plastic components. In order to simplify the later installation in the devices, mounting sets are put together at Dietz.", href: "/en/produkte/mounting-kit-for-dialysis-machines/", image: { src: "/images/live/dtz-montagesetzDialyse.jpg", alt: "Mounting kit for dialysis machines" } },
   ],
 };

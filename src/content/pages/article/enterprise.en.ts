@@ -15,7 +15,14 @@ export const enterpriseEN: PageEntry = {
   },
   type: "post",
   h1: "The Dietz Federn Company",
+  keyTakeaways: [
+    "Efficient and competent – for 90 years.",
+    "Founded 1928 in Neustadt bei Coburg; owner-managed, with 160 employees.",
+    "In-house training workshop with 15 to 20 apprentices.",
+    "Just-in-time, just-in-sequence, Kanban, dial-up call-offs and consignment stock.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz_aussen-1200x375.jpg", alt: "The Dietz Federn Company", width: 1200, height: 375 },
     { kind: "heading", level: 2, text: "Efficient and competent – for 90 years" },
     { kind: "heading", level: 3, text: "We continuously invest in state-of-the-art technology" },
     { kind: "paragraph", text: "Founded in 1928 in Neustadt near Coburg, Dietz GmbH is one of the leading manufacturers of technical precision springs and bent wire parts. As a medium-sized, owner-managed company with 160 employees, Dietz supplies well-known and international customers from a wide range of industries, such as the automotive and electrical industries or building and medical technology. The comprehensive specialist know-how and meticulous manufacturing in high-tech production facilities ensure tailor-made spring solutions of the highest precision and quality." },
@@ -26,7 +33,6 @@ export const enterpriseEN: PageEntry = {
     { kind: "paragraph", text: "When it comes to the production of springs and bent wire parts, we guarantee that our products deliver what they promise – thanks to state-of-the-art machines, high-quality materials, in-house tool production, qualified personnel, permanent quality control and, last but not least, a training workshop with 15-20 trainees." },
     { kind: "heading", level: 3, text: "Flexible logistics with short delivery times" },
     { kind: "paragraph", text: "Our goal is to achieve the highest level of security of supply and the lowest possible processing effort for our customers. We track this with our database-supported warehousing system – in the raw material warehouse as well as in the finished parts warehouse. Thanks to our lean structures and processes, we are able to react extremely flexibly to your logistical requirements." },
-    { kind: "paragraph", text: "Regardless of whether you prefer just-in-time, just-in-sequence, Kanban solutions, dial-up call-offs or consignment stocks, we will find the optimal logistical solution for you when delivering your springs or bent wire parts." },
-    { kind: "image", src: "/images/live/dietz_aussen-1200x375.jpg", alt: "The Dietz Federn Company", width: 1200, height: 375 }
+    { kind: "paragraph", text: "Regardless of whether you prefer just-in-time, just-in-sequence, Kanban solutions, dial-up call-offs or consignment stocks, we will find the optimal logistical solution for you when delivering your springs or bent wire parts." }
   ],
 };

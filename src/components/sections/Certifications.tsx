@@ -40,12 +40,18 @@ export default function Certifications({
                   so they were previously fetched late and popped in against an
                   empty box. */}
               <div className="flex h-20 w-fit items-center justify-center bg-white px-4">
+                {/* Deliberately still lazy: preloading four below-the-fold
+                    marks would compete with the hero. These are 8 files
+                    totalling 64KB — they were never slow, they were starved
+                    behind the frame queue, which the fetch scheduler now caps. */}
                 <Image
                   src={c.src}
                   alt={`${c.name} certification mark`}
                   width={160}
                   height={80}
                   sizes="128px"
+                  fetchPriority="low"
+                  decoding="async"
                   className="h-12 w-auto object-contain"
                 />
               </div>

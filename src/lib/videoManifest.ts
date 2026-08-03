@@ -9,11 +9,6 @@ export interface FrameSequence {
   framePrefix: string;
   frameCount: number;
   posterSrc: string;
-  /** When set, the section scrubs this all-intra video instead of the frame
-   * sequence (see scripts/video/encode-scroll-video.sh). `frameCount` still
-   * governs the scrub mapping, so the two must describe the same run of
-   * frames. Set per section so the swap can be verified one at a time. */
-  videoSrc?: string;
 }
 
 /**
@@ -42,13 +37,6 @@ export const videoManifest: Record<SectionId, FrameSequence> = {
     framePrefix: "/frames/hero/frame_",
     frameCount: 83,
     posterSrc: "/images/posters/hero-poster.jpg",
-    // Video path is built and staged at /video/hero.mp4 (5.34 MB against the
-    // sequence's 7.3, re-cut from the drone master rather than from the
-    // already-compressed frames). It is OFF because scroll-scrubbing it has
-    // not been confirmed smooth in a real browser yet - the first attempt
-    // glitched, which was a double-seek bug in the paint loop, now fixed but
-    // unverified. Uncomment to try it again; nothing else has to change.
-    // videoSrc: "/video/hero.mp4",
   },
   products: {
     framePrefix: "/frames/products/frame_",

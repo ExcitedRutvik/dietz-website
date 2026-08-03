@@ -10,8 +10,9 @@ export const praezisionsfedernDE: PageEntry = {
   slug: "praezisionsfedern",
   seo: {
     navLabel: "Präzisionsfedern",
-    title: "Präzisionsfedern | Dietz GmbH",
-    description: "Präzisionsfedern",
+    title: "Präzisionsfedern nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Präzisionsfedern nach Maß für Automotive, Medizintechnik und Elektrotechnik, gefertigt nach DIN EN ISO 9001:2015. Jetzt Angebot anfordern.",
   },
   type: "post",
   h1: "Präzisionsfedern",

@@ -19,6 +19,11 @@ interface ResolvedNavItem {
   label: string;
   href?: string;
   children: ResolvedNavItem[];
+  /** This item's own page id plus every descendant's, so a top-level item can
+   * tell whether the page being viewed lives anywhere beneath it. Without this
+   * the menu could only highlight an exact match, and /branchen/automotive/
+   * would leave Branchen looking unvisited. */
+  ids: string[];
 }
 
 // Explicit return type is required: this is recursive, so TS can't infer it.
@@ -38,6 +43,7 @@ function resolveNavItem(item: NavItem, locale: Locale): ResolvedNavItem | null {
     label,
     href: entry ? localeHref(locale, entry.slug) : undefined,
     children,
+    ids: [...(item.id ? [item.id] : []), ...children.flatMap((c) => c.ids)],
   };
 }
 
@@ -140,7 +146,11 @@ export default function Header({
 
         <nav aria-label="Main" className="ml-auto hidden lg:block">
           <ul className="flex items-center gap-1">
-            {nav.map((item) => (
+            {nav.map((item) => {
+              // True for the section the reader is in, not only for an exact
+              // page match — so Branchen stays lit on /branchen/automotive/.
+              const active = item.ids.includes(currentPageId);
+              return (
               // Opens on hover AND on focus-within. focus-within is what makes
               // this keyboard-operable with no JS: tabbing onto the trigger
               // reveals the panel, which only then becomes focusable, so the
@@ -150,13 +160,20 @@ export default function Header({
                 {item.href ? (
                   <a
                     href={item.href}
-                    className="inline-flex items-center gap-1 px-3 py-2 text-[0.9375rem] font-medium transition-opacity duration-150 hover:opacity-70"
+                    aria-current={active ? "page" : undefined}
+                    className={`inline-flex items-center gap-1 px-3 py-2 text-[0.9375rem] font-medium transition-opacity duration-150 hover:opacity-70 ${
+                      active ? "text-brand-ink" : ""
+                    }`}
                   >
                     {item.label}
                     {item.children.length > 0 && <Chevron />}
                   </a>
                 ) : (
-                  <span className="inline-flex cursor-default items-center gap-1 px-3 py-2 text-[0.9375rem] font-medium">
+                  <span
+                    className={`inline-flex cursor-default items-center gap-1 px-3 py-2 text-[0.9375rem] font-medium ${
+                      active ? "text-brand-ink" : ""
+                    }`}
+                  >
                     {item.label}
                     {item.children.length > 0 && <Chevron />}
                   </span>
@@ -166,7 +183,13 @@ export default function Header({
                   <div
                     className={`invisible absolute top-full pt-3 opacity-0 transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100 ${
                       item.children.some((c) => c.children.length > 0)
-                        ? "left-1/2 w-[56rem] max-w-[calc(100vw-3rem)] -translate-x-1/2"
+                        ? // Offset right rather than centred on the trigger.
+                          // Products is the leftmost item, so a 56rem panel
+                          // centred on it (-50%) ran to the page edge and read
+                          // as overflowing rather than as a menu. -35% shifts
+                          // it right by 15% of its own width, which clears the
+                          // gutter while still sitting under its trigger.
+                          "left-1/2 w-[56rem] max-w-[calc(100vw-3rem)] -translate-x-[35%]"
                         : "left-0 w-64"
                     }`}
                   >
@@ -176,7 +199,8 @@ export default function Header({
                   </div>
                 )}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </nav>
 
@@ -258,15 +282,28 @@ export default function Header({
           className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-white text-ink lg:hidden"
         >
           <ul className="mx-auto max-w-[88rem] divide-y divide-line px-6">
-            {nav.map((item) => (
+            {nav.map((item) => {
+              const active = item.ids.includes(currentPageId);
+              return (
               <li key={item.label}>
                 {item.children.length === 0 ? (
-                  <a href={item.href} className="block py-3.5 text-[0.9375rem] font-medium">
+                  <a
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`block py-3.5 text-[0.9375rem] font-medium ${active ? "text-brand-ink" : ""}`}
+                  >
                     {item.label}
                   </a>
                 ) : (
-                  <details className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[0.9375rem] font-medium [&::-webkit-details-marker]:hidden">
+                  // The section containing the current page is opened by
+                  // default, so the menu shows where you already are rather
+                  // than making you hunt for it.
+                  <details className="group" open={active}>
+                    <summary
+                      className={`flex cursor-pointer list-none items-center justify-between py-3.5 text-[0.9375rem] font-medium [&::-webkit-details-marker]:hidden ${
+                        active ? "text-brand-ink" : ""
+                      }`}
+                    >
                       {item.label}
                       <Chevron className="transition-transform duration-200 group-open:rotate-180" />
                     </summary>
@@ -309,7 +346,8 @@ export default function Header({
                   </details>
                 )}
               </li>
-            ))}
+              );
+            })}
           </ul>
           <div className="mx-auto max-w-[88rem] px-6 py-5">
             <ContactCta

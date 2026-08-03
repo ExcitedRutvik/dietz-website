@@ -10,8 +10,9 @@ export const productsStripBendingPartsEN: PageEntry = {
   slug: "products/strip-bending-parts",
   seo: {
     navLabel: "Strip bending parts",
-    title: "Bent strip parts | Dietz GmbH",
-    description: "Band Bent Parts: High-Quality Solutions for the Industry",
+    title: "Strip Bending Parts Made to Measure | Dietz GmbH",
+    description:
+      "Strip bending parts made to your drawing in spring steel, stainless steel and non-ferrous metals, with in-house tooling. Talk to our engineers.",
   },
   type: "post",
   h1: "Bent strip parts",

@@ -22,6 +22,6 @@ export const enterprisePerformancesEN: PageEntry = {
     { title: "Production", href: "/en/enterprise/performances/production/", body: "From mechanical components to electronic parts, we offer customised solutions for every customer. We utilise the latest technologies and production processes to ensure the highest quality standards.", thumb: "/images/live/dietz-produktionshalle.jpg" },
     { title: "Quality", href: "/en/enterprise/performances/quality/", body: "We are IATF 16949 certified and fulfil the highest quality standards. Our company relies on automation, process optimisation and continuous improvement to ensure that our customers always receive the best possible quality.", thumb: "/images/live/dietz-qualitaet-2.jpg" },
     { title: "Logistics", href: "/en/enterprise/performances/logistics/", body: "Dietz GmbH uses its comprehensive expertise to optimise processes in the supply chain in order to ensure efficient and smooth logistics.", thumb: "/images/live/dietz-logistik-2.jpg" },
-    { title: "Material", href: "/en/enterprise/performances/material/", body: "Our company attaches great importance to a careful selection of materials in order to provide our customers with the best possible quality and performance." },
+    { title: "Material", href: "/en/enterprise/performances/material/", body: "Our company attaches great importance to a careful selection of materials in order to provide our customers with the best possible quality and performance.", thumb: "/images/services/material.jpg" },
   ],
 };

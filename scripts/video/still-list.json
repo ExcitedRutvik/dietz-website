@@ -1,0 +1,41 @@
+{
+  "_comment": [
+    "Stills lifted from the company film to illustrate pages that had no",
+    "photograph of their own.",
+    "",
+    "`depicts` is not decoration. A film still may only be attached to a page",
+    "when the shot genuinely shows that subject, and the rule that keeps this",
+    "honest is that a still is never captioned as a specific part — it shows a",
+    "facility, a machine, an operation, or people at work. Product photography",
+    "comes from the product pages, which carry verified attributions.",
+    "",
+    "Every entry below was chosen by generating a contact sheet and looking at",
+    "it, not by guessing from a timecode.",
+    "",
+    "Source film: /home/ubuntu/media/dietz/firmenvideo.mp4 (890.5s, 1920x1080,",
+    "25fps). It is deliberately outside the repository — it is 380 MB and must",
+    "not enter git. The film is letterboxed; crop=1920:824:0:128 removes the",
+    "bars, which cropdetect confirms is constant across the film.",
+    "",
+    "Regenerate with: python3 scripts/video/extract-stills.py"
+  ],
+  "source": "/home/ubuntu/media/dietz/firmenvideo.mp4",
+  "crop": "1920:824:0:128",
+  "outputDir": "public/images/stills",
+  "stills": [
+    {
+      "name": "produktionshalle-weit",
+      "t": 740,
+      "depicts": "Wide interior of the bright production hall: overhead crane, injection-moulding cells, palletised stock. A facility shot, no individual part identifiable.",
+      "altDe": "Produktionshalle der Dietz GmbH mit Hallenkran und Fertigungszellen",
+      "altEn": "Dietz GmbH production hall with overhead crane and manufacturing cells"
+    },
+    {
+      "name": "kollegen-fertigung",
+      "t": 460,
+      "depicts": "Two colleagues walking through the workshop in conversation. People at work, used for the careers section.",
+      "altDe": "Zwei Mitarbeiter im Gespräch in der Fertigung",
+      "altEn": "Two colleagues in conversation on the shop floor"
+    }
+  ]
+}

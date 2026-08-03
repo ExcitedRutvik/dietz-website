@@ -10,8 +10,9 @@ export const productsPlasticsTechnologyEN: PageEntry = {
   slug: "products/plastics-technology",
   seo: {
     navLabel: "Plastics technology",
-    title: "Plastics Technology | Dietz GmbH",
-    description: "Plastics Technology",
+    title: "Plastics Technology and Injection Moulding | Dietz GmbH",
+    description:
+      "Plastics technology from sample development to series production: injection moulding and hybrid parts from one supplier. Get a quote today.",
   },
   type: "post",
   h1: "Plastics Technology",
@@ -27,5 +28,10 @@ export const productsPlasticsTechnologyEN: PageEntry = {
     { kind: "paragraph", text: "Our many years of experience and extensive know-how enable us to successfully implement even the most demanding projects. Whether prototypes, one-offs or large-scale series – we realize your ideas precisely and on time. We are at your side as an experienced partner from the idea to the finished product and accompany you every step of the way." },
     { kind: "paragraph", text: "Our customers come from a wide range of industries, including automotive, medical technology, electrical and electronics industry, packaging industry and many more. Thanks to our versatility, we can offer individual solutions for every application." },
     { kind: "paragraph", text: "Dietz GmbH stands for the highest quality, technical competence and satisfied customers. If you are looking for a reliable partner for your plastics projects, you have come to the right place. Feel free to contact us for a personal consultation and joint planning of your project. We look forward to working with you." }
+  ],
+  gallery: [
+    { heading: "Gear made of polyoxymethylene", caption: "Gear made of polyoxymethylene (POM) for power transmission in the automotive sector.", href: "/en/produkte/gear-made-of-polyoxymethylene/", image: { src: "/images/live/DTZ_Zahnrad_Polyoxymethylen.jpg", alt: "Gear made of polyoxymethylene" } },
+    { heading: "Lever made of polyamide (PA)", caption: "Levers made of polyamide (PA) with a glass fibre content of 30% for further processing in switch systems. These components transmit movements in complex assemblies.", href: "/en/produkte/lever-made-of-polyamide-pa/", image: { src: "/images/live/DTZ_Hebel-_Polyamid.jpg", alt: "Lever made of polyamide (PA)" } },
+    { heading: "Silicone spring as brake element", caption: "Special haptics when moving from the air vent in the interior area Attractive haptics independent of external temperature influences during actuation. An inseparable combination of silicone and stamped and formed parts has been implemented. Manufacturing in a fully automated production line", href: "/en/produkte/silicone-spring-as-brake-element/", image: { src: "/images/live/DTZ_hybrid_silikonfedern.jpg", alt: "Silicone spring as brake element" } },
   ],
 };

@@ -10,13 +10,21 @@ export const produkteDruckfedernDE: PageEntry = {
   slug: "produkte/druckfedern",
   seo: {
     navLabel: "Druckfedern",
-    title: "Druckfedern: Hohe Qualität & Präzision | Dietz GmbH",
-    description: "Druckfedern: Hohe Qualität & Präzision",
+    title: "Druckfedern nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Druckfedern nach Maß aus Federstahl und Edelstahl – zylindrisch, konisch oder nach DIN 2095, auch in Kleinserie. Jetzt Anfrage stellen.",
   },
   type: "post",
   h1: "Druckfedern: Hohe Qualität & Präzision",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
+  keyTakeaways: [
+    "Geschliffene Enden im Drahtstärkenbereich von 0,30 bis 3,00 mm, ungeschliffene Enden von 0,10 bis 4,00 mm.",
+    "Federdrähte nach EN10270, dazu NE-Drähte aus Kupfer, Messing und Bronze.",
+    "Sonderlegierungen wie Hasteloy, CuNi44, NbZr1 und TaW2 auf Anfrage.",
+    "Auch äußerst enge Längen- und Krafttoleranzen sind in der Druckfedernproduktion einhaltbar.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/DTZ_sonderdruckfeder.jpg", alt: "Druckfedern: Hohe Qualität & Präzision", width: 1400, height: 1120 },
     { kind: "heading", level: 2, text: "Alles, was Sie über Druckfedern wissen müssen" },
     { kind: "paragraph", text: "Druckfedern sind eine wesentliche Komponente in einer Vielzahl von Anwendungen, von elektronischen Geräten bis hin zu Industriemaschinen. In diesem Artikel erfahren Sie alles, was Sie über Druckfedern und ihre individuelle Fertigung wissen müssen. Von den verschiedenen Ausführungen und Formen bis hin zu den verwendeten Werkstoffen und den Vorteilen der maßgeschneiderten Produktion." },
     { kind: "heading", level: 2, text: "Was sind Druckfedern?" },
@@ -41,5 +49,8 @@ export const produkteDruckfedernDE: PageEntry = {
     { kind: "heading", level: 3, text: "Drahtwerkstoffe" },
     { kind: "list", items: ["Alle gängigen Federdrähte nach EN10270", "NE-Drähte aus Kupfer, Messing und Bronze", "Sonderlegierungen wie z.B.: Hasteloy CuNi44 NbZr1 TaW2", "Weitere Materialien auf Anfrage"] },
     { kind: "paragraph", text: "Alle technischen Federn fertigen wir auf Anfrage auch in kleineren Losgrößen. Für alle Produkte werden auch Sonderverpackungen angeboten. Wir verfügen über einen eigenen Werkzeugbau und als Ihr Entwicklungspartner leisten wir für Sie auch individuelle Berechnungen." }
+  ],
+  gallery: [
+    { heading: "Sonderdruckfeder mit lötbarer Oberfläche", caption: "Weiterverarbeitung in einer SMT-Bestückung und Einsatz der Platinen in unterschiedlichsten Haushaltsgeräten mit Touchfeldern. Neben der hohen Genauigkeitsanforderung muss die automatische Zuführbarkeit sichergestellt werden.", href: "/produkte/sonderdruckfeder-mit-loetbarer-oberflaeche/", image: { src: "/images/live/DTZ_sonderdruckfeder.jpg", alt: "Sonderdruckfeder mit lötbarer Oberfläche" } },
   ],
 };

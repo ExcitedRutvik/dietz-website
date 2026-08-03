@@ -10,13 +10,15 @@ export const productsWaveSpringsEN: PageEntry = {
   slug: "products/wave-springs",
   seo: {
     navLabel: "Wave springs",
-    title: "Wave springs | Dietz GmbH",
-    description: "Everything You Need to Know About Wave Springs",
+    title: "Custom Wave Springs | Dietz GmbH",
+    description:
+      "Flat wire wave springs made to measure: compact and precise, for furniture, automotive and mechanical engineering. Get a quote today.",
   },
   type: "post",
   h1: "Wave springs",
   intro: "Everything You Need to Know About Wave Springs",
   blocks: [
+    { kind: "image", src: "/images/live/dtz-wellenring-vorspann.jpg", alt: "Wave springs", width: 1400, height: 1120 },
     { kind: "paragraph", text: "Wave springs represent an innovative solution for various applications where space and efficiency are crucial. In this article, we’ll shed light on everything you need to know about wave springs. From their definition and functionality to their advantages and examples of applications – discover why wave springs can be an excellent choice for your designs." },
     { kind: "heading", level: 2, text: "What Are Wave Springs?" },
     { kind: "paragraph", text: "Wave springs are resilient components made from flat material. Unlike conventional wire springs, wave springs are characterized by their low height and high spring force. The innovative design of wave springs allows for space-saving while ensuring reliable suspension." },
@@ -35,5 +37,8 @@ export const productsWaveSpringsEN: PageEntry = {
     { kind: "paragraph", text: "We develop wave springs in close coordination with you, specifically for the required application area. If needed, we are happy to support you from dimensioning to post-calculation to manufacturing. With our specialized expertise, we can jointly find the suitable solution for you." },
     { kind: "paragraph", text: "We manufacture both single-turn and multi-turn versions with wavy and straight surfaces." },
     { kind: "paragraph", text: "All technical springs are manufactured upon request, even in smaller batch sizes. Special packaging is offered for all products. With our in-house tooling and as your development partner, we also provide individual development work for you." }
+  ],
+  gallery: [
+    { heading: "Wave ring", caption: "Shaft ring as preload element and tolerance compensation in one assembly.", href: "/en/produkte/wave-ring/", image: { src: "/images/live/dtz-wellenring-vorspann.jpg", alt: "Wave ring" } },
   ],
 };

@@ -10,13 +10,15 @@ export const produktePrototypenUndMusterbauDE: PageEntry = {
   slug: "produkte/prototypen-und-musterbau",
   seo: {
     navLabel: "Prototypen- und Musterbau",
-    title: "Prototypen- und Musterbau: Qualität & Innovation | Dietz GmbH",
-    description: "Prototypen- und Musterbau: Qualität & Innovation",
+    title: "Prototypenbau und Musterbau | Dietz GmbH",
+    description:
+      "Prototypen und Muster aus eigener Fertigung: CNC-Fräsen, 3D-Druck und Federherstellung unter einem Dach. Jetzt Anfrage stellen.",
   },
   type: "post",
   h1: "Prototypen- und Musterbau: Qualität & Innovation",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
   blocks: [
+    { kind: "image", src: "/images/live/dtz-montageteil-maschinenbau.jpg", alt: "Prototypen- und Musterbau: Qualität & Innovation", width: 1400, height: 1120 },
     { kind: "heading", level: 2, text: "Prototypen- und Musterbau: Ein umfassender Leitfaden" },
     { kind: "paragraph", text: "Der Prototypen- und Musterbau ist ein entscheidender Schritt in der Produktentwicklung. Es ermöglicht Unternehmen, ihre Ideen in physische Form zu bringen und ihre Funktionalität zu testen, bevor sie in die Massenproduktion gehen. In diesem umfassenden Leitfaden werden wir uns mit den verschiedenen Aspekten des Prototypen- und Musterbaus befassen und Ihnen einen Einblick in die verschiedenen Möglichkeiten und Technologien geben." },
     { kind: "heading", level: 3, text: "Was ist ein Prototyp?" },

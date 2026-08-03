@@ -9,13 +9,21 @@ export const industriesMedicalEN: PageEntry = {
   locale: "en",
   slug: "industries/medical",
   seo: {
-    title: "Medical technology at Dietz Federn",
     navLabel: "Medical technology",
-    description: "Medical technology at Dietz Federn",
+    title: "Springs for Medical Technology | Dietz GmbH",
+    description:
+      "Springs and bent parts for medical technology: small lot sizes, high cleanliness requirements and fast sampling. Talk to our engineers.",
   },
   type: "post",
   h1: "Medical technology at Dietz Federn",
+  summary:
+    "Springs and bent parts for medical instruments, operating theatre equipment and emergency and intensive care products.",
+  keyTakeaways: [
+    "Close collaboration with your development team to meet the requirements of modern medicine.",
+    "Products used in medical instruments, surgical equipment and emergency and intensive care medicine.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-medizintechnik-2.jpg", alt: "Laboratory technician at a measuring station in medical technology" },
     { kind: "heading", level: 2, text: "Medical" },
     { kind: "paragraph", text: "Our many years of experience and expertise enable us to offer innovative solutions for the healthcare industry." },
     { kind: "paragraph", text: "As a provider of medical technology, we attach great importance to quality and innovation. Our highly qualified team will work closely with your development team to help you produce your products that meet the requirements of modern medicine." },
@@ -24,7 +32,6 @@ export const industriesMedicalEN: PageEntry = {
     { kind: "paragraph", text: "We attach great importance to constant market observation in order to always stay up to date with the latest technology and to offer our customers the best possible products. We are continuously working on developing new technologies and solutions to meet the ever-changing needs of the medical industry." },
     { kind: "paragraph", text: "Dietz GmbH attaches great importance to quality and safety. Our products are manufactured in accordance with the customer’s requirements and standards. In addition, we subject our products to strict quality controls to ensure that they meet the highest quality standards and meet the demands of both doctors and patients." },
     { kind: "paragraph", text: "As a company in the medical technology industry, it is important to us to contribute to improving healthcare and people’s well-being. Dietz GmbH is proud to be part of this industry and to offer innovative products that can improve medical care and save lives. Our passion for medical technology drives us to constantly look for new ways to move the healthcare industry forward." },
-    { kind: "image", src: "/images/live/dietz-medizintechnik-2.jpg", alt: "" },
   ],
   gallery: [
     { heading: "Wave ring", caption: "Shaft ring as preload element and tolerance compensation in one assembly", href: "/en/produkte/wave-ring/", image: { src: "/images/live/dtz-wellenring-vorspann.jpg", alt: "Wave ring" } },

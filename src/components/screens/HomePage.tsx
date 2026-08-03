@@ -12,6 +12,7 @@ import News from "@/components/sections/News";
 import TermineMesse from "@/components/sections/TermineMesse";
 import Certifications from "@/components/sections/Certifications";
 import CtaBand from "@/components/sections/CtaBand";
+import { videoManifest } from "@/lib/videoManifest";
 import type { HomepageEntry } from "@/content/schema";
 
 // `content.news`/`content.events` are DE-only on the live site — rendered
@@ -19,6 +20,16 @@ import type { HomepageEntry } from "@/content/schema";
 export default function HomePage({ content }: { content: HomepageEntry }) {
   return (
     <SmoothScrollProvider>
+      {/* The hero canvas paints this poster until its first frame decodes, so
+          it is the real LCP element — but it was only requested after
+          hydration, from JS. React hoists this into <head>, which gets it into
+          the preload scanner's first pass instead. */}
+      <link
+        rel="preload"
+        as="image"
+        href={videoManifest.hero.posterSrc}
+        fetchPriority="high"
+      />
       {/* The homepage owns the dark treatment; body is light for every other
           route. Section backgrounds sit on top of this. */}
       <div className="bg-zinc-950">

@@ -9,7 +9,9 @@ const HOME: Partial<Record<Locale, string>> = { de: "Startseite", en: "Home" };
 // mirrors each template's container width. Reading templates are narrow;
 // card-grid ones are wide. Keep in sync with the templates themselves.
 const MEASURE: Partial<Record<PageEntry["type"], string>> = {
-  post: "max-w-[46rem]",
+  // Post widens at xl to make room for the summary rail, so the trail has to
+  // widen with it or it visibly starts on a different gutter from the page.
+  post: "max-w-[46rem] xl:max-w-[70rem]",
   legal: "max-w-[46rem]",
 };
 
@@ -47,7 +49,7 @@ export default function Breadcrumbs({ entry }: { entry: PageEntry }) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className={`mx-auto px-6 pt-28 text-sm sm:pt-32 ${MEASURE[entry.type] ?? "max-w-[72rem]"}`}
+      className={`mx-auto px-6 pt-[calc(var(--header-h)+var(--space-page-top))] text-sm ${MEASURE[entry.type] ?? "max-w-[72rem]"}`}
     >
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-ink-faint">
         <li>

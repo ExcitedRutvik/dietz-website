@@ -48,6 +48,7 @@ import { branchenMedizintechnikDE } from "./article/branchen--medizintechnik.de"
 import { branchenWeisseWareDE } from "./article/branchen--weisse-ware.de";
 import { branchenWeitereBranchenDE } from "./article/branchen--weitere-branchen.de";
 import { branchenDE } from "./article/branchen.de";
+import { careersEN } from "./article/careers.en";
 import { cncDrahtbiegeteileDE } from "./article/cnc-drahtbiegeteile.de";
 import { cncFraesenPrototypenbauDE } from "./article/cnc-fraesen-prototypenbau.de";
 import { cncMillingPrototypeConstructionEN } from "./article/cnc-milling-prototype-construction.en";
@@ -272,7 +273,6 @@ import { musterentwicklungDE } from "./article/musterentwicklung.de";
 import { mustererstellungDE } from "./article/mustererstellung.de";
 import { musterkonstruktionDE } from "./article/musterkonstruktion.de";
 import { musterteileDE } from "./article/musterteile.de";
-import { nachhaltigkeitDE } from "./article/nachhaltigkeit.de";
 import { necazubi2025AusbildungsmesseDE } from "./article/necazubi-2025-ausbildungsmesse.de";
 import { necazubi2026DeineChanceAufDenTraumAusbildungsplatzDE } from "./article/necazubi-2026-deine-chance-auf-den-traum-ausbildungsplatz.de";
 import { neueAuszubildendeInFuersteneckDE } from "./article/neue-auszubildende-in-fuersteneck.de";
@@ -309,6 +309,7 @@ import { prototypingProductDevelopmentEN } from "./article/prototyping-product-d
 import { prototypingWith3dPrintingEN } from "./article/prototyping-with-3d-printing.en";
 import { rastfederDE } from "./article/rastfeder.de";
 import { reinigungskraftMwdMitLeidenschaftFuerOrdnungDE } from "./article/reinigungskraft-mwd-mit-leidenschaft-fuer-ordnung.de";
+import { resourcesEN } from "./article/resources.en";
 import { sampleDesignEN } from "./article/sample-design.en";
 import { sampleDevelopmentEN } from "./article/sample-development.en";
 import { samplePartsEN } from "./article/sample-parts.en";
@@ -495,6 +496,7 @@ import { wirHandelnFuerEinKlimaneutralesBayern2040DE } from "./article/wir-hande
 import { wirOeffnenDieTuerenZuUnsererProduktionDE } from "./article/wir-oeffnen-die-tueren-zu-unserer-produktion.de";
 import { wirSindGruendungsmitgliedImUnternehmensnetzwerkKlimaschutzDE } from "./article/wir-sind-gruendungsmitglied-im-unternehmensnetzwerk-klimaschutz.de";
 import { wireBendingPartsManufacturerEN } from "./article/wire-bending-parts-manufacturer.en";
+import { wissenDE } from "./article/wissen.de";
 import { zugfederherstellerDE } from "./article/zugfederhersteller.de";
 import { zugfedernFuerGaragentoreDE } from "./article/zugfedern-fuer-garagentore.de";
 import { zugfedernMitEingerolltemHakenDE } from "./article/zugfedern-mit-eingerolltem-haken.de";
@@ -626,6 +628,7 @@ const ALL: PageEntry[] = [
   branchenWeisseWareDE,
   branchenWeitereBranchenDE,
   branchenDE,
+  careersEN,
   cncDrahtbiegeteileDE,
   cncFraesenPrototypenbauDE,
   cncMillingPrototypeConstructionEN,
@@ -850,7 +853,6 @@ const ALL: PageEntry[] = [
   mustererstellungDE,
   musterkonstruktionDE,
   musterteileDE,
-  nachhaltigkeitDE,
   necazubi2025AusbildungsmesseDE,
   necazubi2026DeineChanceAufDenTraumAusbildungsplatzDE,
   neueAuszubildendeInFuersteneckDE,
@@ -887,6 +889,7 @@ const ALL: PageEntry[] = [
   prototypingWith3dPrintingEN,
   rastfederDE,
   reinigungskraftMwdMitLeidenschaftFuerOrdnungDE,
+  resourcesEN,
   sampleDesignEN,
   sampleDevelopmentEN,
   samplePartsEN,
@@ -1073,6 +1076,7 @@ const ALL: PageEntry[] = [
   wirOeffnenDieTuerenZuUnsererProduktionDE,
   wirSindGruendungsmitgliedImUnternehmensnetzwerkKlimaschutzDE,
   wireBendingPartsManufacturerEN,
+  wissenDE,
   zugfederherstellerDE,
   zugfedernFuerGaragentoreDE,
   zugfedernMitEingerolltemHakenDE,

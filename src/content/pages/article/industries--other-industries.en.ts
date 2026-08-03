@@ -15,14 +15,20 @@ export const industriesOtherIndustriesEN: PageEntry = {
   },
   type: "post",
   h1: "Other industries at Dietz Federn",
+  summary:
+    "Beyond automotive and electrical engineering, Dietz manufactures for numerous further industrial sectors.",
+  keyTakeaways: [
+    "Core competencies in the automotive industry and electrical engineering.",
+    "An established reputation across several further industries.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz-branchen-2.jpg", alt: "Quality assurance workstation at Dietz" },
     { kind: "heading", level: 2, text: "more industries …" },
     { kind: "paragraph", text: "Dietz GmbH is a renowned company that has successfully established itself in several industries for many years. In addition to our core competencies in the automotive industry and electrical engineering, we have also achieved numerous successes in other industries and earned an excellent reputation." },
     { kind: "paragraph", text: "In addition to these core industries, we are also active in other areas such as the packaging industry, the telecommunications industry and the toy industry. Our experience and expertise enable us to respond flexibly to the requirements and needs of our customers and to offer tailor-made solutions." },
     { kind: "heading", level: 3, text: "Dietz components and assemblies – also for your industry!" },
     { kind: "paragraph", text: "Our goal is to be a reliable partner for our customers in every industry in which we operate. We focus on long-term partnerships and attach great importance to quality, reliability and innovation. Through continuous investment in state-of-the-art technologies and professional training of our employees, we ensure that we are always up to date and able to meet the changing needs of the industries." },
     { kind: "paragraph", text: "Dietz GmbH sees it as its task to produce individual solutions for customers from a wide range of industries and thus contribute to the competitiveness and innovation of its business partners. Our extensive know-how and many years of experience make us a trustworthy partner who will continue to make a significant contribution to the further development of various industries in the future." },
-    { kind: "image", src: "/images/live/dietz-branchen-2.jpg", alt: "" },
   ],
   gallery: [
     { heading: "Thigh springs in lighting technology", caption: "Thigh leather with inwardly curved spring end for fastening luminaires in cavity ceilings. Automation of the end of the spring bent into the spring body", href: "/en/produkte/thigh-springs-in-lighting-technology/", image: { src: "/images/live/DTZ-schenkelfederLeuchten.jpg", alt: "Thigh springs in lighting technology" } },

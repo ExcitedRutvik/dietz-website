@@ -9,15 +9,27 @@ export const branchenAutomotiveDE: PageEntry = {
   locale: "de",
   slug: "branchen/automotive",
   seo: {
-    title: "Automotive bei Dietz Federn",
     navLabel: "Automotive",
-    description: "Automotive bei Dietz Federn",
+    title: "Federn für die Automobilindustrie | Dietz GmbH",
+    description:
+      "Federn, Draht- und Stanzbiegeteile für die Automobilindustrie – gefertigt nach DIN EN ISO 9001:2015, vom Muster bis zur Serie.",
   },
   type: "post",
   h1: "Automotive bei Dietz Federn",
+  summary:
+    "Federn, Draht- und Stanzbiegeteile für die Fahrzeugindustrie: vom Muster bis zur Serie, für namhafte Automobilhersteller und Zulieferer.",
+  keyTakeaways: [
+    "Zulieferer für namhafte Automobilhersteller und Zulieferer seit 1928.",
+    "Anpressfedern, Halteklammern, Rasthülsenbaugruppen, Rollofedern und Wellenfederturme für Thermomanagementsysteme.",
+    "Folgeverbundkonzepte für geringsten Materialverbrauch.",
+  ],
   blocks: [
     { kind: "heading", level: 2, text: "Automotive" },
+    { kind: "paragraph", text: "Die Dietz GmbH ist ein führendes Unternehmen in der Automobilbranche, das sich auf die Entwicklung und Herstellung von maßgeschneiderten Lösungen für die Fahrzeugindustrie spezialisiert hat. Seit unserer Gründung im Jahr 1928 haben wir uns als zuverlässiger Partner für namhafte Automobilhersteller und Zulieferer etabliert." },
+    { kind: "paragraph", text: "Wir arbeiten eng mit unseren Kunden zusammen, um deren Anforderungen zu verstehen und innovative Produkte und Dienstleistungen anzubieten. Unser Portfolio umfasst eine Vielzahl elektronischer Komponenten, Schalter und Bedienelemente, die in verschiedenen Fahrzeugkategorien wie PKW, Nutzfahrzeugen und Motorrädern eingesetzt werden können." },
     { kind: "heading", level: 3, text: "Dietz im Automotive-Bereich" },
+    { kind: "paragraph", text: "Das Unternehmen beschäftigt hochqualifizierte Techniker mit umfangreicher Erfahrung in der Automobilindustrie. Moderne Fertigungsanlagen ermöglichen die Entwicklung innovativer Lösungen, die höchsten Qualitätsstandards entsprechen. Als IATF 16949:2016 zertifiziertes Unternehmen stellen wir sicher, dass unsere Produkte die strengen Anforderungen der Automobilindustrie erfüllen." },
+    { kind: "paragraph", text: "Das Unternehmen pflegt langfristige Kundenbeziehungen und unterstützt die individuelle Projektentwicklung und -umsetzung. Die Dietz GmbH trägt durch innovative Komponentenlösungen zu Fahrzeugsicherheit, Effizienz und Umweltfreundlichkeit bei." },
   ],
   gallery: [
     { heading: "Anpressfeder", caption: "Ausgleich von Längentoleranzen in einer im Fahrzeug verbauten Sitzbaugruppe. Geringster Materialverbrauch durch ein Folgeverbundkonzept ohne Pilotstreifen", href: "/produkte/anpressfeder/", image: { src: "/images/live/DTZ_anpressfeder.jpg", alt: "Anpressfeder" } },

@@ -15,12 +15,13 @@ export default function CareerHub({
   cards,
   values,
   benefits,
+  jobs,
   contact,
   cta,
   locale,
 }: CareerContent & { locale: Locale }) {
   return (
-    <main className="mx-auto max-w-[72rem] px-6 pb-28 pt-10">
+    <main className="mx-auto max-w-[72rem] px-6 pt-10">
       <PageHeader h1={h1} intro={intro} wide />
 
       {blocks && blocks.length > 0 && (
@@ -62,27 +63,69 @@ export default function CareerHub({
         </Section>
       )}
 
+      {jobs && jobs.length > 0 && (
+        <Section title="Offene Stellen">
+          <ul className="border-t border-line">
+            {jobs.map((job) => (
+              <li key={job.href} className="group relative border-b border-line">
+                <a
+                  href={job.href}
+                  className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-4 transition-colors hover:bg-brand-wash"
+                >
+                  <span className="font-medium tracking-tight text-ink">
+                    {job.title}
+                  </span>
+                  <span className="text-sm text-ink-muted">
+                    {[job.kind, job.hours].filter(Boolean).join(" · ")}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="ml-auto text-brand-ink transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
       {contact && (
-        <div className="mt-20 border-l-2 border-brand bg-surface p-8">
-          <p className="text-lg font-semibold tracking-tight text-ink">{contact.name}</p>
-          <p className="mt-0.5 text-sm text-ink-muted">{contact.role}</p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
-            {contact.phone && (
-              <a
-                href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`}
-                className="text-brand-ink underline-offset-4 hover:underline"
-              >
-                {contact.phone}
-              </a>
-            )}
-            {contact.email && (
-              <a
-                href={`mailto:${contact.email}`}
-                className="text-brand-ink underline-offset-4 hover:underline"
-              >
-                {contact.email}
-              </a>
-            )}
+        <div className="mt-20 flex flex-col gap-6 border-l-2 border-brand bg-surface p-8 sm:flex-row sm:items-center">
+          {contact.photo && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={contact.photo}
+              alt={contact.name}
+              loading="lazy"
+              decoding="async"
+              className="h-28 w-28 shrink-0 rounded-full object-cover"
+            />
+          )}
+          <div>
+            <p className="text-lg font-semibold tracking-tight text-ink">
+              {contact.name}
+            </p>
+            <p className="mt-0.5 text-sm text-ink-muted">{contact.role}</p>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+              {contact.phone && (
+                <a
+                  href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`}
+                  className="text-brand-ink underline-offset-4 hover:underline"
+                >
+                  {contact.phone}
+                </a>
+              )}
+              {contact.email && (
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="text-brand-ink underline-offset-4 hover:underline"
+                >
+                  {contact.email}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       )}

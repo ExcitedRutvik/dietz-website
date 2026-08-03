@@ -16,6 +16,7 @@ export const enterpriseBusinessPolicyEN: PageEntry = {
   type: "post",
   h1: "Corporate policy at Dietz Federn",
   blocks: [
+    { kind: "image", src: "/images/live/dietz_aussen-1200x375.jpg", alt: "Corporate policy at Dietz Federn", width: 1200, height: 375 },
     { kind: "heading", level: 2, text: "Our Company Policy" },
     { kind: "paragraph", text: "Our corporate policy comprises four areas: quality policy, environmental policy, occupational health and safety, and energy policy. Detailed information on the individual areas is provided in the download area below." },
     { kind: "heading", level: 3, text: "Quality" },
@@ -30,6 +31,5 @@ export const enterpriseBusinessPolicyEN: PageEntry = {
     { kind: "list", items: ["REDUCE ENERGY CONSUMPTION", "PERFORMANCE MEASUREMENT", "CONSIDERATION OF ENERGY ASPECTS", "REGULATORY COMPLIANCE", "PROMOTING ENERGY STEWARDSHIP AT THE LEVEL OF", "ALL LEVELS"] },
     { kind: "heading", level: 3, text: "IT Security" },
     { kind: "list", items: ["TRAINING EMPLOYEES TO BE AWARE OF IT VULNERABILITIES", "CONTINUOUS IMPROVEMENT OF INFORMATION PROTECTION", "COMPLIANCE WITH CUSTOMER AND REGULATORY SUPPLY CHAIN REQUIREMENTS", "RESOURCES FOR THE IMPLEMENTATION AND MAINTENANCE OF THE IT MANAGEMENT SYSTEM", "IMPLEMENTATION OF TECHNICAL AND ORGANIZATIONAL PROTECTIVE MEASURES"] },
-    { kind: "image", src: "/images/live/dietz_aussen-1200x375.jpg", alt: "Corporate policy at Dietz Federn", width: 1200, height: 375 }
   ],
 };

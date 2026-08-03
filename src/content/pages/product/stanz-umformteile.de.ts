@@ -10,8 +10,9 @@ export const stanzUmformteileDE: PageEntry = {
   slug: "stanz-umformteile",
   seo: {
     navLabel: "Stanz-Umformteile",
-    title: "Stanz-Umformteile von Dietz Federn",
-    description: "Stanz-Umformteile von Dietz Federn",
+    title: "Stanz- und Umformteile nach Maß | Dietz GmbH",
+    description:
+      "Stanz- und Umformteile aus Federstahl und Edelstahl – vom Prototyp bis zur Serie, gefertigt mit eigenem Werkzeugbau. Jetzt Anfrage stellen.",
   },
   type: "post",
   h1: "Stanz-Umformteile von Dietz Federn",
@@ -36,5 +37,8 @@ export const stanzUmformteileDE: PageEntry = {
     { kind: "image", src: "/images/live/prod_stanz-umformtechnik.jpg", alt: "Schutzkontakt-Klammer Bauteil Stanz- Umformtechnik DIETZ", width: 1280, height: 1024 },
     { kind: "paragraph", text: "Diese Anfrage ist für Sie selbstverständlich unverbindlich." },
     { kind: "image", src: "/images/live/DTZ_schweissringe.jpg", alt: "Schweissringe", width: 800, height: 640 }
+  ],
+  gallery: [
+    { heading: "Schuko-Klammer", caption: "Einsatz in hochmodernen und modularen Steckdosensystemen für den Smart-Home-Bereich. Nutzen von Legierungen, die günstiger sind als die standardmäßig eingesetzten NE-Metalle – ohne Qualitätseinbußen.", href: "/produkte/schuko-klammer/", image: { src: "/images/live/prod_stanz-umformtechnik.jpg", alt: "Schutzkontakt-Klammer Bauteil Stanz- Umformtechnik DIETZ" } },
   ],
 };

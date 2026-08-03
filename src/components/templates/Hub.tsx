@@ -10,7 +10,7 @@ import CardGrid from "./CardGrid";
 // staff contact card that nothing else on the site has.
 export default function Hub({ h1, intro, blocks, cards, cta, locale }: HubContent & { locale: Locale }) {
   return (
-    <main className="mx-auto max-w-[72rem] px-6 pb-28 pt-10">
+    <main className="mx-auto max-w-[72rem] px-6 pt-10">
       <PageHeader h1={h1} intro={intro} wide />
 
       {blocks && blocks.length > 0 && (

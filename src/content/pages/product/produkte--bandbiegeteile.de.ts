@@ -10,8 +10,9 @@ export const produkteBandbiegeteileDE: PageEntry = {
   slug: "produkte/bandbiegeteile",
   seo: {
     navLabel: "Bandbiegeteile",
-    title: "Bandbiegeteile: Präzision & Vielseitigkeit | Dietz GmbH",
-    description: "Bandbiegeteile: Präzision & Vielseitigkeit",
+    title: "Bandbiegeteile nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Bandbiegeteile nach Zeichnung aus Federstahl, Edelstahl und Buntmetall – mit eigenem Werkzeugbau und Kleinserie. Sprechen Sie uns an.",
   },
   type: "post",
   h1: "Bandbiegeteile: Präzision & Vielseitigkeit",

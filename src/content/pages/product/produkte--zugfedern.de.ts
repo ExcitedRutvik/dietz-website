@@ -10,13 +10,15 @@ export const produkteZugfedernDE: PageEntry = {
   slug: "produkte/zugfedern",
   seo: {
     navLabel: "Zugfedern",
-    title: "Zugfedern: Langlebigkeit & Flexibilität | Dietz GmbH",
-    description: "Zugfedern: Langlebigkeit & Flexibilität",
+    title: "Zugfedern nach Maß vom Hersteller | Dietz GmbH",
+    description:
+      "Zugfedern nach Maß mit Öse, Haken oder Gewindebolzen, gefertigt aus Federstahl und Edelstahl, auch in Kleinserie. Jetzt Angebot anfordern.",
   },
   type: "post",
   h1: "Zugfedern: Langlebigkeit & Flexibilität",
   cta: { kind: "typeform", typeformId: "01HHYPGYGQFR0BRFHV2WWR2ZEF", label: "Jetzt unverbindlich Kontakt mit uns aufnehmen" },
   blocks: [
+    { kind: "image", src: "/images/live/dtz-zugfeder-ueberlang.jpg", alt: "Zugfedern: Langlebigkeit & Flexibilität", width: 1280, height: 1024 },
     { kind: "heading", level: 2, text: "Alles, was Sie über Zugfedern wissen müssen" },
     { kind: "paragraph", text: "Zugfedern sind ein wesentlicher Bestandteil vieler industrieller Anwendungen, insbesondere in Bereichen wie der Automobilindustrie, der Elektrotechnik, der Feinmechanik und der Gebäudetechnik. Sie werden verwendet, um einer Axialkraft entgegenzuwirken und die Verlängerung der Feder zu kontrollieren. In diesem Artikel werden wir uns eingehend mit Zugfedern befassen und Ihnen alles Wichtige über ihre Funktionsweise, Abmessungen, Materialien, Anwendungen und Vorteile erklären." },
     { kind: "heading", level: 3, text: "Funktionsweise von Zugfedern" },
@@ -37,5 +39,9 @@ export const produkteZugfedernDE: PageEntry = {
     { kind: "paragraph", text: "Trompetenanbindungen und Montagehilfen für Zugfedern finden einen wachsenden Anwendungsbereich – mit diesem Lösungsansatz beschäftigen wir uns bereits seit vielen Jahren." },
     { kind: "paragraph", text: "Wir fertigen unser Zugfedernsortiment mit deutschen und englischen Ösen von 0,25 mm bis 4,00 mm Drahtdurchmesser. Bei Bedarf fertigen wir auch mit Sonderösen und Ösenformen nach speziellen Anforderungen im Drahtdurchmesser-Bereich von 0,20 mm bis 4,00 mm." },
     { kind: "paragraph", text: "Alle technischen Federn fertigen wir auf Anfrage auch in kleineren Losgrößen. Für alle Produkte werden auch Sonderverpackungen angeboten. Wir verfügen über einen eigenen Werkzeugbau und als Ihr Entwicklungspartner leisten wir für Sie auch individuelle Berechnungen." }
+  ],
+  gallery: [
+    { heading: "Zugfeder mit überlanger Öse", caption: "Umsetzung mit Sondermaschinen und speziellen Werkzeugvorrichtungen – Schloss- und Beschlagindustrie", href: "/produkte/zugfeder-mit-ueberlagerter-oese/", image: { src: "/images/live/dtz-zugfeder-ueberlang.jpg", alt: "Zugfeder überlang" } },
+    { heading: "Zugfeder im Bereich der Sitze im PKW", caption: "Die Sonderform der Öse erfordert spezielle Werkzeugausführung für die Fertigung auf einer Zugfedermaschine", href: "/produkte/zugfeder-im-bereich-der-sitze-im-pkw/", image: { src: "/images/live/zugfeder.jpg", alt: "Zugfeder im Bereich der Sitze im PKW" } },
   ],
 };

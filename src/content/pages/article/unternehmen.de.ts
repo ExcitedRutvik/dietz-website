@@ -15,7 +15,14 @@ export const unternehmenDE: PageEntry = {
   },
   type: "post",
   h1: "Das Unternehmen Dietz Federn",
+  keyTakeaways: [
+    "Leistungsfähig und kompetent – seit 90 Jahren.",
+    "Gegründet 1928 in Neustadt bei Coburg, inhabergeführt mit 170 Beschäftigten.",
+    "Eigene Lehrwerkstatt mit 15–20 Auszubildenden.",
+    "Just-in-Time, Just-in-Sequence, Kanban, DFÜ-Abrufe und Konsignationslager.",
+  ],
   blocks: [
+    { kind: "image", src: "/images/live/dietz_aussen-1200x375.jpg", alt: "Firmengebäude Dietz", width: 1200, height: 375 },
     { kind: "heading", level: 2, text: "Leistungsfähig und kompetent – seit 90 Jahren" },
     { kind: "heading", level: 3, text: "Wir investieren kontinuierlich in modernste Technologie" },
     { kind: "paragraph", text: "Gegründet 1928 in Neustadt bei Coburg, ist die Dietz GmbH einer der führenden Hersteller von technischen Präzisionsfedern und Drahtbiegeteilen. Als mittelständisches, inhabergeführtes Unternehmen mit 170 Beschäftigten beliefert Dietz namhafte und internationale Kunden aus den verschiedensten Industriezweigen, wie etwa der Automobil- und Elektroindustrie oder der Haus- und Medizintechnik. Das umfassendes Spezialisten-Know-how und eine sorgfältige Fertigung in Hightech-Produktionsanlagen sorgen für maßgeschneiderte Federlösungen von höchster Präzision und Qualität." },
@@ -26,7 +33,6 @@ export const unternehmenDE: PageEntry = {
     { kind: "paragraph", text: "Bei der Herstellung von Federn, Drahtbiegeteilen und Stanz-Umformteilen garantieren wir Ihnen, dass unsere Artikel halten, was sie versprechen – dank modernster Maschinen, hochwertiger Materialien, eigener Werkzeugfertigung, qualifiziertem Personal, einer permanenten Qualitätskontrolle und nicht zuletzt dank einer Lehrwerkstatt mit 15–20 Auszubildenden." },
     { kind: "heading", level: 3, text: "Flexible Logistik mit kurzen Lieferzeiten" },
     { kind: "paragraph", text: "Höchste Versorgungssicherheit und ein möglichst geringer Abwicklungsaufwand für unsere Kunden sind unser Ziel. Dies verfolgen wir mit unserem datenbankgestützten Lagerhaltungssystem – im Rohmaterial-Lager wie auch im Fertigteil-Lager. Dank unserer schlanken Strukturen und Prozesse sind wir in der Lage, äußerst flexibel auf Ihre logistischen Ansprüche zu reagieren." },
-    { kind: "paragraph", text: "Ganz gleich, ob Sie Just-in-Time-, Just-in-Sequence-, Kanban-Lösungen, DFÜ-Abrufe oder Konsignationslager bevorzugen: Wir finden für Sie die optimale logistische Lösung bei der Lieferung Ihrer Federn, Drahtbiegeteile, hybriden Baugruppen und vieles mehr." },
-    { kind: "image", src: "/images/live/dietz_aussen-1200x375.jpg", alt: "Firmengebäude Dietz", width: 1200, height: 375 }
+    { kind: "paragraph", text: "Ganz gleich, ob Sie Just-in-Time-, Just-in-Sequence-, Kanban-Lösungen, DFÜ-Abrufe oder Konsignationslager bevorzugen: Wir finden für Sie die optimale logistische Lösung bei der Lieferung Ihrer Federn, Drahtbiegeteile, hybriden Baugruppen und vieles mehr." }
   ],
 };

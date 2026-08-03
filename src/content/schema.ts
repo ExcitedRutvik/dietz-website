@@ -141,6 +141,11 @@ export interface HubCard {
   href: string;
   body: string;
   thumb?: string | null;
+  /** Desktop column span, 1-3. Editorial emphasis only: the grid already
+   * widens its final card when the count would otherwise leave a dead cell
+   * (see src/lib/gridPlan.ts), so set this to promote a card, not to patch
+   * geometry. */
+  span?: 1 | 2 | 3;
 }
 
 export interface HubContent {
@@ -167,7 +172,17 @@ export interface CareerContent {
   cards: HubCard[];
   values?: string[];
   benefits?: { title: string; body?: string }[];
-  contact?: { name: string; role: string; phone?: string; email?: string };
+  contact?: {
+    name: string;
+    role: string;
+    phone?: string;
+    email?: string;
+    photo?: string;
+  };
+  /** Current vacancies. These pages already existed but sat on flat slugs with
+   * nothing linking to them, so the careers page listed them as run-on plain
+   * text — a candidate could read a job title and had no way to open it. */
+  jobs?: { title: string; href: string; kind?: string; hours?: string }[];
   cta?: CTA;
 }
 
@@ -177,6 +192,10 @@ export interface CareerContent {
 
 export interface ListingItem {
   title: string;
+  /** Bucket this row belongs to in the index — a letter for alphabetical
+   * listings, a document type for Downloads. Populated by
+   * scripts/content/group-listings.py, not authored by hand. */
+  group?: string;
   /** Optional: a handful of index rows name a page whose slug was taken by
    * another page (the Präzisionsfedern glossary term lost `/praezisionsfedern/`
    * to the product category). Those render as plain text rather than as a link
@@ -220,6 +239,33 @@ export interface PostContent {
   h1: string;
   intro?: string;
   blocks: Block[];
+  /** Three to five facts a reader (or an answer engine) should take away.
+   *
+   * Authored, and only on pages where it earns its place — this is the part an
+   * AI answer engine is most likely to quote verbatim, so a mechanically
+   * generated approximation is worse than none. Every entry must restate a
+   * claim the page's own blocks already make; `scripts/content/check-takeaways.py`
+   * enforces that rather than trusting it. */
+  keyTakeaways?: string[];
+  /** One or two sentences saying what this page covers, for the summary rail.
+   *
+   * Distinct from `intro`, which renders under the H1 — repeating that text in
+   * a card sitting directly beside it reads as a duplication bug. This is the
+   * abstract a reader (or an answer engine) gets when they want the gist
+   * without the page. Authored, and only where it says something the headings
+   * do not. */
+  summary?: string;
+  /** Explicit navigation for the summary rail, overriding the sibling list it
+   * would otherwise derive from the menu.
+   *
+   * Authored only where the derived answer would be wrong. The English careers
+   * page is the case this exists for: its sub-pages exist in German only, so
+   * they cannot be resolved in English, and the honest thing to show is an
+   * English heading pointing at the German page with the language marked. */
+  sectionLinks?: {
+    title: string;
+    links: { label: string; href: string; lang?: Locale }[];
+  };
   /** Typeform for most articles; external-link for the whistleblower page
    * (dietz.integrityline.com) — no 9th template needed for that one page. */
   cta?: CTA;
@@ -242,24 +288,6 @@ export interface GalleryExample {
   /** Optional: most examples have a dedicated page. Where one exists the tile
    * links to it, which is how the ~44 product-example pages are reached. */
   href?: string;
-}
-
-export interface ProductCategoryContent {
-  type: "product-category";
-  h1: string;
-  /** Single lede paragraph. Longer body prose belongs in `blocks` — folding
-   * multiple paragraphs in here collapses them into one wall of text, since
-   * newlines carry no meaning in HTML. */
-  intro: string;
-  /** Body copy below the lede. Most of these pages carry substantial prose
-   * beyond the intro (the "… von Dietz" closing sections). */
-  blocks?: Block[];
-  gallery: GalleryExample[];
-  // Typed as the full CTA union, not narrowed to quote-request-form: the
-  // scrape found 4 DE pages with a native quote-request form (incl. file
-  // upload) and zero EN equivalents — EN's real content here is a typeform,
-  // and narrowing the type would make that fail to type-check.
-  cta: CTA;
 }
 
 // ---------------------------------------------------------------------------
@@ -298,7 +326,6 @@ export type PageBody =
   | CareerContent
   | ListingContent
   | PostContent
-  | ProductCategoryContent
   | ContactContent
   | LegalContent;
 
