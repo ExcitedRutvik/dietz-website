@@ -24,6 +24,7 @@ export const branchenWeisseWareDE: PageEntry = {
     "Kontinuierliche Prozessoptimierung und Umsetzung neuer Technologien.",
   ],
   blocks: [
+    { kind: "image", src: "/images/live/t-weisseware.jpg", alt: "Haushaltsgeräte: Waschmaschine, Trockner, Kühlschrank, Geschirrspüler und Herd", width: 700, height: 560 },
     { kind: "heading", level: 2, text: "Weiße Ware" },
     { kind: "paragraph", text: "Die Dietz GmbH ist ein führendes Unternehmen in der Branche der Weißen Ware. Unsere langjährige Erfahrung und unser Know-how haben uns zu einem vertrauenswürdigen Partner für Kunden in Deutschland und international gemacht." },
     { kind: "paragraph", text: "In der Branche der Weißen Ware sind wir darauf spezialisiert, hochwertige komponenten und Baugruppen für Haushaltsgeräte herzustellen. Dazu gehören unter anderem Komponenten für Kühlschränke, Geschirrspüler, Waschmaschinen, Trockner und Herde. Unsere Produkte zeichnen sich durch ihre hohe Qualität, Funktionalität und Effizienz aus." },

@@ -83,9 +83,15 @@ def href_of(slug, loc):
 
 
 def has_image(src):
-    return bool(re.search(r'\{ kind: "image"', src)) or bool(
-        re.search(r'image: \{ src:', src)
-    )
+    """Whether the page already *leads* with an image.
+
+    Only a `blocks` image counts. A gallery image does not: it sits below the
+    body copy, so a page with a gallery and no block image still opens on text.
+    Treating the gallery as "has an image" is why the automotive and white-goods
+    pages never got a banner while their siblings did — and why their first
+    gallery tile ended up as the Largest Contentful Paint.
+    """
+    return bool(re.search(r'\{ kind: "image"', src))
 
 
 def main():

@@ -24,6 +24,7 @@ export const branchenAutomotiveDE: PageEntry = {
     "Folgeverbundkonzepte für geringsten Materialverbrauch.",
   ],
   blocks: [
+    { kind: "image", src: "/images/live/t-automotive.jpg", alt: "Fahrzeugfront mit Scheinwerfer, Automotive-Branche", width: 700, height: 560 },
     { kind: "heading", level: 2, text: "Automotive" },
     { kind: "paragraph", text: "Die Dietz GmbH ist ein führendes Unternehmen in der Automobilbranche, das sich auf die Entwicklung und Herstellung von maßgeschneiderten Lösungen für die Fahrzeugindustrie spezialisiert hat. Seit unserer Gründung im Jahr 1928 haben wir uns als zuverlässiger Partner für namhafte Automobilhersteller und Zulieferer etabliert." },
     { kind: "paragraph", text: "Wir arbeiten eng mit unseren Kunden zusammen, um deren Anforderungen zu verstehen und innovative Produkte und Dienstleistungen anzubieten. Unser Portfolio umfasst eine Vielzahl elektronischer Komponenten, Schalter und Bedienelemente, die in verschiedenen Fahrzeugkategorien wie PKW, Nutzfahrzeugen und Motorrädern eingesetzt werden können." },

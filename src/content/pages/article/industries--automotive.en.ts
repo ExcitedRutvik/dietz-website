@@ -23,6 +23,7 @@ export const industriesAutomotiveEN: PageEntry = {
     "Tailor-made solutions developed and manufactured for the vehicle industry.",
   ],
   blocks: [
+    { kind: "image", src: "/images/live/t-automotive.jpg", alt: "Vehicle front with headlight, automotive industry", width: 700, height: 560 },
     { kind: "heading", level: 2, text: "Automotive" },
     { kind: "paragraph", text: "Dietz GmbH is a leading company in the automotive industry, specializing in the development and manufacture of tailor-made solutions for the automotive industry. Since our foundation in 1928, we have established ourselves as a reliable partner for well-known automotive manufacturers and suppliers." },
     { kind: "heading", level: 3, text: "Dietz in the automotive sector" },

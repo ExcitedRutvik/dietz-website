@@ -24,6 +24,16 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
   const ids = headingIds(blocks);
   let headingSeen = -1;
 
+  // Banners now lead the page (scripts/content/lift-banners.py moved them out
+  // of the footer), which makes the first image the Largest Contentful Paint on
+  // every industry, service and article page. next/image lazy-loads by default,
+  // so the element the score is measured on was waiting for the lazy pass —
+  // Next's own dev warning caught it. Only the first one, and only when it is
+  // genuinely near the top: preloading an image the reader has to scroll to
+  // costs bandwidth and delays the one they can see.
+  const firstImageIndex = blocks.findIndex((b) => b.kind === "image");
+  const priorityImage = firstImageIndex >= 0 && firstImageIndex <= 2 ? firstImageIndex : -1;
+
   return (
     <div className="space-y-6">
       {blocks.map((block, i) => {
@@ -159,6 +169,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
                     width={w}
                     height={h}
                     sizes="(max-width: 768px) 100vw, 820px"
+                    priority={i === priorityImage}
                     className="h-auto w-full object-cover"
                   />
                 </div>

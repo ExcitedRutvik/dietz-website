@@ -24,6 +24,7 @@ export const industriesWhiteGoodsEN: PageEntry = {
     "Continuous process optimisation and adoption of new technologies.",
   ],
   blocks: [
+    { kind: "image", src: "/images/live/t-weisseware.jpg", alt: "Household appliances: washing machine, dryer, refrigerator, dishwasher and oven", width: 700, height: 560 },
     { kind: "heading", level: 2, text: "White goods" },
     { kind: "paragraph", text: "Dietz GmbH is a leading company in the white goods industry. Our many years of experience and know-how have made us a trustworthy partner for customers in Germany and internationally." },
     { kind: "paragraph", text: "In the white goods industry, we specialize in the production of high-quality components and assemblies for household appliances. These include, but are not limited to, components for refrigerators, dishwashers, washing machines, dryers and stoves. Our products are characterized by their high quality, functionality and efficiency." },

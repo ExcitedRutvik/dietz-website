@@ -93,6 +93,64 @@ function DropdownPanel({ item }: { item: ResolvedNavItem }) {
   );
 }
 
+/** Same availability logic (exact page / homepage fallback / not yet
+ *  translated) drives both the desktop bar and the mobile drawer, so a
+ *  locale can't be reachable from one and not the other. */
+function LanguageLinks({
+  alts,
+  localesWithHomepage,
+  locale,
+  className,
+  linkClassName,
+}: {
+  alts: Partial<Record<Locale, string>>;
+  localesWithHomepage: Locale[];
+  locale: Locale;
+  className: string;
+  linkClassName: (state: "current" | "available" | "fallback" | "unavailable") => string;
+}) {
+  return (
+    <ul className={className}>
+      {LOCALES.map((l) => {
+        const slug = alts[l];
+        // Four states. A locale can have (a) this exact page — current or
+        // just translated, (b) no translation of it but a homepage to fall
+        // back to, or (c) no content at all — fr/es/cs today. Case (c) must
+        // render as plain text, not a link: pointing it at `/fr/` produced a
+        // 404, since that homepage doesn't exist yet either.
+        const hasPage = slug !== undefined;
+        const hasLocale = localesWithHomepage.includes(l);
+        const href = hasPage ? localeHref(l, slug) : localeHref(l, "");
+        if (!hasPage && !hasLocale) {
+          return (
+            <li key={l}>
+              <span
+                data-unavailable="true"
+                title="Not available yet"
+                className={linkClassName("unavailable")}
+              >
+                {LOCALE_CODE[l]}
+              </span>
+            </li>
+          );
+        }
+        return (
+          <li key={l}>
+            <a
+              href={href}
+              aria-current={l === locale ? "page" : undefined}
+              data-unavailable={!hasPage || undefined}
+              className={linkClassName(l === locale ? "current" : hasPage ? "available" : "fallback")}
+            >
+              {LOCALE_CODE[l]}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 export default function Header({
   locale,
   currentPageId,
@@ -204,50 +262,23 @@ export default function Header({
           </ul>
         </nav>
 
-        <ul className="hidden items-center gap-2 text-xs font-semibold xl:flex">
-          {LOCALES.map((l) => {
-            const slug = alts[l];
-            // Three states, not two. A locale can have (a) this exact page,
-            // (b) no translation of it but a homepage to fall back to, or
-            // (c) no content at all — fr/es/cs today. Case (c) must render as
-            // plain text, not a link: pointing it at `/fr/` produced a 404,
-            // since that homepage doesn't exist yet either.
-            const hasPage = slug !== undefined;
-            const hasLocale = localesWithHomepage.includes(l);
-            const href = hasPage ? localeHref(l, slug) : localeHref(l, "");
-            if (!hasPage && !hasLocale) {
-              return (
-                <li key={l}>
-                  <span
-                    data-unavailable="true"
-                    title="Not available yet"
-                    className="cursor-default opacity-25"
-                  >
-                    {LOCALE_CODE[l]}
-                  </span>
-                </li>
-              );
-            }
-            return (
-              <li key={l}>
-                <a
-                  href={href}
-                  aria-current={l === locale ? "page" : undefined}
-                  data-unavailable={!hasPage || undefined}
-                  className={`transition ${
-                    l === locale
-                      ? "opacity-100"
-                      : hasPage
-                        ? "opacity-50 hover:opacity-90"
-                        : "opacity-30 hover:opacity-60"
-                  }`}
-                >
-                  {LOCALE_CODE[l]}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        <LanguageLinks
+          alts={alts}
+          localesWithHomepage={localesWithHomepage}
+          locale={locale}
+          className="hidden items-center gap-2 text-xs font-semibold xl:flex"
+          linkClassName={(state) =>
+            state === "unavailable"
+              ? "cursor-default opacity-25"
+              : `transition ${
+                  state === "current"
+                    ? "opacity-100"
+                    : state === "available"
+                      ? "opacity-50 hover:opacity-90"
+                      : "opacity-30 hover:opacity-60"
+                }`
+          }
+        />
 
         <ContactCta
           locale={locale}
@@ -349,7 +380,24 @@ export default function Header({
               );
             })}
           </ul>
-          <div className="mx-auto max-w-[88rem] px-6 py-5">
+          <div className="mx-auto max-w-[88rem] border-t border-line px-6 py-5">
+            <LanguageLinks
+              alts={alts}
+              localesWithHomepage={localesWithHomepage}
+              locale={locale}
+              className="mb-4 flex items-center gap-1 text-sm font-semibold"
+              linkClassName={(state) =>
+                state === "unavailable"
+                  ? "grid h-11 w-11 cursor-default place-items-center opacity-25"
+                  : `grid h-11 w-11 place-items-center transition ${
+                      state === "current"
+                        ? "text-brand-ink opacity-100"
+                        : state === "available"
+                          ? "opacity-50 hover:opacity-90"
+                          : "opacity-30 hover:opacity-60"
+                    }`
+              }
+            />
             <ContactCta
               locale={locale}
               className="min-h-12 w-full bg-brand px-5 text-sm font-semibold text-white"
