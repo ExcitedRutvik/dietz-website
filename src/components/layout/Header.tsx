@@ -63,7 +63,7 @@ function DropdownPanel({ item }: { item: ResolvedNavItem }) {
       {grouped
         ? item.children.map((group) => (
             <div key={group.label}>
-              <p className="mb-2 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-ink-faint">
                 {group.label}
               </p>
               <ul className="space-y-0.5">
@@ -144,7 +144,7 @@ export default function Header({
           />
         </a>
 
-        <nav aria-label="Main" className="ml-auto hidden lg:block">
+        <nav aria-label="Main" className="ml-auto hidden xl:block">
           <ul className="flex items-center gap-1">
             {nav.map((item) => {
               // True for the section the reader is in, not only for an exact
@@ -204,7 +204,7 @@ export default function Header({
           </ul>
         </nav>
 
-        <ul className="hidden items-center gap-2 text-xs font-semibold lg:flex">
+        <ul className="hidden items-center gap-2 text-xs font-semibold xl:flex">
           {LOCALES.map((l) => {
             const slug = alts[l];
             // Three states, not two. A locale can have (a) this exact page,
@@ -251,7 +251,7 @@ export default function Header({
 
         <ContactCta
           locale={locale}
-          className={`hidden min-h-11 shrink-0 px-5 text-sm font-semibold transition-colors duration-150 lg:inline-flex ${
+          className={`hidden min-h-11 shrink-0 px-5 text-sm font-semibold transition-colors duration-150 xl:inline-flex ${
             solid
               ? "bg-brand text-white hover:bg-brand-deep"
               : "bg-white text-ink hover:bg-white/85"
@@ -263,7 +263,7 @@ export default function Header({
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="Toggle menu"
-          className="ml-auto grid h-11 w-11 place-items-center lg:hidden"
+          className="ml-auto grid h-11 w-11 shrink-0 place-items-center xl:hidden"
         >
           <span className="sr-only">Menu</span>
           <span aria-hidden className="block h-0.5 w-6 bg-current" />
@@ -279,7 +279,7 @@ export default function Header({
         // in Page all work — for no JS.
         <nav
           aria-label="Main"
-          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-white text-ink lg:hidden"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-white text-ink xl:hidden"
         >
           <ul className="mx-auto max-w-[88rem] divide-y divide-line px-6">
             {nav.map((item) => {
@@ -311,7 +311,7 @@ export default function Header({
                       {item.children.map((child) =>
                         child.children.length > 0 ? (
                           <li key={child.label} className="mt-3">
-                            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-faint">
                               {child.label}
                             </p>
                             <ul>

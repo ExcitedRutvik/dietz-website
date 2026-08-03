@@ -162,6 +162,23 @@ export function graphFor(entry: PageEntry) {
   const crumbs = breadcrumbList(entry);
   if (crumbs) nodes.push(crumbs);
 
+  // Key takeaways as an ItemList. Deliberately not FAQPage: that type requires
+  // genuine question/answer pairs, and dressing factual statements up as
+  // questions to qualify for a rich result is the kind of thing that earns a
+  // manual action. ItemList describes what these actually are.
+  if (entry.type === "post" && entry.keyTakeaways?.length) {
+    nodes.push({
+      "@type": "ItemList",
+      "@id": `${abs(entry.locale, entry.slug)}#takeaways`,
+      name: entry.h1,
+      itemListElement: entry.keyTakeaways.map((t, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: t,
+      })),
+    });
+  }
+
   if (entry.type === "career-hub" && entry.jobs?.length) {
     for (const job of entry.jobs) nodes.push(jobPosting(entry, job));
   }

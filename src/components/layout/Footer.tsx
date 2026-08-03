@@ -209,7 +209,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         >
           {sitemap.map((col) => (
             <div key={col.label}>
-              <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/45">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/45">
                 {col.href ? (
                   <a href={col.href} className="transition-colors hover:text-white">
                     {col.label}

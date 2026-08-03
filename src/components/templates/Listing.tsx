@@ -1,12 +1,39 @@
 import type { ListingContent } from "@/content/schema";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/locale";
 import PageHeader from "./PageHeader";
 
 const isDocument = (href?: string) => /\.(pdf|docx?|xlsx?|zip)$/i.test(href ?? "");
 
+const READ_MORE: Partial<Record<Locale, string>> = {
+  de: "Mehr lesen",
+  en: "Read more",
+};
+
+/** The scrape ended every excerpt with a literal "[...]", mid-clause. */
+const TRUNCATION = /\s*\[(?:\.{3}|\u2026)\]\s*$/;
+/** A full stop that actually ends a sentence, not one inside "0.30" or "z. B.". */
+const SENTENCE_END = /[.!?](?=\s|$)/g;
+
+/**
+ * Excerpt without the truncation marker, cut back to its last complete
+ * sentence.
+ *
+ * "…with so many options [...]" is worse than no excerpt: it stops mid-thought
+ * and then shows the reader the machinery that stopped it. Trimming to the last
+ * sentence costs a few words and reads as written rather than as cut. Below a
+ * floor the fragment is kept, because two words is not a summary.
+ */
+function tidyExcerpt(raw: string): string {
+  const t = raw.replace(TRUNCATION, "").trim();
+  let end = -1;
+  for (const m of t.matchAll(SENTENCE_END)) end = m.index ?? end;
+  return end >= 60 ? t.slice(0, end + 1) : t;
+}
+
 // Blog/Glossar/News/Downloads render as a single flat list (confirmed by the
 // scrape — no pagination markup found). Mediathek is the one genuinely
 // paginated listing; `pagination` is optional for exactly that split.
-export default function Listing({ h1, intro, items, pagination }: ListingContent) {
+export default function Listing({ h1, intro, items, pagination, locale }: ListingContent & { locale: Locale }) {
   // Rows carry a `group` only on the listings that have an index (Glossar,
   // Blog, Downloads). News deliberately does not: it is chronological, and
   // alphabetising announcements would destroy its only ordering.
@@ -43,10 +70,10 @@ export default function Listing({ h1, intro, items, pagination }: ListingContent
               <h2 className="border-b border-line pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-ink-faint">
                 {g.key}
               </h2>
-              <ul className="divide-y divide-line">{g.rows.map(row)}</ul>
+              <ul className="divide-y divide-line">{g.rows.map((i) => row(i, locale))}</ul>
             </section>
           ))
-        : <ul className="mt-6 divide-y divide-line">{items.map(row)}</ul>}
+        : <ul className="mt-6 divide-y divide-line">{items.map((i) => row(i, locale))}</ul>}
 
 
       {pagination && (
@@ -75,7 +102,7 @@ export default function Listing({ h1, intro, items, pagination }: ListingContent
 }
 
 /** One row. Shared by the flat and the grouped renderings so they cannot drift. */
-function row(item: ListingContent["items"][number]) {
+function row(item: ListingContent["items"][number], locale: Locale) {
   return (
           <li
             key={item.href ?? item.title}
@@ -121,15 +148,27 @@ function row(item: ListingContent["items"][number]) {
                 item.title
               )}
               {isDocument(item.href) && (
-                <span className="mt-0.5 shrink-0 border border-line px-1.5 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wider text-ink-faint">
+                <span className="mt-0.5 shrink-0 border border-line px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-ink-faint">
                   PDF
                 </span>
               )}
             </h2>
             {item.excerpt && (
               <p className="mt-1.5 max-w-[68ch] text-sm leading-relaxed text-ink-muted">
-                {item.excerpt}
+                {tidyExcerpt(item.excerpt)}
               </p>
+            )}
+            {item.excerpt && item.href && (
+              // A span, not a link: the row already carries a stretched link
+              // over the whole tile, and nesting one inside it would be
+              // invalid and unreachable by keyboard.
+              <span
+                aria-hidden
+                className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-brand-ink transition-transform duration-200 group-hover:translate-x-0.5"
+              >
+                {READ_MORE[locale] ?? READ_MORE[DEFAULT_LOCALE]}
+                <span aria-hidden>→</span>
+              </span>
             )}
             </div>
           </li>

@@ -19,6 +19,8 @@ const LABEL: Partial<Record<Locale, string>> = {
  * open-in-new-tab, crawlable, works without JS), and gives the contact page
  * the inbound links it should have had.
  */
+const DISPLAY_UTILITY = /(?:^|[\s:])(hidden|flex|inline-flex|block|inline-block|grid|inline-grid)(?:$|\s)/;
+
 export default function ContactCta({
   locale,
   className = "",
@@ -39,7 +41,13 @@ export default function ContactCta({
   return (
     <a
       href={localeHref(locale, contact.slug)}
-      className={`inline-flex items-center justify-center text-center ${className}`}
+      // `inline-flex` is a convenience default, not a fixed value. Both it and
+      // a caller's `hidden` are display utilities, and which one wins is decided
+      // by Tailwind's generated source order, not by the order they appear in
+      // the attribute — so hardcoding it silently defeated `hidden lg:inline-flex`
+      // on the header CTA, which is why it rendered on a 360px phone and pushed
+      // the header 22px past the viewport.
+      className={`${DISPLAY_UTILITY.test(className) ? "" : "inline-flex"} items-center justify-center text-center ${className}`}
     >
       {label ?? LABEL[locale] ?? LABEL[DEFAULT_LOCALE]}
     </a>

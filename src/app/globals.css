@@ -262,3 +262,38 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
+/* The hero's layout is chosen by JavaScript (useDisplayMode), which cannot run
+   before the first paint. So every desktop load painted the *phone* layout —
+   poster on top, copy stacked underneath in a black band — and then swapped to
+   the pinned cinematic composition once the effect ran. A visible flash of a
+   different page, on every visit, plus the layout shift that goes with it.
+
+   The media query the hook uses is pure CSS, so CSS can answer it at parse
+   time. The fallback markup still ships in the HTML (crawlers and no-JS
+   readers get the copy), it is simply never painted on viewports that will
+   render the cinematic version, and the section reserves its height so the
+   canvas slots in without moving anything. */
+@media (min-width: 1024px) and (min-aspect-ratio: 5/4) and (prefers-reduced-motion: no-preference) {
+  [data-hero-fallback] {
+    display: none;
+  }
+  [data-hero-slot] {
+    min-height: 100svh;
+  }
+}
+
+/* German compounds routinely outrun a phone's text column. "Informations-
+   sicherheitsmanagementsystem" is 39 characters and pushed /downloads/ 22px
+   past a 360px viewport, which is a sideways scroll on the whole page.
+
+   `hyphens: auto` is exactly what the `lang` attribute on <html> is for — the
+   browser hyphenates using the right dictionary per locale, so German breaks at
+   real morpheme boundaries rather than anywhere. `overflow-wrap` is the backstop
+   for what no dictionary knows: part numbers, standards codes, URLs.
+
+   `:where()` keeps this at zero specificity so any utility class still wins. */
+main :where(p, li, h1, h2, h3, figcaption, dd, dt) {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}

@@ -406,10 +406,17 @@ export default function ScrollVideoSection({
     // meant a 16:9 still covering a section several screens tall, so almost all
     // of it was cropped away.
     return (
-      <section
-        id={id}
-        className={`relative isolate bg-zinc-950 ${className}`}
-      >
+      <>
+        {/* Holds the cinematic section's height for the one paint between the
+            fallback being hidden by CSS and the canvas mounting. Collapses to
+            nothing on viewports that actually use the fallback, because the
+            reservation lives inside the same media query. */}
+        <div data-hero-slot aria-hidden />
+        <section
+          id={id}
+          data-hero-fallback
+          className={`relative isolate bg-zinc-950 ${className}`}
+        >
         <div className="relative">
           {/* Only the first section's poster is above the fold. The other four
               were being fetched eagerly too — ~1MB of stills on a phone, none
@@ -445,7 +452,8 @@ export default function ScrollVideoSection({
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </>
     );
   }
 
