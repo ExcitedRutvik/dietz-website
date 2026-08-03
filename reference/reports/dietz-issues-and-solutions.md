@@ -1,7 +1,7 @@
 # Dietz.eu — what we found, what we fixed, what we need from you
 
 **Date:** 3 August 2026
-**Scope:** the twelve items raised in your review, plus what those turned up underneath.
+**Scope:** the twelve items raised in your review, what those turned up underneath, and a full scorecard of everything moved since the rebuild started.
 
 ---
 
@@ -31,6 +31,92 @@ company.
 **What we need from you** is at the end. The three that matter most: Search
 Console access, your real social-media profile URLs, and a decision on the
 commercial register number.
+
+---
+
+## Zooming out — the full engagement to date
+
+The section above is scoped to the twelve items from your latest review. It is
+one round of a longer rebuild. Below is every metric that has moved since the
+project started, so the scale of what has actually changed is visible in one
+place rather than scattered across status updates.
+
+### Content you already own, recovered
+
+| | Before | After |
+|---|---|---|
+| Live pages actually built and served | 429 | **578** |
+| Pages unreachable by any link on the site (orphans) | ~350 of 576 | **0** |
+| Job vacancies a candidate could open | 0 | **10** |
+| Product categories in the menu | 4 | **12** |
+| Product pages with no photograph | 19 | **2** (deliberate — no invented photos) |
+| EN "hybrid assemblies" — copy captured vs. the live page | 2% | **96%** |
+| EN "bent wire parts" — copy captured vs. the live page | 30% | **100%** |
+| DE "Präzisionsfedern" — copy captured vs. the live page | 57% | **91%** |
+| DE privacy policy — paragraphs (was a summary, not the policy) | 0 | **111**, verbatim |
+| Landing pages with empty/broken grid cells | 3 | **0** |
+| Corrupted images shipped as if valid (2016-era, HTML saved as `.jpg`) | 47 | **0** |
+
+### Site speed and weight
+
+| | Before | After |
+|---|---|---|
+| Homepage: data downloaded on first load | — | **8.0 MB across 99 requests** |
+| Homepage frame-sequence assets | 128 MB | **70 MB** |
+| Static images (right-sized to their rendered size) | — | **13 MB** |
+| Peak simultaneous requests scrolling the homepage | 40 | **6** |
+| Certification logos — time to appear (4 Mbit/s) | 7.8 s | **4.9 s** |
+| Transport protocol | HTTP/1.1 | **HTTP/2** |
+| Scroll p95 frame gap | 283 ms | **167 ms** |
+| Long-task time across a scroll session | 186 s | **109 s** |
+| Homepage first contentful paint (live, median of 3) | — | **142 ms** |
+| Content page first contentful paint (live, median of 3) | — | **365 ms** |
+
+*Frame-sequence size, transport protocol, scroll frame gap and long-task time
+were measured during the performance pass earlier in the build. Everything else
+in this table was measured against the live site on 3 August 2026. First paint
+varies between visits (142–605 ms observed on the homepage); the medians above
+are from three samples each, on a desktop connection.*
+
+### SEO, discoverability and AI search
+
+| | Before | After |
+|---|---|---|
+| Live URLs confirmed safe to carry across on launch | unmeasured | **426 / 429 (99.3%)** |
+| Images missing alt text | 6 | **0** |
+| Duplicate meta descriptions | 1 group | **0** |
+| Duplicate pages breaking the DE/EN pairing | 1 | **0** |
+| Top 34 commercial pages with current, applied metadata | stale/unapplied | **refreshed** |
+| Pages eligible for Google Jobs | 0 | **10** |
+| AI-assistant discovery file (`llms.txt`) | none | **shipped** |
+| Evidenced backlink prospects identified | 0 | **8**, each sourced from something Dietz already publishes |
+
+### Structural bugs fixed (things that were quietly broken, not just unpolished)
+
+- The entire German site — **around 344 pages, the primary language** — returned
+  "not found" in local preview. Nobody could check a German page before this
+  was found and fixed.
+- **Mobile menu exposed top-level items only.** Every product, industry and
+  career sub-page was unreachable from a phone.
+- **Desktop dropdowns were hover-only** — unusable by keyboard or touch.
+- **Every content page inherited a near-black background with near-black
+  text** ("every page is just black"), leaking from a style meant only for the
+  homepage's cinematic hero.
+- The careers page listed **ten open vacancies as run-on text with no links.**
+
+### Errors live on dietz.eu today, independent of this project
+
+Found while working through the site, not fixed unilaterally because they are
+factual or legal calls that belong to you:
+
+- Commercial register number conflict: **HRB 7729** (DE) vs. **HRB 1008** (EN).
+- English privacy policy: **33 paragraphs vs. the German's 111** — GDPR-relevant.
+- Cookie policy lists `info@dietz.de`; every other page uses `info@dietz.eu`.
+- Two different terms-of-sale PDFs in circulation, unclear which is current.
+- Footer social links point at the platforms themselves, not Dietz's profiles.
+- Live machine-translation errors visible to English-speaking buyers: "Thigh
+  springs" (a torsion spring), "Bless you" (*Gesundheit*), "Roller Shutter
+  Leather" (*Rollofeder*).
 
 ---
 
@@ -319,23 +405,43 @@ that are yours to decide.
 
 ---
 
-## The win-win, plainly
+## The pitch: why this is worth finishing
 
-The commercial case for this work is not that the site looks better, though it
-does. It is that several things which were quietly costing you have stopped:
+If this report is read for five numbers and nothing else, these are the five:
 
-- **Ten vacancies became reachable and are now eligible for Google Jobs.** For a
-  regional manufacturer hiring apprentices and skilled staff, that is the item
-  most likely to pay for the engagement on its own.
-- **426 of your 429 existing URLs are confirmed safe to migrate.** The biggest
-  risk in any replatform — losing accumulated rankings on launch day — is now a
-  measured, three-line problem rather than an unknown.
-- **The homepage stopped competing with itself for bandwidth**, which is why
-  images were failing to appear.
-- **Your product pages show your products**, sourced from photography you
-  already own, with two honest gaps flagged rather than filled with something
-  approximately right.
-- **And you have a short list of factual errors on the live site** — a legal
-  identifier that contradicts itself, a privacy policy gap, and product pages
-  telling English-speaking buyers you make "Thigh springs" — that you can act on
-  regardless of what happens next with this project.
+1. **149 pages that already live on dietz.eu were invisible to your own site
+   until this project found them** — 429 built pages → **578**, zero invented
+   content, every one something you already publish. That is more real content
+   than most rebuilds add in a year, recovered rather than written.
+2. **Ten live job vacancies went from unreachable to eligible for Google
+   Jobs.** In a regional labour market where you compete for apprentices and
+   skilled tradespeople, this single fix is plausibly worth more than the cost
+   of the engagement on its own.
+3. **The homepage stopped fighting itself for bandwidth.** Peak simultaneous
+   requests while scrolling fell from **40 to 6**, and the certification logos
+   went from 7.8 s to 4.9 s on a 4 Mbit/s connection. Nothing was removed to get
+   there: the five video sections were each queueing every frame they owned, and
+   everything else on the page waited behind them.
+4. **99.3% of your existing URLs are confirmed safe to carry across** — the
+   single biggest risk in any replatform, losing years of accumulated Google
+   ranking on launch day, is now a measured three-line redirect file instead of
+   an unknown.
+5. **We found six things wrong on your live site today that have nothing to do
+   with this project**: a legal register number that contradicts itself
+   between languages, a GDPR-relevant gap in the English privacy policy, a
+   wrong contact email on a legal page, and English product copy telling
+   buyers you make "Thigh springs." None of this costs anything to know. All of
+   it costs something to keep ignoring.
+
+None of the above required inventing content, projecting traffic we cannot
+measure, or guessing at decisions that are yours to make — the pattern
+throughout has been to surface what is actually true about your site (429 → 578
+real pages, 344 German pages that silently didn't preview, ten vacancies nobody
+could open) and fix only what is unambiguously a defect. What remains is mostly
+editorial: real posting dates, four social URLs, one photograph, and a handful
+of calls only Dietz can make (listed above). That is a short, cheap list next
+to what has already been recovered. The commercial case for finishing it is not
+that the site will look better, though it will — it is that the things quietly
+costing you (unreachable vacancies, an at-risk migration, a site fighting
+itself for bandwidth, product pages with no product photo) have a fix in hand
+and stop the day this ships.

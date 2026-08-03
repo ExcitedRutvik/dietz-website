@@ -1,41 +1,34 @@
 #!/usr/bin/env bash
-# Build and publish the homepage to https://dietz.trayaam.com
+# Deploys happen through GitHub, not from this machine.
 #
-# The site is a static export served straight off disk by nginx — there is no
-# app server to restart, so a deploy is just "build, then swap the files".
+# Cloudflare Pages is connected to the repository and builds on every push to
+# `main`. So publishing is:
 #
-# NEXT_EXPORT and NEXT_DIST_DIR are both required: export mode is opt-in so that
-# `next dev` keeps working normally, and the separate dist dir means building
-# here never disturbs a dev server running out of .next.
+#     git push origin main
 #
-# Note that with a custom distDir, Next writes the exported site into that
-# directory itself rather than into ./out.
-
+# and Pages runs the build itself.
+#
+# This script used to rsync a local static export to /var/www/dietz.trayaam.com
+# on this box. That path is dead: nginx here is no longer what serves the site,
+# so the rsync appeared to succeed while the live site kept serving whatever
+# Pages had last built. It cost real debugging time — the origin returned 200
+# for pages Cloudflare was 404ing, because they were two different origins — so
+# the script now refuses rather than lying about what it did.
 set -euo pipefail
 
-HOST=dietz.trayaam.com
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DIST="$ROOT/.next-prod"
-WEBROOT="/var/www/$HOST"
+cat >&2 <<'MSG'
+scripts/deploy.sh no longer deploys anything.
 
-cd "$ROOT"
+The site is built by Cloudflare Pages from the GitHub repository. To publish:
 
-echo "==> building static export"
-NEXT_EXPORT=1 NEXT_DIST_DIR=.next-prod npx next build
+    git push origin main
 
-if [[ ! -f "$DIST/index.html" ]]; then
-  echo "build produced no index.html in $DIST — aborting before touching the live site" >&2
-  exit 1
-fi
+Then watch for the build, e.g.:
 
-frames=$(find "$DIST/frames" -name '*.webp' 2>/dev/null | wc -l)
-if (( frames < 500 )); then
-  echo "only $frames frames in the export (expected ~595) — aborting" >&2
-  exit 1
-fi
+    until curl -sf -o /dev/null https://dietz.trayaam.com/; do sleep 20; done
 
-echo "==> publishing to $WEBROOT ($(du -sm "$DIST" | cut -f1)MB, $frames frames)"
-sudo rsync -a --delete "$DIST/" "$WEBROOT/"
-sudo chown -R www-data:www-data "$WEBROOT"
+To verify a build locally before pushing:
 
-echo "==> done: https://$HOST"
+    NEXT_EXPORT=1 NEXT_DIST_DIR=.next-prod npx next build
+MSG
+exit 1

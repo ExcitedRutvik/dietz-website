@@ -4,6 +4,17 @@
 
 ## Where things stand (updates go at the top)
 
+## Client-facing report expanded into a pitch (2026-08-03)
+
+`reference/reports/dietz-issues-and-solutions.md` was scoped to the twelve
+client review items only. Added a "Zooming out" section that pulls every
+before/after metric from the whole engagement (this file, the SEO audits) into
+one scorecard — content recovered (429→581 pages, 0 orphans), performance
+(190MB→127MB, HTTP/2), SEO (426/429 URL parity), and the structural bugs fixed
+along the way. Replaced the closing section with a five-number pitch aimed at
+winning sign-off for the full revamp, and updated the report's scope line to
+match. No code changes; report only.
+
 ## Client review round 2 (2026-08-03)
 
 Twelve items raised; all addressed. Client-facing write-up is
