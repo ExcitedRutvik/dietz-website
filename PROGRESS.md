@@ -4,6 +4,53 @@
 
 ## Where things stand (updates go at the top)
 
+## Live-vs-rebuild measurement + two corrected figures (2026-08-04)
+
+Measured both origins in a real browser (Playwright, desktop + mobile). New
+report: `reference/reports/live-vs-rebuild-analysis.md`. Scripts in scratchpad
+(`audit-v2.cjs`, `mobile-audit.cjs`, `privacy-security.cjs`, `mobile-video.cjs`);
+run with `NODE_PATH=/home/ubuntu/projects/dietz/node_modules`.
+
+### ⚠️ Two previously reported numbers were wrong. Both corrected in the client report.
+1. **URL parity is 83.5% (DE+EN), not 99.3%.** The old figure was measured
+   against a 429-URL subset. The real `sitemap_index.xml` has **1,008 URLs
+   across 13 sub-sitemaps**. DE+EN: 575/689 matched, 114 missing. **0 of the
+   missing are editorial content** — 58 media/download CPT, 53 taxonomy
+   archives, 3 cruft. But **26 of 30 sampled return 200 live**, so the redirect
+   map is a **~104-URL job, not 3**. Launch-blocking. `url-parity.mjs` needs
+   re-pointing at the full sitemap index.
+2. **dietz.eu's broken-image damage is 1 image (the logo), not 24.** Static HTML
+   grep counted 24 `<img>` on the dead `relaunch.dietz.eu` domain; in a real
+   browser the theme's lazy-load layer rewrites most to working URLs first.
+   **Always confirm image failures in a browser + re-request, never by grep.**
+
+### Live dietz.eu defects found (client-actionable, not ours)
+- `relaunch.dietz.eu` = **NXDOMAIN** (3 resolvers), referenced 43× on the
+  homepage, 9/10 pages affected. Logo fails to render. All files exist at the
+  same path on `www.dietz.eu` → database search-replace fixes it.
+- **10.55 MB hero video on mobile**; homepage LCP **4,448 ms** = Google "poor".
+- **SalesViewer fires pre-consent** — GDPR/TTDSG exposure, Complianz installed.
+- **0 of 7 security headers.** HTML is `no-store` + `Vary: User-Agent`.
+- 1.27 MB render-blocking CSS (233 KB gzip) + 11 inline `<style>` blocks.
+
+### Where we are behind (honest, and D2 is a one-liner)
+- **JS 808 KB wire vs their ~80 KB** (one 640 KB chunk — audit route-splitting).
+- **Static caching worse than theirs**: ours `max-age=14400`, theirs 120 days.
+  Content-hashed assets must be `immutable`. Confirms the long-standing nginx
+  item — now measured against production.
+- Full-scroll homepage transfers 26.67 MB vs their 13.32 MB (frames; their
+  video is 10.55 MB up-front regardless, which is why our *initial* mobile view
+  is 20× lighter).
+- Homepage JSON-LD lacks `WebPage`/`BreadcrumbList`, which theirs has.
+- Staging is `Allow: /` with no `noindex`; canonical points at www.dietz.eu.
+  Flip both at launch.
+
+### Where we win (measured)
+Mobile initial view **11.99 MB → 0.58 MB**, **LCP 4,448 → 170 ms**, TTFB
+428 → 54 ms. Desktop LCP 3,118 → 1,353 ms, load 3,944 → 1,146 ms. CSS 233 KB →
+10 KB wire. 0 broken images, 0 dead-domain refs, 0 pre-consent trackers,
+2/7 security headers vs 0/7, HTTP/3 + brotli.
+
 ## Client-facing report expanded into a pitch (2026-08-03)
 
 `reference/reports/dietz-issues-and-solutions.md` was scoped to the twelve

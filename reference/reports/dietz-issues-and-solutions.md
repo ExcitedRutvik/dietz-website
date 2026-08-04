@@ -23,7 +23,7 @@ company.
 | Product pages with no photograph | 19 | **2** (both deliberate — see F5) |
 | Landing pages showing empty grey cells | 3 | **0** |
 | Job vacancies a candidate could actually open | 0 | **10** |
-| Live URLs that would 404 after launch | unknown | **3**, all disposable |
+| Live URLs that would 404 after launch | unknown | **~104**, all WordPress machinery (revised 4 Aug — see note) |
 | Images with no alt text | 6 | **0** |
 | Duplicate meta descriptions | 1 group | **0** |
 | Top-level menu items that are links | 6 of 7 | **7 of 7** |
@@ -82,7 +82,7 @@ are from three samples each, on a desktop connection.*
 
 | | Before | After |
 |---|---|---|
-| Live URLs confirmed safe to carry across on launch | unmeasured | **426 / 429 (99.3%)** |
+| Live URLs confirmed safe to carry across on launch | unmeasured | **575 / 689 DE+EN (83.5%)** — 0 editorial pages missing |
 | Images missing alt text | 6 | **0** |
 | Duplicate meta descriptions | 1 group | **0** |
 | Duplicate pages breaking the DE/EN pairing | 1 | **0** |
@@ -117,6 +117,24 @@ factual or legal calls that belong to you:
 - Live machine-translation errors visible to English-speaking buyers: "Thigh
   springs" (a torsion spring), "Bless you" (*Gesundheit*), "Roller Shutter
   Leather" (*Rollofeder*).
+
+Measured again on 4 August against both live sites, four more were found — full
+detail and method in `reference/reports/live-vs-rebuild-analysis.md`:
+
+- **Your logo does not load.** The homepage still points at
+  `relaunch.dietz.eu`, the 2024 staging domain, which no longer exists in DNS
+  (confirmed NXDOMAIN on Google, Cloudflare and Quad9). It is referenced 43
+  times on the homepage and on 9 of 10 pages we sampled. Every one of those
+  files already exists at the correct path on `www.dietz.eu` — this is an
+  un-run database search-replace, not a rebuild.
+- **A 10.55 MB video downloads on every mobile visit.** Homepage LCP on an
+  iPhone is **4,448 ms**, inside Google's *poor* Core Web Vitals band. LCP is a
+  ranking signal, so this currently costs you organic visibility.
+- **SalesViewer runs before consent.** A visitor de-anonymisation tracker fires
+  on load with no opt-in, on a site that runs Complianz specifically to gate
+  it. GDPR/TTDSG relevant.
+- **No security headers at all** — no HSTS, no CSP, no clickjacking
+  protection (0 of 7 present).
 
 ---
 
@@ -243,10 +261,19 @@ that is a copywriting job.
 
 Full detail in `reference/seo/audit-2026-08-03.md`. The headlines:
 
-- **URL parity — the single biggest launch risk — is now measured and clean.**
-  Of 429 live URLs, **426 already exist** in the rebuild. The three that do not
-  are WordPress leftovers (`/46-2/`, `/beispiel-seite/`, `/mediathek/`). A
-  ready-to-use redirect file is prepared.
+- **URL parity — the single biggest launch risk — is now measured.**
+  *Revised 4 August 2026.* Our first pass measured against a 429-URL subset and
+  reported 99.3%. Re-measured against your **complete `sitemap_index.xml` (1,008
+  URLs across 13 sub-sitemaps)**, the honest figure for the German and English
+  site is **575 of 689 (83.5%)**. FR/ES/CS (319 URLs) are a separate, agreed
+  deferral.
+  **The important part is unchanged and good: not one editorial content page is
+  missing.** All 114 gaps are WordPress machinery — 58 media/download pages, 53
+  taxonomy archives, 3 known cruft URLs. But **26 of 30 we sampled return HTTP
+  200 on your live site today**, so they are indexed and would 404 on launch
+  without redirects. The redirect map is therefore a **~104-URL job, not a
+  3-URL job**. We would rather correct our own number now than discover this in
+  the week after go-live.
 - **A genuine duplicate page found and removed**: two addresses carried
   identical titles, descriptions and all fifteen paragraphs. Only one exists on
   the live site; the other came from the migration and broke the German/English
@@ -422,10 +449,12 @@ If this report is read for five numbers and nothing else, these are the five:
    went from 7.8 s to 4.9 s on a 4 Mbit/s connection. Nothing was removed to get
    there: the five video sections were each queueing every frame they owned, and
    everything else on the page waited behind them.
-4. **99.3% of your existing URLs are confirmed safe to carry across** — the
-   single biggest risk in any replatform, losing years of accumulated Google
-   ranking on launch day, is now a measured three-line redirect file instead of
-   an unknown.
+4. **Every editorial page you publish is confirmed safe to carry across** —
+   575 of 689 German/English URLs matched, and the 114 that did not are all
+   WordPress machinery, not content. The single biggest risk in any replatform,
+   losing years of accumulated ranking on launch day, is now a measured
+   ~104-URL redirect map instead of an unknown. We revised this figure down
+   from an earlier 99.3% after re-measuring against your full sitemap.
 5. **We found six things wrong on your live site today that have nothing to do
    with this project**: a legal register number that contradicts itself
    between languages, a GDPR-relevant gap in the English privacy policy, a
