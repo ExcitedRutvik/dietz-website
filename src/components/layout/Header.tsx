@@ -193,10 +193,10 @@ export default function Header({
       <div className="mx-auto flex max-w-[88rem] items-center gap-6 px-6 py-3.5">
         <a href={localeHref(locale, "")} className="shrink-0" aria-label="Dietz GmbH">
           <Image
-            src="/logo/dietz-logo.png"
+            src="/logo/dietz-logo.webp"
             alt="Dietz GmbH Logo"
-            width={395}
-            height={137}
+            width={230}
+            height={80}
             priority
             className={`h-9 w-auto transition ${solid ? "" : "brightness-0 invert"}`}
           />
@@ -284,7 +284,7 @@ export default function Header({
           locale={locale}
           className={`hidden min-h-11 shrink-0 px-5 text-sm font-semibold transition-colors duration-150 xl:inline-flex ${
             solid
-              ? "bg-brand text-white hover:bg-brand-deep"
+              ? "bg-brand-ink text-white hover:bg-brand-deep"
               : "bg-white text-ink hover:bg-white/85"
           }`}
         />
@@ -400,7 +400,7 @@ export default function Header({
             />
             <ContactCta
               locale={locale}
-              className="min-h-12 w-full bg-brand px-5 text-sm font-semibold text-white"
+              className="min-h-12 w-full bg-brand-ink px-5 text-sm font-semibold text-white"
             />
           </div>
         </nav>

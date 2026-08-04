@@ -4,6 +4,127 @@
 
 ## Where things stand (updates go at the top)
 
+## Hero LCP fix: one persistent DOM node instead of a post-hydration swap (2026-08-04)
+
+The open item from the Lighthouse pass below. `ScrollVideoSection` (Hero's
+`barLayout` path only — the other four scroll-video sections are untouched)
+no longer branches into two separate `return` statements for phone vs.
+desktop. One `<section data-hero>` is always rendered; canvas vs. poster and
+the copy panel's position/glass treatment are switched by CSS alone, gated on
+the exact same media query `useDisplayMode` resolves in JS
+(`min-width:1024px) and (min-aspect-ratio:5/4) and (prefers-reduced-motion:no-preference)`),
+mirroring the `data-hero-fallback`/`data-hero-slot` mechanism already in
+`globals.css` for the visibility-only version of this problem. New selectors:
+`[data-hero]`, `[data-hero-canvas]`, `[data-hero-poster]`, `[data-hero-copy]`,
+`[data-hero-step]`, `[data-hero-panel]` (a deliberate, separate copy of
+`.cine-glass` — not shared, see the comment in `globals.css`, because this
+panel is mounted on every viewport where `.cine-glass` previously only ever
+mounted on qualifying ones).
+
+**Measured, before → after, local unthrottled Playwright (`largest-contentful-paint`
+PerformanceObserver entry, 1440×900):** LCP was 1.8s with the H1 arriving via
+`element render delay` of 1.4s after FCP; now **LCP = FCP exactly (~330ms)**,
+same element (`<h1>`), because it's now the server-rendered node painting for
+the first time rather than a replacement mounting after hydration. Pin/scrub
+still confirmed working (section stays pinned through a scroll), mobile
+fallback layout unchanged, zero console/network errors, full 584-page export
+still builds clean.
+
+**One real bug hit and fixed along the way**: my first pass wrote the
+horizontal centering as `transform: translateX(-50%)`. GSAP's scrub loop sets
+this same element's inline `style.transform` every frame (the vertical
+parallax drift) — inline styles win the cascade for that property outright,
+so the centering was silently discarded the instant GSAP's first frame ran,
+and the panel rendered flush left instead of centered. The original Tailwind
+class (`-translate-x-1/2`) never had this problem because Tailwind v4 compiles
+translate utilities to the standalone CSS `translate` property, which composes
+with `transform` instead of fighting it for the same declaration. Fixed by
+using `translate: -50% 0` instead — caught by comparing computed styles
+against the live `dietz.trayaam.com` site pixel-for-pixel before calling it
+done, not by inspection.
+
+**Also found, confirmed pre-existing, left alone**: `.cine-glass`'s blur never
+actually engages on this page — `data-scrubbing="1"` gets set on first
+`ScrollTrigger` update and nothing subsequently fires `onScrubComplete` to
+clear it, even minutes after load with no further scrolling, on **both** this
+build and the live `dietz.trayaam.com` origin. Not a regression, not something
+this session's changes touch, not flagged by Lighthouse (CLS is already
+perfect) — noted here so it doesn't get mistaken for new breakage later.
+
+## Lighthouse fixes from the client's report (2026-08-04)
+
+Pulled the real JSON out of the client's shared Lighthouse run (Performance
+89, Accessibility 91, Best Practices 96, SEO 100, against
+`dietz.trayaam.com/en/`) and fixed everything it flagged that was ours to fix.
+
+- **Accessibility → the three failing audits.** `bg-brand` (#008bc5) + white
+  text was 3.81:1, under the 4.5:1 AA floor — swapped to `bg-brand-ink`
+  (#0079ac, 4.85:1) everywhere a CTA uses it (6 files). Homepage section
+  headings (Products/Services/Sustainability/Company) were `h3` under the
+  page's `h1` with no `h2`, skipping a level — bumped to `h2`, matching
+  CtaBand/Certifications/News/TermineMesse which already had it right. Footer
+  tel/mailto links were 87×18px and 135×23px with no gap — added `py-2`.
+- **Images (~130KB flagged).** The audit's own numbers were noise on two
+  counts: the 9MB "total-byte-weight" and 1.9MB "unused-javascript" figures
+  were almost entirely a shopping/coupon Chrome extension's own bundles
+  (`chrome-extension://...`) captured alongside the page, not our JS.
+  `image-delivery-insight` was real: 6 photos + the logo, flagged for
+  format/oversizing. Logo (PNG 395×137, displayed 208×72 @2x) resized to
+  230×80 WebP. Fifteen more product/industry/services photos got WebP
+  siblings via `sharp` (~37% smaller on average) — but their *source paths*
+  are generator output (`gen-from-live.py` etc.) that shouldn't be
+  hand-edited, so the paths stay `.jpg`/`.png`; `GlassCard` and
+  `IndustryStrip` now wrap the `<Image>` in a `<picture>` with a
+  `<source type="image/webp">` sibling instead. **Gotcha hit during this**:
+  `<picture><source>` commits to a type once the browser supports it,
+  regardless of whether that URL 404s — no silent fallback. `GlassCard` is
+  shared by Products *and* Services, and the first pass only generated WebP
+  for the Products set, which 404'd every Services photo. Fixed by generating
+  the missing four. Any future image routed through either component needs a
+  same-named `.webp` sibling or it will hard-break, not degrade.
+- **LCP (0.7, 1.8s — the dominant drag on the Performance score, 25% weight).**
+  The LCP element was the hero `<h1>`, not the poster image — canvases are
+  never LCP candidates, so on desktop (`cinematic` mode) the headline is
+  always the candidate. `breakdown-insight` showed 1.4s of its 1.8s as
+  "element render delay": `useDisplayMode` intentionally resolves to
+  `"static"` until a `useEffect` runs post-hydration (so SSR and first paint
+  agree — right call for avoiding wasted frame-fetches on phones), but on
+  desktop that means the SSR'd fallback `<h1>` gets discarded and an entirely
+  different `<h1>` mounts once `ScrollVideoSection` swaps to the canvas
+  branch, which is what the browser actually times. Did **not** touch that
+  swap — `ScrollVideoSection`/`Hero` are the file with the explicit "do not
+  touch the decode window, it was measured" warning, and unifying the two
+  branches into one persistent copy panel is a real rewrite of pinned-scroll
+  layout code, not a quick fix. Instead: `HomePage.tsx`'s 9 below-the-fold
+  "use client" sections (Products/Services/Sustainability/Company/News/
+  TermineMesse/Certifications/CtaBand/IndustryStrip) were all statically
+  imported alongside Hero into one ~640KB chunk (confirmed: this is exactly
+  `43y-65-ic4_a-.js` from the audit). Converted them to `next/dynamic()`.
+  **Measured locally, honestly**: for this static-export site there's no
+  server to stream behind, so the eager JS payload barely shrank (~100KB off
+  the monolith chunk, offset by new chunk overhead) — smaller win than hoped,
+  though it may still help hydration prioritization. **The real fix for the
+  1.4s gap is still open**: give the hero's copy panel one persistent DOM
+  node shared between the SSR fallback and the cinematic branch, so its first
+  paint (~0.5s, at FCP) is what LCP measures, instead of the later swap.
+  Flagged rather than attempted given the file's tuning warnings — needs a
+  deliberate pass, not a drive-by.
+- **best-practices `errors-in-console`** (Cloudflare's own
+  `beacon.min.js`, blocked by an extension in whatever browser ran the
+  audit): confirmed zero references to `cloudflareinsights` anywhere in this
+  repo — Cloudflare's edge injects it, and `ERR_BLOCKED_BY_CLIENT` is
+  audit-environment noise (an ad-blocker/extension), not a site defect.
+- Verified with a full `NEXT_EXPORT=1 next build` (584 pages) and a
+  Playwright pass over the homepage (scrolled full height, checked every
+  `<img>` for 0-width/incomplete, checked console/network for 4xx) — zero
+  broken images, zero errors. Screenshots in scratchpad.
+
+Not re-measured against a live Lighthouse run yet — next session should
+re-run Lighthouse against staging once this deploys, since the two biggest
+levers (LCP element-render-delay architecture, and whatever the code-split
+actually does once brotli + a real network are involved) can only really be
+confirmed that way.
+
 ## Live-vs-rebuild measurement + two corrected figures (2026-08-04)
 
 Measured both origins in a real browser (Playwright, desktop + mobile). New

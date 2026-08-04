@@ -22,7 +22,7 @@ export default function CtaBand({
         </div>
         <ContactCta
           locale={locale}
-          className="min-h-12 shrink-0 bg-brand px-8 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-deep"
+          className="min-h-12 shrink-0 bg-brand-ink px-8 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-deep"
         />
       </div>
     </section>

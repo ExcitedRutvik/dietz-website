@@ -18,9 +18,9 @@ export default function Company({
       vhPerStep={150}
       steps={[
         <div key="company" className="max-w-3xl text-white">
-          <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
             {content.subtitle}
-          </h3>
+          </h2>
           <p className="mt-5 text-pretty text-sm leading-relaxed font-medium text-white sm:text-base">
             {content.body}
           </p>

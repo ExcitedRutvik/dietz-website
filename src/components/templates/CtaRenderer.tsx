@@ -13,7 +13,7 @@ export default function CtaRenderer({ cta, locale }: { cta: CTA; locale: Locale 
         <ContactCta
           locale={locale}
           label={cta.label}
-          className="mt-8 min-h-12 gap-2 bg-brand px-8 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-deep"
+          className="mt-8 min-h-12 gap-2 bg-brand-ink px-8 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-deep"
         />
       );
     case "external-link":

@@ -130,10 +130,10 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="grid gap-x-10 gap-y-10 md:grid-cols-3">
           <div>
             <Image
-              src="/logo/dietz-logo.png"
+              src="/logo/dietz-logo.webp"
               alt="Dietz GmbH Logo"
-              width={395}
-              height={137}
+              width={230}
+              height={80}
               className="h-10 w-auto brightness-0 invert"
             />
             <address className="mt-5 text-sm not-italic leading-relaxed">
@@ -143,12 +143,12 @@ export default function Footer({ locale }: { locale: Locale }) {
               <br />
               <a
                 href={`tel:${PHONE.replace(/[^+\d]/g, "")}`}
-                className="mt-3 inline-block hover:text-white"
+                className="mt-3 inline-block py-2 hover:text-white"
               >
                 {PHONE}
               </a>
               <br />
-              <a href={`mailto:${EMAIL}`} className="hover:text-white">
+              <a href={`mailto:${EMAIL}`} className="inline-block py-2 hover:text-white">
                 {EMAIL}
               </a>
             </address>

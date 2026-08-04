@@ -112,13 +112,24 @@ export default function IndustryStrip({
               <a href={item.href} className="block">
                 <div className="relative aspect-[4/3] overflow-hidden bg-surface sm:aspect-[3/2] lg:aspect-[3/4]">
                   {item.src && (
-                    <Image
-                      src={item.src}
-                      alt=""
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    />
+                    // A same-named .webp sibling ships alongside each hub
+                    // thumb; the source paths themselves stay untouched
+                    // (generated from the live scrape) so this is where the
+                    // format upgrade happens instead.
+                    <picture className="contents">
+                      <source
+                        type="image/webp"
+                        srcSet={item.src.replace(/\.(jpe?g|png)$/i, ".webp")}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                      />
+                      <Image
+                        src={item.src}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      />
+                    </picture>
                   )}
                   {/* Scrim, so the label is legible over any of these photos
                       and not only over the two that happen to be dark. */}

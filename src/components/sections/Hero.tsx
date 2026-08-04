@@ -59,7 +59,7 @@ export default function Hero({
 
           <ContactCta
             locale={locale}
-            className="min-h-12 shrink-0 gap-2 rounded-xl bg-brand px-7 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-deep sm:min-h-[3.125rem]"
+            className="min-h-12 shrink-0 gap-2 rounded-xl bg-brand-ink px-7 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-deep sm:min-h-[3.125rem]"
           />
         </div>,
       ]}

@@ -23,14 +23,24 @@ export default function GlassCard({
     <figure className="relative w-full">
       <div className="relative">
         <div className="relative overflow-hidden rounded-[1rem] ring-1 ring-white/10">
-          <Image
-            src={src}
-            alt=""
-            width={760}
-            height={608}
-            sizes="(max-width: 1279px) 24rem, 22rem"
-            className="h-48 w-full object-cover sm:h-56 xl:h-52"
-          />
+          {/* A same-named .webp sibling ships alongside every source photo
+              here; the browser picks it over the <img> fallback whenever it
+              understands the format, which by now is effectively always. */}
+          <picture className="contents">
+            <source
+              type="image/webp"
+              srcSet={src.replace(/\.(jpe?g|png)$/i, ".webp")}
+              sizes="(max-width: 1279px) 24rem, 22rem"
+            />
+            <Image
+              src={src}
+              alt=""
+              width={760}
+              height={608}
+              sizes="(max-width: 1279px) 24rem, 22rem"
+              className="h-48 w-full object-cover sm:h-56 xl:h-52"
+            />
+          </picture>
           {/* Settles the white studio sweep to the pane's own brightness. */}
           <div className="absolute inset-0 bg-zinc-950/10" />
         </div>

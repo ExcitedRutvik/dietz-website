@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   // way production does. Everything next/image touches here (logo, cert badges,
   // service thumbnails) is already sized for the slot it sits in.
   images: { unoptimized: true },
+  // Browsers only fetch a .map file when DevTools is open, so this costs real
+  // visitors nothing — but without it, every minified first-party chunk is a
+  // dead end for anyone (Lighthouse included) trying to trace a forced reflow
+  // or a runtime error back to a component.
+  productionBrowserSourceMaps: true,
   // Every existing internal href (Header/Footer nav, in-content links) ends in
   // a trailing slash, matching the live WordPress site's URL convention.
   // Static export writes `slug/index.html` either way, but without this the

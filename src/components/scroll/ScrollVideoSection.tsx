@@ -398,6 +398,99 @@ export default function ScrollVideoSection({
     ScrollTrigger.refresh();
   }, [cinematic, ready]);
 
+  if (barLayout) {
+    // Hero only, and deliberately not sharing the branch below.
+    //
+    // That branch fully unmounts the fallback subtree and mounts a different
+    // one once `cinematic` resolves, which is correct for the other four
+    // sections (they are below the fold, so nobody times their repaint) but
+    // is exactly what was delaying the page's LCP element: the hero heading
+    // is the real LCP candidate on a qualifying viewport — a `<canvas>` is
+    // never an LCP candidate, so the still-frame background was invisible to
+    // this metric regardless of how fast it painted — and it was only
+    // available after hydration, the mode-detection effect, and a full
+    // remount, measured at ~1.4s of "element render delay" on top of an
+    // otherwise-0.5s first paint.
+    //
+    // This renders one persistent DOM node for the copy panel across both
+    // states, so its first paint (server-rendered, before any JS runs) is
+    // what LCP measures. Positioning and the glass treatment still differ
+    // between phone and desktop, same as the branch below, but the switch is
+    // pure CSS (`[data-hero-copy]` etc. in globals.css, gated on the exact
+    // media query `useDisplayMode` resolves in JS) rather than a JS-driven
+    // remount — so there is no flash while JS catches up to what the CSS
+    // already decided, the same reasoning `data-hero-fallback` already uses
+    // below for visibility. The canvas painting, frame-fetch scheduling and
+    // ScrollTrigger pin are untouched: they still only run once `cinematic`
+    // is confirmed, exactly as before, and the canvas/step refs simply exist
+    // slightly earlier now (attached to an already-mounted, CSS-hidden node)
+    // rather than springing into existence when the branch mounts — every
+    // effect that reads them is already guarded on `cinematic`, so that
+    // earlier existence is inert until the guard passes.
+    //
+    // `heading` and `stepMedia` are intentionally unhandled here: Hero is the
+    // only `barLayout` caller and passes neither.
+    return (
+      <section
+        ref={sectionRef}
+        id={id}
+        data-hero
+        className={`relative isolate bg-zinc-950 ${className}`}
+      >
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          role="presentation"
+          data-hero-canvas
+          className="absolute inset-0 -z-10 h-full w-full bg-neutral-950"
+        />
+        <div
+          aria-hidden
+          data-hero-canvas-chrome
+          className="absolute inset-x-0 top-0 -z-10 h-[11vh] bg-gradient-to-b from-zinc-950/38 to-transparent"
+        />
+        <div data-hero-canvas-chrome className={EDGE_TOP} />
+        <div data-hero-canvas-chrome className={EDGE_BOTTOM} />
+
+        <div data-hero-poster className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={sequence.posterSrc}
+            alt=""
+            aria-hidden="true"
+            loading={order === 0 ? "eager" : "lazy"}
+            fetchPriority={order === 0 ? "high" : "low"}
+            decoding="async"
+            className="h-[38svh] min-h-[13rem] w-full object-cover sm:h-[46svh]"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-zinc-950/85 via-zinc-950/35 to-transparent" />
+        </div>
+
+        <div data-hero-copy>
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              ref={(el) => {
+                stepRefs.current[i] = el;
+              }}
+              data-hero-step
+              // Before hydration confirms cinematic mode, this must read as
+              // the phone layout's default (every step visible, stacked) —
+              // Hero only ever passes one step, so in practice this is
+              // always 1, but a future multi-step barLayout section should
+              // not open on every checkpoint hidden.
+              style={{ opacity: cinematic ? (i === 0 ? 1 : 0) : 1 }}
+            >
+              <div data-hero-panel>{step}</div>
+            </div>
+          ))}
+        </div>
+
+        {showDots && <ProgressDots count={steps.length} current={current} />}
+      </section>
+    );
+  }
+
   if (!cinematic) {
     // Phones and upright tablets. Not a stripped-back version of the scrub: the
     // poster becomes a real establishing image at the top of the section, and

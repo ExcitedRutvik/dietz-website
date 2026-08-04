@@ -46,9 +46,9 @@ export default function Services({
               {String(i + 1).padStart(2, "0")} /{" "}
               {String(content.items.length).padStart(2, "0")}
             </p>
-            <h3 className="mt-3 text-2xl font-semibold tracking-tight min-[380px]:text-[1.75rem] sm:mt-4 sm:text-4xl">
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight min-[380px]:text-[1.75rem] sm:mt-4 sm:text-4xl">
               {item.title}
-            </h3>
+            </h2>
             <p className="mt-3 text-pretty text-[0.9rem] leading-relaxed font-medium text-white sm:mt-4 sm:text-base">
               {item.body}
             </p>

@@ -88,7 +88,7 @@ export default function Listing({ h1, intro, items, pagination, locale }: Listin
               aria-current={p === pagination.currentPage ? "page" : undefined}
               className={`grid h-11 min-w-11 place-items-center px-2 transition-colors ${
                 p === pagination.currentPage
-                  ? "bg-brand font-semibold text-white"
+                  ? "bg-brand-ink font-semibold text-white"
                   : "text-ink-muted hover:bg-brand-wash hover:text-brand-deep"
               }`}
             >
