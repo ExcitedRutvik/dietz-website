@@ -24,6 +24,75 @@ const MAX_INFLIGHT = 6;
 // still saturating the budget.
 const RESERVED = 1;
 
+/**
+ * Nothing is fetched until the reader actually moves.
+ *
+ * The budget above bounds *concurrency*, not *when*. The hero registers as soon
+ * as it mounts and its window starts at frame 0, so a page that was never
+ * scrolled still pulled its whole leading window: a Lighthouse run, which never
+ * scrolls, measured 83 frames / 7.31MB against 30 requests / 1.29MB for the
+ * entire rest of the document. Frames were ~85% of the page's weight and every
+ * byte of it landed before the reader had asked for a single one — starving the
+ * hero's own `<h1>` (the LCP element) of bandwidth in the process.
+ *
+ * Deferring costs nothing visually: `ScrollVideoSection` paints its poster on
+ * the canvas until the first real frame decodes, so a still-unscrolled hero
+ * looks exactly the same either way. On first movement the gate opens, `ensure()`
+ * marks the section priority 0, and the window fills at high priority from
+ * frame 0 — which is precisely where a reader entering a pinned hero needs it.
+ *
+ * Deliberately *not* opened on a timer or `requestIdleCallback`: either would
+ * hand the bytes back to any measurement that waits for the network to settle,
+ * which is the whole thing being fixed. A reader who never scrolls never needs
+ * a frame.
+ */
+let unlocked = false;
+let armed = false;
+
+// `wheel`/`touchstart`/`keydown` are belt-and-braces: Lenis virtualises window
+// scroll so native `scroll` does fire, but these precede it by a frame or two
+// and cost nothing to listen for.
+const UNLOCK_EVENTS = [
+  "scroll",
+  "wheel",
+  "touchstart",
+  "pointerdown",
+  "keydown",
+] as const;
+
+let unlockListeners: AbortController | null = null;
+
+function unlock() {
+  if (unlocked) return;
+  unlocked = true;
+  unlockListeners?.abort();
+  unlockListeners = null;
+  pump();
+}
+
+/** Idempotent, and safe to reach during SSR (where it simply does nothing). */
+function arm() {
+  if (armed || typeof window === "undefined") return;
+  armed = true;
+
+  // Restored scroll position, an anchor link, or a browser that reloaded
+  // mid-page: the reader is already past the top, so there is nothing to wait
+  // for. Checked once here rather than relying on a `scroll` event that may
+  // never fire.
+  if (window.scrollY > 0) {
+    unlocked = true;
+    return;
+  }
+
+  unlockListeners = new AbortController();
+  for (const type of UNLOCK_EVENTS) {
+    window.addEventListener(type, unlock, {
+      passive: true,
+      signal: unlockListeners.signal,
+    });
+  }
+}
+
 export interface FrameProducer {
   id: string;
   /** 0 = being scrubbed right now, 1 = approaching, 2 = idle backfill. */
@@ -38,6 +107,7 @@ let inflight = 0;
 
 export function register(p: FrameProducer) {
   producers.add(p);
+  arm();
   pump();
 }
 
@@ -51,6 +121,7 @@ export function poke() {
 }
 
 function pump() {
+  if (!unlocked) return;
   while (inflight < MAX_INFLIGHT) {
     // Recomputed each pass: priorities are time-dependent, so a ranking taken
     // once at the top of the loop would already be stale by the second slot.

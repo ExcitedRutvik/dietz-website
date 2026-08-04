@@ -4,6 +4,128 @@
 
 ## Where things stand (updates go at the top)
 
+## Frame fetching deferred until first scroll (2026-08-04)
+
+The item the Lighthouse re-run below identified as the only remaining perf
+lever. **83 hero frames / 7.31MB were fetched before the reader had scrolled a
+pixel** — ~85% of the page's weight, competing with the hero `<h1>` that is the
+LCP element.
+
+**The change is one gate in `frameFetchScheduler.ts`, not a tuning change.**
+`pump()` returns early until `unlocked`; `register()` arms a one-shot listener
+set (`scroll`/`wheel`/`touchstart`/`pointerdown`/`keydown`, passive, removed via
+one `AbortController`) that opens it on the reader's first movement. Loading
+already scrolled (restored position, anchor) unlocks immediately via a
+`scrollY > 0` check at arm time.
+
+**The decode window itself is untouched** — `BLOB_BACK/AHEAD`, `WINDOW_BACK/AHEAD`,
+`SPINE_STRIDE`, `MAX_INFLIGHT`, priorities, eviction: all unchanged. The
+"do not touch the decode window, it was measured" warning is respected. What
+was measured there was *scroll smoothness at 4 Mbit/s*; it was never measured
+for pre-scroll cost, which is the only thing this changes. Once the gate opens,
+behaviour is bit-for-bit what it was.
+
+Deliberately **not** opened on a timer or `requestIdleCallback` — either hands
+the bytes straight back to any measurement that waits for the network to settle.
+
+**Nothing is visually deferred.** `ScrollVideoSection` already paints its poster
+on the canvas until the first real frame decodes, so a still-unscrolled hero is
+identical. Verified: canvas pixel variance 2741.8 while gated (real poster
+content, not a blank/solid fill).
+
+### Measured, local export build, 1440×900
+| | before (prod, LH run) | after |
+|---|---|---|
+| frame requests before any scroll | 83 | **0** |
+| frame bytes before any scroll | 7.31 MB | **0** |
+| requests before any scroll | 111 | **31** |
+| LCP | 980ms observed / 2.2s simulated | **151ms — equal to FCP** |
+
+`LCP === FCP === 151ms` is the outcome the hero-LCP session was aiming for and
+did not reach: the `<h1>` no longer queues behind 83 frame fetches.
+
+### Verified
+- **Gate**: 0 frames pre-scroll on DE and EN; 83 after the first wheel event;
+  240 after scrubbing through; canvas variance changes 2741.8 → 3178.1, so the
+  scrub genuinely advances. 0 console/page errors on both locales.
+- **Edge cases**: `prefers-reduced-motion` and mobile 390px both fetch 0 frames
+  with 0 page errors (static path, unchanged). Anchor deep-link held the gate
+  correctly. *Not exercised: a deep link that actually lands scrolled — the
+  `scrollY > 0` branch is a safety net; the scroll listener covers it anyway.*
+- `tsc --noEmit` clean, `eslint` clean, full `NEXT_EXPORT=1` build clean (584 pages).
+
+Scripts: scratchpad `verify-gate.cjs`, `verify-edge.cjs`, `measure-gate.cjs`.
+
+**Not yet re-measured by Lighthouse against deployed staging** — this needs a
+deploy first. Expect LCP and Speed Index (the only two audits costing points,
+−10.8 and −2.0) to move; Performance should land well above 87.
+
+## Lighthouse re-run against deployed staging — closes the open loop (2026-08-04)
+
+Client shared a fresh LH 13.3.0 run (desktop, DevTools channel) against
+`dietz.trayaam.com/en/`, fetched 21:10Z — **after** HEAD `888cf86` (14:43Z), so
+it does include the a11y + hero-LCP work. JSON in scratchpad
+(`lighthouse-en.json`). The report carries a `runtimeError: PROTOCOL_TIMEOUT`
+(`Runtime.evaluate`), but all **160 audits completed with 0 in error state** and
+every category scored — data is complete and usable.
+
+| Category | Previous run | This run |
+|---|---|---|
+| Performance | 89 | **87** |
+| Accessibility | 91 | **100** |
+| Best Practices | 96 | **96** |
+| SEO | 100 | **100** |
+| Agentic Browsing | — | **100** |
+
+**⚠️ The 89 → 87 is not a regression and the two are not comparable.** The
+previous run was polluted by a Chrome extension (its bundles counted as page
+JS — the bogus 9MB byte-weight and 1.9MB unused-JS figures). This run contains
+**zero `chrome-extension://` references**. It is the first clean measurement.
+
+### Confirmed landed
+- **Accessibility 91 → 100, zero failing audits.** `color-contrast`,
+  `heading-order`, `target-size` all now 0 violations. SEO also 0 failing.
+- **Hero LCP fix works, partially.** LCP element is now the SSR'd `<h1>`
+  (same node is present in the raw HTML). Element render delay **1,400ms →
+  823ms (−41%)**. Observed LCP **980ms**, observed FCP 580ms, CLS 0.0002,
+  TBT 2ms. It did *not* reach the "LCP = FCP" result measured locally — that
+  was unthrottled, 1440×900, on `/`; this is throttled-simulated on `/en/`.
+- **`/frames/` caching fixed**: now `max-age=31536000, immutable`.
+
+### Performance 87 decomposes exactly — only two audits cost anything
+```
+TBT  100 (w30) → 30.0/30.0    CLS 100 (w25) → 25.0/25.0    FCP 100 (w10) → 10.0/10.0
+LCP   57 (w25) → 14.2/25.0  ..... −10.8 pts   (2.2s simulated)
+SI    80 (w10) →  8.0/10.0  .....  −2.0 pts   (1.6s)
+```
+**Everything else is already perfect.** There is no broad performance problem
+left — there is one.
+
+### The one remaining lever: 83 hero frames = 7.31 MB fetched with no scrolling
+Lighthouse never scrolls, yet the run pulled **83 `/frames/hero/*.webp` (7.31 MB)**.
+The entire rest of the page is **30 requests / 1.29 MB**. Frames are ~85% of
+page weight and they fire before any scroll, which is what drags both Speed
+Index and the LCP element-render-delay (the `<h1>` competes with 83 fetches).
+
+The "do not touch the decode window — it was measured" warning in
+`frameFetchScheduler.ts` still stands, but note *what* was measured: scroll
+smoothness at 4 Mbit/s. It was not measured for **pre-scroll** cost. The fix is
+to not open the window until first scroll/interaction (or seed only the spine),
+which should leave scrub behaviour untouched. This is the single highest-value
+perf item left.
+
+### Not ours / won't fix
+- **Best Practices 96** — sole blocker is `errors-in-console`:
+  `ERR_BLOCKED_BY_CLIENT` on `static.cloudflareinsights.com/beacon.min.js`, an
+  ad-blocker in the auditing browser. Re-confirmed **zero `cloudflareinsights`
+  references in this repo**; Cloudflare's edge injects it. Scores 100 in a clean
+  profile.
+
+### Still open from the caching work
+`/frames/` is immutable now, but **`/images/` and `/_next/static/` are still
+`max-age=14400, must-revalidate`** — and `_next/static` is content-hashed, so it
+is safe to serve `immutable` for a year. Still a one-line server change.
+
 ## Hero LCP fix: one persistent DOM node instead of a post-hydration swap (2026-08-04)
 
 The open item from the Lighthouse pass below. `ScrollVideoSection` (Hero's
